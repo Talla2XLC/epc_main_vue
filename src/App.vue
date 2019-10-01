@@ -1,29 +1,49 @@
-<template>
+<template>  
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <app-header />
+    <main>
+      <router-view />
+    </main>
+    <app-footer />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import 'reset-css';
+import appHeader from '@/components/app-header';
+import appFooter from '@/components/app-footer';
+
+export default {
+  name: 'App',
+  components: {
+    appHeader,
+    appFooter
   }
-}
+};
+</script>
+
+<style lang="sass">
+#app
+  font-family: "Avenir", Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: -o-flex
+  display: flex
+  flex-flow: column nowrap
+  height: 100vh
+  overflow: hidden
+
+main
+  flex-grow: 1
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: -o-flex
+  display: flex
+  flex-flow: column nowrap
+  z-index: 5
+    
 </style>
