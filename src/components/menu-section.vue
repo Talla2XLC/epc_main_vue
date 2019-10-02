@@ -26,6 +26,7 @@ export default {
 .btn
 	text-transform: uppercase
 	background: transparent
+	font-family: "montserrat-regular", "calibri", sans-serif
 	border: none
 	cursor: pointer
 	box-sizing: border-box

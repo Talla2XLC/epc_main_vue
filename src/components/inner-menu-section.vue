@@ -32,6 +32,7 @@ export default {
 	font-size: 24px
 	transition: transform 100ms ease-in
 	position: relative
+	font-family: "montserrat-regular", "calibri", sans-serif
 	&:hover
 		font-weight: 800
 	&:focus

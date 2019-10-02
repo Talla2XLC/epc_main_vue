@@ -3,14 +3,15 @@
 		<div class="main_content">
 			<img class="epc_logo" src="@/assets/logo.png" @click="switchMainMenu">
 			<div class="content_div">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum porro. Iure voluptates voluptatem assumenda reiciendis. Autem modi ipsa, iure voluptatum saepe voluptatibus provident ducimus consequuntur qui optio! Magni ullam blanditiis, quasi, perspiciatis autem beatae eum at ad sed commodi mollitia. Similique officia accusantium et, nulla cumque. Vel esse quas quo non, totam rem eum consequuntur pariatur excepturi animi quam eos, quibusdam modi commodi nobis repellendus mollitia beatae, itaque aut. Eaque nam ex maiores necessitatibus, dolor animi assumenda iste eius repellat rem, quia labore enim voluptate placeat perspiciatis quis doloribus sed quos tempore distinctio ut. Molestiae dolores impedit temporibus?</div>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum porro. Iure voluptates voluptatem assumenda reiciendis. Autem modi ipsa, iure voluptatum saepe voluptatibus provident ducimus consequuntur qui optio! Magni ullam blanditiis, quasi, perspiciatis autem beatae eum at ad sed commodi mollitia. Similique officia accusantium et, nulla cumque. Vel esse quas quo non, totam rem eum consequuntur pariatur excepturi animi quam eos, quibusdam modi commodi nobis repellendus mollitia beatae, itaque aut. Eaque nam ex maiores necessitatibus, dolor animi assumenda iste eius repellat rem, quia labore enim voluptate placeat perspiciatis quis doloribus sed quos tempore distinctio ut. Molestiae dolores impedit temporibus?
+			</div>
 		</div>
 		<div class="partners">
-			<a href="https://www.nupiindustrieitaliane.com/en/index.html"><img class="partner_logo" src="@/assets/nupi_logo.png" height="75" width="76"></a>
-			<a href="https://www.scully.com"><img class="partner_logo" src="@/assets/scully_logo.png" height="75" width="250"></a>
-			<a href="https://www.gardnerdenver.com/ru-ru/emcowheaton"><img class="partner_logo" src="@/assets/emco_logo.png" height="75" width="200"></a>
-			<a href="https://www.rotork.com/en"><img class="partner_logo" src="@/assets/rotork_logo.png" height="75" width="250"></a>
-			<a href="http://tokheim.com/products-solutions/progauge/"><img class="partner_logo" src="@/assets/progauge_logo.png" height="75" width="250"></a>
+			<a href="https://www.nupiindustrieitaliane.com/en/index.html"><img class="partner_logo" src="@/assets/partners_logo/nupi_logo.png" height="75" width="76"></a>
+			<a href="https://www.scully.com"><img class="partner_logo" src="@/assets/partners_logo/scully_logo.png" height="75" width="250"></a>
+			<a href="https://www.gardnerdenver.com/ru-ru/emcowheaton"><img class="partner_logo" src="@/assets/partners_logo/emco_logo.png" height="75" width="200"></a>
+			<a href="https://www.rotork.com/en"><img class="partner_logo" src="@/assets/partners_logo/rotork_logo.png" height="75" width="250"></a>
+			<a href="http://tokheim.com/products-solutions/progauge/"><img class="partner_logo" src="@/assets/partners_logo/progauge_logo.png" height="75" width="250"></a>
 		</div>
 	</div>
 </template>
@@ -68,6 +69,7 @@ export default {
 
 .content_div
 	width: 50%
+	font-family: "montserrat-regular", "calibri", sans-serif
 	text-align: justify
 	box-sizing: border-box
 	line-height: 1.5rem
