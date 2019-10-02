@@ -1,45 +1,47 @@
 <template>
-	<transition name="fade"> 
-		<nav class="main_nav" ref="main_nav" v-if="mainMenuVisible">
-			<menu-section page_name="main">главная</menu-section>
-			<menu-section page_name="epc">о компании</menu-section>
-			<menu-section page_name="products"
-				@mouseover.native="showProductNav"
-				@mouseleave.native="hideProductNav"			
-			>продукция</menu-section>
-			<product-nav v-if="productNavVisible"></product-nav>
-			<menu-section page_name="contacts">контакты</menu-section>
-		</nav>
-	</transition>
+  <transition name="fade">
+    <nav class="main_nav" ref="main_nav" v-if="mainMenuVisible">
+      <menu-section page_name="main">главная</menu-section>
+      <menu-section page_name="epc">о компании</menu-section>
+      <menu-section
+        page_name="products"
+        @mouseover.native="showProductNav"
+        @mouseleave.native="hideProductNav"
+        >продукция</menu-section
+      >
+      <product-nav v-if="productNavVisible"></product-nav>
+      <menu-section page_name="contacts">контакты</menu-section>
+    </nav>
+  </transition>
 </template>
 
 <script type="text/javascript">
-import menuSection from '@/components/menu-section';
-import productNav from '@/components/product-nav';
+import menuSection from "@/components/menu-section";
+import productNav from "@/components/product-nav";
 
 export default {
   name: "main-nav",
   components: {
-		menuSection,
-		productNav
+    menuSection,
+    productNav
   },
   computed: {
-  	mainMenuVisible() {
+    mainMenuVisible() {
       return this.$store.state.mainMenuVisible;
     },
-		productNavVisible() {
-			return this.$store.state.productNavVisible;
-		},
-	},
-	methods: {
-		showProductNav() {
-  		this.$store.dispatch('showProductNav');
-  	},
+    productNavVisible() {
+      return this.$store.state.productNavVisible;
+    }
+  },
+  methods: {
+    showProductNav() {
+      this.$store.dispatch("showProductNav");
+    },
 
-  	hideProductNav() {
-  		this.$store.dispatch('hideProductNav');
-  	}
-	}
+    hideProductNav() {
+      this.$store.dispatch("hideProductNav");
+    }
+  }
 };
 </script>
 

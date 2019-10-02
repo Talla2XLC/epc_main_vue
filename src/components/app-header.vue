@@ -1,18 +1,18 @@
 <template>
-	<header @mouseover="showMainMenu" @mouseleave="hideMainMenu">
+  <header @mouseover="showMainMenu" @mouseleave="hideMainMenu">
     <main-nav-burger></main-nav-burger>
-    <div class="header_bottom" :class="{big_header_bottom: mainMenuVisible}">
-        <main-nav></main-nav>
+    <div class="header_bottom" :class="{ big_header_bottom: mainMenuVisible }">
+      <main-nav></main-nav>
     </div>
   </header>
 </template>
 
 <script>
-import mainNav from '@/components/main-nav';
-import mainNavBurger from '@/components/main-nav-burger';
+import mainNav from "@/components/main-nav";
+import mainNavBurger from "@/components/main-nav-burger";
 
 export default {
-  name: 'app-header',
+  name: "app-header",
   components: {
     mainNav,
     mainNavBurger
@@ -20,33 +20,33 @@ export default {
   computed: {
     mainMenuVisible() {
       return this.$store.state.mainMenuVisible;
-    },
+    }
   },
-	methods: {
-		showMainMenu() {
-  		this.$store.dispatch('showMainMenu');
-  	},
+  methods: {
+    showMainMenu() {
+      this.$store.dispatch("showMainMenu");
+    },
 
-  	hideMainMenu() {
-  		this.$store.dispatch('hideMainMenu');
-  	}
-	}
+    hideMainMenu() {
+      this.$store.dispatch("hideMainMenu");
+    }
+  }
 };
 </script>
 
 <style lang="sass" scoped>
 header
-	display: -webkit-flex
-	display: -moz-flex
-	display: -ms-flex
-	display: -o-flex
-	display: flex
-	flex-flow: column nowrap
-	align-items: center
-	justify-content: flex-end
-	position: relative
-	min-height: 6rem
-	z-index: 1
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: -o-flex
+  display: flex
+  flex-flow: column nowrap
+  align-items: center
+  justify-content: flex-end
+  position: relative
+  min-height: 6rem
+  z-index: 1
 .header_bottom
   display: -webkit-flex
   display: -moz-flex

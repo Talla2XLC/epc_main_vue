@@ -1,11 +1,9 @@
 module.exports = {
   css: {
+    modules: true,
     loaderOptions: {
-      sass: {
-        data: `
-          @import "~@/sass/_typo.scss";
-        `
-      }
+    	sass: {
+    	}
     }
   }
 };

@@ -1,4 +1,4 @@
-<template>  
+<template>
   <div id="app">
     <app-header />
     <main>
@@ -9,12 +9,13 @@
 </template>
 
 <script>
-import 'reset-css';
-import appHeader from '@/components/app-header';
-import appFooter from '@/components/app-footer';
+import "reset-css";
+import "@/sass/_fonts.sass";
+import appHeader from "@/components/app-header";
+import appFooter from "@/components/app-footer";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     appHeader,
     appFooter
@@ -45,5 +46,4 @@ main
   display: flex
   flex-flow: column nowrap
   z-index: 5
-    
 </style>

@@ -1,12 +1,8 @@
 <template>
-	<footer>
-			
-	</footer>
+  <footer></footer>
 </template>
 
-<script>
-	
-</script>
+<script></script>
 
 <style lang="sass" scoped>
 footer
