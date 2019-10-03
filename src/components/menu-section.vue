@@ -51,6 +51,8 @@ export default {
     border-bottom: 2px solid black
     position: absolute
     bottom: -0.7rem
+    left: 0
+    animation: lining 0.5s ease-in-out
 
 .selected_page
   color: #910102
@@ -58,9 +60,15 @@ export default {
     transform: none
   &:hover:after
     content: ""
-    width: 100%
     display: block
     border-bottom: 2px solid #910102
     position: absolute
     bottom: -0.7rem
+    animation: lining 0.5s ease-in-out
+
+@keyframes lining
+  0%
+    width: 0
+  100%
+    width: 100%
 </style>
