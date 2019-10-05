@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import "reset-css";
-import "@/sass/_fonts.sass";
 import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
+import "reset-css";
+import "@/sass/_fonts.sass";
 
 export default {
   name: "App",
@@ -25,7 +25,7 @@ export default {
 
 <style lang="sass">
 #app
-  font-family: "Avenir", Helvetica, Arial, sans-serif
+  font-family: "montserrat-regular", "calibri", sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   display: -webkit-flex

@@ -1,14 +1,15 @@
 <template>
-  <button
+  <router-link :to="link ? `/${page_name}` : ''"
     class="btn main_btn"
     :class="[
       page_name + '_page',
-      { selected_page: this.selectedPage === this.page_name }
+      { selected_page: this.selectedPage === this.page_name 
+        || this.page_name === 'products' && this.productSelected}
     ]"
-    @click.prevent="selectPage"
+    @click.native="selectPage"
   >
     <slot></slot>
-  </button>
+  </router-link>
 </template>
 
 <script>
@@ -18,7 +19,17 @@ export default {
   computed: {
     selectedPage() {
       return this.$store.state.selectedPage;
-    }
+    },
+    productSelected() {
+      return this.$store.getters.productSelected;
+    },
+    link(){
+      if (this.page_name != "products") {
+        return true
+      } else {
+        return false
+      }
+    }    
   },
   methods: {
     selectPage() {
@@ -35,6 +46,8 @@ export default {
   font-family: "montserrat-regular", "calibri", sans-serif
   border: none
   cursor: pointer
+  text-decoration: none
+  color: black
   box-sizing: border-box
   font-size: 24px
   transition: transform 100ms ease-in
@@ -50,7 +63,7 @@ export default {
     display: block
     border-bottom: 2px solid black
     position: absolute
-    bottom: -0.7rem
+    bottom: -0.5rem
     left: 0
     animation: lining 0.5s ease-in-out
 
@@ -63,7 +76,7 @@ export default {
     display: block
     border-bottom: 2px solid #910102
     position: absolute
-    bottom: -0.7rem
+    bottom: -0.5rem
     animation: lining 0.5s ease-in-out
 
 @keyframes lining

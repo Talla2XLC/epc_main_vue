@@ -7,7 +7,21 @@ export default new Vuex.Store({
   state: {
     productNavVisible: false,
     mainMenuVisible: false,
-    selectedPage: "main"
+    selectedPage: ""
+  },
+  getters: {
+    productSelected(state) {
+      if (
+        state.selectedPage === "nupi" ||
+        state.selectedPage === "scully" ||
+        state.selectedPage === "emco" ||
+        state.selectedPage === "rotork" ||
+        state.selectedPage === "progauge") {
+        return true
+      } else {
+        return false
+      }
+    }
   },
   mutations: {
     SET_MAIN_MENU_VISIBILITY(state, status) {
@@ -26,7 +40,9 @@ export default new Vuex.Store({
     },
 
     hideMainMenu(context) {
-      context.commit("SET_MAIN_MENU_VISIBILITY", false);
+      if (this.state.selectedPage != "products") {
+        context.commit("SET_MAIN_MENU_VISIBILITY", false);
+      }
     },
 
     showProductNav(context) {
@@ -34,11 +50,16 @@ export default new Vuex.Store({
     },
 
     hideProductNav(context) {
-      context.commit("SET_PRODUCT_NAV_VISIBILITY", false);
+      if (this.state.selectedPage != "products") {
+        context.commit("SET_PRODUCT_NAV_VISIBILITY", false);
+      }
     },
 
     selectPage(context, page) {
       context.commit("SELECT_PAGE", page);
+      if (this.state.selectedPage != "products") {
+        context.commit("SET_PRODUCT_NAV_VISIBILITY", false);
+      }
     }
   }
 });

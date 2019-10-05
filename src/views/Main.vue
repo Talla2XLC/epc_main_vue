@@ -1,7 +1,9 @@
 <template>
   <div class="main_page">
     <div class="main_content">
-      <img class="epc_logo" src="@/assets/logo.png" @click="switchMainMenu" />
+      <div class="main_left" @mouseover="hideProductNav">
+        <img class="epc_logo" src="@/assets/logo.png" @click="switchMainMenu" />
+      </div>      
       <div class="content_div">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
         porro. Iure voluptates voluptatem assumenda reiciendis. Autem modi ipsa,
@@ -15,59 +17,21 @@
         labore enim voluptate placeat perspiciatis quis doloribus sed quos
         tempore distinctio&nbsp;ut. Molestiae dolores impedit temporibus?
       </div>
+      <product-nav />
     </div>
-    <div class="partners">
-      <a href="https://www.nupiindustrieitaliane.com/en/index.html">
-        <img
-          class="partner_logo"
-          src="@/assets/partners_logo/nupi_logo.png"
-          height="75"
-          width="76"
-        />
-      </a>
-      <a href="https://www.scully.com">
-        <img
-          class="partner_logo"
-          src="@/assets/partners_logo/scully_logo.png"
-          height="75"
-          width="250"
-        />
-      </a>
-      <a href="https://www.gardnerdenver.com/ru-ru/emcowheaton">
-        <img
-          class="partner_logo"
-          src="@/assets/partners_logo/emco_logo.png"
-          height="75"
-          width="200"
-        />
-      </a>
-      <a href="https://www.rotork.com/en">
-        <img
-          class="partner_logo"
-          src="@/assets/partners_logo/rotork_logo.png"
-          height="75"
-          width="250"
-        />
-      </a>
-      <a href="http://tokheim.com/products-solutions/progauge/">
-        <img
-          class="partner_logo"
-          src="@/assets/partners_logo/progauge_logo.png"
-          height="75"
-          width="250"
-        />
-      </a>
-    </div>
+    <partners />
   </div>
 </template>
 
 <script>
+import partners from "@/components/partners";
+import productNav from "@/components/product-nav";
+
 export default {
   name: "Main",
-  computed: {
-    mainMenuVisible() {
-      return this.$store.state.mainMenuVisible;
-    }
+  components: {
+    partners,
+    productNav
   },
   methods: {
     switchMainMenu() {
@@ -76,6 +40,9 @@ export default {
       } else {
         this.$store.dispatch("showMainMenu");
       }
+    },
+    hideProductNav() {
+      this.$store.dispatch("hideProductNav");
     }
   }
 };
@@ -101,9 +68,21 @@ export default {
   display: flex
   flex-flow: row nowrap
   align-items: center
-  justify-content: space-between
+  justify-content: center
   padding: 0 10%
   box-sizing: border-box
+  position: relative
+
+.main_left
+  width: 50%
+  height: 100%
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: -o-flex
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
 
 .epc_logo
   cursor: pointer
@@ -119,31 +98,7 @@ export default {
   box-sizing: border-box
   line-height: 1.5rem
 
-.partners
-  display: -webkit-flex
-  display: -moz-flex
-  display: -ms-flex
-  display: -o-flex
-  display: flex
-  flex-flow: row nowrap
-  justify-content: space-between
-  padding: 0.5rem 10%
-  min-height: 5vh
-  background: #dad7d7
-
-.partner_logo
-  height: 4rem
-  width: auto
-  cursor: pointer
-  filter: grayscale(100%) contrast(80%)
-  opacity: 0.7
-  transition: transform 200ms ease-in
-  &:hover
-    filter: none
-    opacity: 1
-    transform: scale(1.1)
-
 @media (min-width: 1850px)
-  .main_content, .partners
+  .main_content
     padding: 0.5rem 20%
 </style>

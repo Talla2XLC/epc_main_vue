@@ -1,14 +1,14 @@
 <template>
-  <button
+  <router-link :to="`/products/${page_name}`"
     class="btn inner_btn"
     :class="[
       page_name + '_page',
       { selected_page: this.selectedPage === this.page_name }
     ]"
-    @click.prevent="selectPage"
+    @click.native="selectPage"
   >
     <slot></slot>
-  </button>
+  </router-link>
 </template>
 
 <script>
@@ -34,6 +34,7 @@ export default {
 	background: transparent
 	border: none
 	cursor: pointer
+	text-decoration: none
 	box-sizing: border-box
 	font-size: 24px
 	transition: transform 100ms ease-in
@@ -45,8 +46,9 @@ export default {
 		outline: none
 
 .inner_btn
-	font-size: 18px
-	margin-bottom: 1rem
+	font-size: 24px
+	color: rgb(255, 255, 255)
+	margin-bottom: 2rem
 	text-transform: none
 	line-height: 1.5rem
 	text-align: left
@@ -58,11 +60,4 @@ export default {
 	color: #910102
 	&:hover
 		transform: none
-	&:hover:after
-		content: ""
-		width: 100%
-		display: block
-		border-bottom: 2px solid #910102
-		position: absolute
-		bottom: -0.7rem
 </style>
