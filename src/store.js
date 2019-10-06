@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     productNavVisible: false,
     mainMenuVisible: false,
-    selectedPage: ""
+    selectedPage: "",
+    productNavImg: ""
   },
   getters: {
     productSelected(state) {
@@ -16,10 +17,11 @@ export default new Vuex.Store({
         state.selectedPage === "scully" ||
         state.selectedPage === "emco" ||
         state.selectedPage === "rotork" ||
-        state.selectedPage === "progauge") {
-        return true
+        state.selectedPage === "progauge"
+      ) {
+        return true;
       } else {
-        return false
+        return false;
       }
     }
   },
@@ -32,6 +34,9 @@ export default new Vuex.Store({
     },
     SELECT_PAGE(state, page) {
       state.selectedPage = page;
+    },
+    SET_PRODUCT_NAV_IMG(state, product) {
+      state.productNavImg = product;
     }
   },
   actions: {
@@ -40,7 +45,7 @@ export default new Vuex.Store({
     },
 
     hideMainMenu(context) {
-      if (this.state.selectedPage != "products") {
+      if (!this.state.productNavVisible) {
         context.commit("SET_MAIN_MENU_VISIBILITY", false);
       }
     },
@@ -60,6 +65,13 @@ export default new Vuex.Store({
       if (this.state.selectedPage != "products") {
         context.commit("SET_PRODUCT_NAV_VISIBILITY", false);
       }
+    },
+
+    setProductNavImg(context, product) {
+      context.commit("SET_PRODUCT_NAV_IMG", product);
+    },
+    hideProductNavImg(context) {
+      context.commit("SET_PRODUCT_NAV_IMG", "");
     }
   }
 });

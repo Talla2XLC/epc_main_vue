@@ -1,28 +1,44 @@
 <template>
-<transition name="move">
-  <nav 
-    class="product_nav"
-    ref="product_nav"
-    v-if="productNavVisible"
-    @mouseleave="hideProductNav"
-  >
-    <inner-menu-section page_name="nupi" @mouseover.native="toggleNupiBgi" @mouseleave.native="toggleNupiBgi">
-      Пластиковый трубопровод Nupi
-    </inner-menu-section>
-    <inner-menu-section page_name="scully">
-      Мониторы перелива и заземления Scully
-    </inner-menu-section>
-    <inner-menu-section page_name="emco">
-      АСН Emco Wheaton
-    </inner-menu-section>
-    <inner-menu-section page_name="rotork">
-      Электрические приводы Rotork
-    </inner-menu-section>
-    <inner-menu-section page_name="progauge">
-      Системы измерения ProGauge
-    </inner-menu-section>
-  </nav>
-</transition>
+  <transition name="move">
+    <nav
+      class="product_nav"
+      ref="product_nav"
+      v-if="productNavVisible"
+      @mouseleave="hideProductNav"
+    >
+      <link rel="prefetch" href="./components/assets/products/nupi.png" />
+      <link rel="prefetch" href="./components/assets/products/scully.png" />
+      <inner-menu-section page_name="nupi">
+        Пластиковый трубопровод Nupi
+      </inner-menu-section>
+      <inner-menu-section page_name="scully">
+        Мониторы перелива и заземления Scully
+      </inner-menu-section>
+      <inner-menu-section page_name="emco">
+        АСН Emco Wheaton
+      </inner-menu-section>
+      <inner-menu-section page_name="rotork">
+        Электрические приводы Rotork
+      </inner-menu-section>
+      <inner-menu-section page_name="progauge">
+        Системы измерения ProGauge
+      </inner-menu-section>
+      <transition name="fade">
+        <img
+          src="../assets/products/nupi.png"
+          alt="nupi_img"
+          class="product_nav_img"
+          v-if="this.productNavImg === 'nupi'"
+        />
+        <img
+          src="../assets/products/scully.png"
+          alt="scully_img"
+          class="product_nav_img"
+          v-if="this.productNavImg === 'scully'"
+        />
+      </transition>
+    </nav>
+  </transition>
 </template>
 
 <script>
@@ -36,6 +52,9 @@ export default {
   computed: {
     productNavVisible() {
       return this.$store.state.productNavVisible;
+    },
+    productNavImg() {
+      return this.$store.state.productNavImg;
     }
   },
   methods: {
@@ -44,9 +63,6 @@ export default {
     },
     hideProductNav() {
       this.$store.dispatch("hideProductNav");
-    },
-    toggleNupiBgi() {
-      document.querySelector('.product_nav').classList.toggle('nupi');
     }
   }
 };
@@ -78,11 +94,18 @@ export default {
 .move-enter, .move-leave-to
   right: -50%
 
-.nupi
-  background-image: url("../assets/products/nupi.png")
-  background-image: url("../assets/products/nupi.png")
-  background-image: url("../assets/products/nupi.png")
-  background-image: url("../assets/products/nupi.png")
-  background-size: cover
+.product_nav_img
+  width: 100%
+  height: 100%
+  object-fit: contain
+  object-position: left top
+  position: absolute
+  top: 0
+  right: 0
+  z-index: 1
 
+.fade-leave-active, .fade-enter-active
+  transition: opacity 400ms ease-in-out
+.fade-enter, .fade-leave-to
+  opacity: 0
 </style>

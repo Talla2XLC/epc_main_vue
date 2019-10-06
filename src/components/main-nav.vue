@@ -1,13 +1,20 @@
 <template>
-<transition name="fade">
-  <nav class="main_nav" ref="main_nav" v-if="mainMenuVisible">
-    <menu-section page_name="" @mouseover.native="hideProductNav">главная</menu-section>
-    <menu-section page_name="epc" @mouseover.native="hideProductNav">о компании</menu-section>
-    <menu-section page_name="products" @mouseover.native="showProductNav">продукция</menu-section
-    >
-    <menu-section page_name="contacts" @mouseover.native="hideProductNav">контакты</menu-section>
-  </nav>
-</transition>
+  <transition name="fade">
+    <nav class="main_nav" ref="main_nav" v-if="mainMenuVisible">
+      <menu-section page_name="" @mouseover.native="hideProductNav"
+        >главная</menu-section
+      >
+      <menu-section page_name="epc" @mouseover.native="hideProductNav"
+        >о компании</menu-section
+      >
+      <menu-section page_name="products" @mouseover.native="showProductNav"
+        >продукция</menu-section
+      >
+      <menu-section page_name="contacts" @mouseover.native="hideProductNav"
+        >контакты</menu-section
+      >
+    </nav>
+  </transition>
 </template>
 
 <script type="text/javascript">

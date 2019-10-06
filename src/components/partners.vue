@@ -1,51 +1,51 @@
 <template>
-<div class="partners">
-  <a href="https://www.nupiindustrieitaliane.com/en/index.html">
-    <img
-      class="partner_logo"
-      src="@/assets/partners_logo/nupi_logo.png"
-      height="75"
-      width="76"
-    />
-  </a>
-  <a href="https://www.scully.com">
-    <img
-      class="partner_logo"
-      src="@/assets/partners_logo/scully_logo.png"
-      height="75"
-      width="250"
-    />
-  </a>
-  <a href="https://www.gardnerdenver.com/ru-ru/emcowheaton">
-    <img
-      class="partner_logo"
-      src="@/assets/partners_logo/emco_logo.png"
-      height="75"
-      width="200"
-    />
-  </a>
-  <a href="https://www.rotork.com/en">
-    <img
-      class="partner_logo"
-      src="@/assets/partners_logo/rotork_logo.png"
-      height="75"
-      width="250"
-    />
-  </a>
-  <a href="http://tokheim.com/products-solutions/progauge/">
-    <img
-      class="partner_logo"
-      src="@/assets/partners_logo/progauge_logo.png"
-      height="75"
-      width="250"
-    />
-  </a>
-</div>
+  <div class="partners">
+    <a href="https://www.nupiindustrieitaliane.com/en/index.html">
+      <img
+        class="partner_logo"
+        src="@/assets/partners_logo/nupi_logo.png"
+        height="75"
+        width="76"
+      />
+    </a>
+    <a href="https://www.scully.com">
+      <img
+        class="partner_logo"
+        src="@/assets/partners_logo/scully_logo.png"
+        height="75"
+        width="250"
+      />
+    </a>
+    <a href="https://www.gardnerdenver.com/ru-ru/emcowheaton">
+      <img
+        class="partner_logo"
+        src="@/assets/partners_logo/emco_logo.png"
+        height="75"
+        width="200"
+      />
+    </a>
+    <a href="https://www.rotork.com/en">
+      <img
+        class="partner_logo"
+        src="@/assets/partners_logo/rotork_logo.png"
+        height="75"
+        width="250"
+      />
+    </a>
+    <a href="http://tokheim.com/products-solutions/progauge/">
+      <img
+        class="partner_logo"
+        src="@/assets/partners_logo/progauge_logo.png"
+        height="75"
+        width="250"
+      />
+    </a>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "partners",
+  name: "partners"
 };
 </script>
 

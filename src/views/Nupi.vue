@@ -1,10 +1,10 @@
 <template>
-<div class="nupi_page_div">
-  <h1 class="nupi_header">
-    Пластиковый трубопровод Nupi
-  </h1>
-  <product-nav />
-</div>
+  <div class="nupi_page_div">
+    <h1 class="nupi_header">
+      Пластиковый трубопровод Nupi
+    </h1>
+    <product-nav />
+  </div>
 </template>
 
 <script>

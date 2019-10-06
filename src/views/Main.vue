@@ -3,7 +3,7 @@
     <div class="main_content">
       <div class="main_left" @mouseover="hideProductNav">
         <img class="epc_logo" src="@/assets/logo.png" @click="switchMainMenu" />
-      </div>      
+      </div>
       <div class="content_div">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
         porro. Iure voluptates voluptatem assumenda reiciendis. Autem modi ipsa,

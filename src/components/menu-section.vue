@@ -1,10 +1,14 @@
 <template>
-  <router-link :to="link ? `/${page_name}` : ''"
+  <router-link
+    :to="link ? `/${page_name}` : ''"
     class="btn main_btn"
     :class="[
       page_name + '_page',
-      { selected_page: this.selectedPage === this.page_name 
-        || this.page_name === 'products' && this.productSelected}
+      {
+        selected_page:
+          this.selectedPage === this.page_name ||
+          (this.page_name === 'products' && this.productSelected)
+      }
     ]"
     @click.native="selectPage"
   >
@@ -23,13 +27,13 @@ export default {
     productSelected() {
       return this.$store.getters.productSelected;
     },
-    link(){
+    link() {
       if (this.page_name != "products") {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
-    }    
+    }
   },
   methods: {
     selectPage() {
