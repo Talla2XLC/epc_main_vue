@@ -8,7 +8,7 @@
         >о компании</menu-section
       >
       <menu-section page_name="products" @mouseover.native="showProductNav"
-        >продукция</menu-section
+        >партнёры</menu-section
       >
       <menu-section page_name="contacts" @mouseover.native="hideProductNav"
         >контакты</menu-section
@@ -56,7 +56,7 @@ export default {
   width: 100%
   padding: 0.5rem 10%
   z-index: 3
-  min-height: 6rem
+  min-height: 10vh
 
 .fade-enter-active
   transition: opacity 100ms ease-in 150ms

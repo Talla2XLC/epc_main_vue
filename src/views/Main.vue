@@ -2,7 +2,17 @@
   <div class="main_page">
     <div class="main_content">
       <div class="main_left" @mouseover="hideProductNav">
-        <img class="epc_logo" src="@/assets/logo.png" @click="switchMainMenu" />
+        <router-link
+          :to="`/epc`"
+          class="epc_logo_div"
+          @click.native="selectPage"
+        >
+          <img
+            class="epc_logo_img"
+            src="@/assets/logo.png"
+            @click="switchMainMenu"
+          />
+        </router-link>
       </div>
       <div class="content_div">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
@@ -43,6 +53,9 @@ export default {
     },
     hideProductNav() {
       this.$store.dispatch("hideProductNav");
+    },
+    selectPage() {
+      this.$store.dispatch("selectPage", "epc");
     }
   }
 };
@@ -84,7 +97,9 @@ export default {
   flex-flow: row nowrap
   align-items: center
 
-.epc_logo
+.epc_logo_div
+
+.epc_logo_img
   cursor: pointer
   transition: transform 200ms ease-in
   margin-right: 5rem

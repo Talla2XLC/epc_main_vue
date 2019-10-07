@@ -27,7 +27,7 @@ export default {
 
 <style lang="sass" scoped>
 footer
-  min-height: 10vh
+  min-height: 7vh
   background: #4f4f51
   position: relative
   display: -webkit-flex

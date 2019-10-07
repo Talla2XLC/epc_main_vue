@@ -45,7 +45,7 @@ header
   align-items: center
   justify-content: flex-end
   position: relative
-  min-height: 6rem
+  min-height: 10vh
   z-index: 1
 .header_bottom
   display: -webkit-flex
@@ -62,7 +62,7 @@ header
   box-shadow: inset -3px -8px 10px -10px #000000, inset 0px 4px 4px -3px #000000
   transition: min-height 300ms ease-in
   z-index: 1
-  min-height: 1.4rem
+  min-height: 0.6rem
 .big_header_bottom
-  min-height: 6rem
+  min-height: 10vh
 </style>

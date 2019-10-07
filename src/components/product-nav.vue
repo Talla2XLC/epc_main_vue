@@ -9,19 +9,19 @@
       <link rel="prefetch" href="./components/assets/products/nupi.png" />
       <link rel="prefetch" href="./components/assets/products/scully.png" />
       <inner-menu-section page_name="nupi">
-        Пластиковый трубопровод Nupi
+        Nupi Industrie Italiane S.p.A.
       </inner-menu-section>
       <inner-menu-section page_name="scully">
-        Мониторы перелива и заземления Scully
+        Scully Signal Company
       </inner-menu-section>
       <inner-menu-section page_name="emco">
-        АСН Emco Wheaton
+        Emco Wheaton GmbH
       </inner-menu-section>
       <inner-menu-section page_name="rotork">
-        Электрические приводы Rotork
+        Rotork plc
       </inner-menu-section>
       <inner-menu-section page_name="progauge">
-        Системы измерения ProGauge
+        Start Italiana s.r.l.
       </inner-menu-section>
       <transition name="fade">
         <img
