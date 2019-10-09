@@ -13,7 +13,7 @@
 <style lang="sass" scoped>
 .burger_div
     position: absolute
-    top: 1rem
+    top: 30%
     display: -webkit-flex
     display: -moz-flex
     display: -ms-flex

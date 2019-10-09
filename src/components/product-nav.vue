@@ -27,7 +27,7 @@
         <img
           src="../assets/products/nupi.png"
           alt="nupi_img"
-          class="product_nav_img"
+          class="product_nav_img to_left"
           v-if="this.productNavImg === 'nupi'"
         />
         <img
@@ -35,6 +35,24 @@
           alt="scully_img"
           class="product_nav_img"
           v-if="this.productNavImg === 'scully'"
+        />
+        <img
+          src="../assets/products/emco.png"
+          alt="emco_img"
+          class="product_nav_img"
+          v-if="this.productNavImg === 'emco'"
+        />
+        <img
+          src="../assets/products/rotork.png"
+          alt="rotork_img"
+          class="product_nav_img"
+          v-if="this.productNavImg === 'rotork'"
+        />
+        <img
+          src="../assets/products/progauge.png"
+          alt="progauge_img"
+          class="product_nav_img"
+          v-if="this.productNavImg === 'progauge'"
         />
       </transition>
     </nav>
@@ -98,11 +116,14 @@ export default {
   width: 100%
   height: 100%
   object-fit: contain
-  object-position: left top
+  object-position: center center
   position: absolute
   top: 0
   right: 0
   z-index: 1
+
+.to_left
+  object-position: left center
 
 .fade-leave-active, .fade-enter-active
   transition: opacity 400ms ease-in-out
