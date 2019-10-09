@@ -8,6 +8,9 @@
     >
       <link rel="prefetch" href="./components/assets/products/nupi.png" />
       <link rel="prefetch" href="./components/assets/products/scully.png" />
+      <link rel="prefetch" href="./components/assets/products/emco.png" />
+      <link rel="prefetch" href="./components/assets/products/rotork.png" />
+      <link rel="prefetch" href="./components/assets/products/progauge.png" />
       <inner-menu-section page_name="nupi">
         Nupi Industrie Italiane S.p.A.
       </inner-menu-section>
