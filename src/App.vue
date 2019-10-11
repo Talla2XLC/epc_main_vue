@@ -3,6 +3,7 @@
     <app-header />
     <main>
       <router-view />
+      <product-nav />      
     </main>
     <app-footer />
   </div>
@@ -11,6 +12,7 @@
 <script>
 import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
+import productNav from "@/components/product-nav";
 import "reset-css";
 import "@/sass/_fonts.sass";
 
@@ -18,7 +20,8 @@ export default {
   name: "App",
   components: {
     appHeader,
-    appFooter
+    appFooter,
+    productNav
   }
 };
 </script>
@@ -45,5 +48,6 @@ main
   display: -o-flex
   display: flex
   flex-flow: column nowrap
+  position: relative
   z-index: 5
 </style>

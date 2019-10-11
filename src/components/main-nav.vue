@@ -55,7 +55,7 @@ export default {
   box-sizing: border-box
   width: 100%
   padding: 0.5rem 10%
-  z-index: 3
+  z-index: 2
   min-height: 10vh
 
 .fade-enter-active

@@ -6,11 +6,6 @@
       v-if="productNavVisible"
       @mouseleave="hideProductNav"
     >
-      <link rel="prefetch" href="./components/assets/products/nupi.png" />
-      <link rel="prefetch" href="./components/assets/products/scully.png" />
-      <link rel="prefetch" href="./components/assets/products/emco.png" />
-      <link rel="prefetch" href="./components/assets/products/rotork.png" />
-      <link rel="prefetch" href="./components/assets/products/progauge.png" />
       <inner-menu-section page_name="nupi">
         Nupi Industrie Italiane S.p.A.
       </inner-menu-section>
@@ -104,7 +99,7 @@ export default {
   right: 0
   padding: 3rem
   box-sizing: border-box
-  z-index: 2
+  z-index: 4
   background-image: -moz-linear-gradient( 180deg, rgb(79,79,81) 0%, rgb(218,215,215) 100%)
   background-image: -webkit-linear-gradient( 180deg, rgb(79,79,81) 0%, rgb(218,215,215) 100%)
   background-image: -ms-linear-gradient( 180deg, rgb(79,79,81) 0%, rgb(218,215,215) 100%)

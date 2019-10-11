@@ -27,7 +27,6 @@
         labore enim voluptate placeat perspiciatis quis doloribus sed quos
         tempore distinctio&nbsp;ut. Molestiae dolores impedit temporibus?
       </div>
-      <product-nav />
     </div>
     <partners />
   </div>
@@ -35,13 +34,11 @@
 
 <script>
 import partners from "@/components/partners";
-import productNav from "@/components/product-nav";
 
 export default {
   name: "Main",
   components: {
-    partners,
-    productNav
+    partners
   },
   methods: {
     switchMainMenu() {
@@ -70,7 +67,7 @@ export default {
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  z-index: 5
+  z-index: 3
 
 .main_content
   flex-grow: 1

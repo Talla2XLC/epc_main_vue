@@ -61,6 +61,8 @@ export default {
   padding: 0.5rem 10%
   min-height: 5vh
   background: #dad7d7
+  position: relative
+  z-index: 6
 
 .partner_logo
   height: 4rem
