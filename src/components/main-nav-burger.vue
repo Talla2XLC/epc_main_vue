@@ -12,8 +12,7 @@
 
 <style lang="sass" scoped>
 .burger_div
-    position: absolute
-    top: 30%
+    position: relative
     display: -webkit-flex
     display: -moz-flex
     display: -ms-flex
@@ -23,17 +22,16 @@
     align-items: center
 
 .burger-top
-    margin-top: 0.5rem
     width: 3rem
     border-bottom: solid #ed001e 1px
     animation: glow 3s infinite ease-in-out 1s
 .burger-center
-    margin-top: 0.5rem
+    margin: 0.5rem 0
     width: 2rem
     border-bottom: solid #ed001e 1px
     animation: glow 3s infinite ease-in-out 0.5s
 .burger-bot
-    margin-top: 0.5rem
+    margin-bottom: 0.6rem
     width: 3rem
     border-bottom: solid #ed001e 1px
     animation: glow 3s infinite ease-in-out

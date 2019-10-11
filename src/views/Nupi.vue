@@ -27,7 +27,6 @@ export default {
 .nupi_page_div
   height: 100%
   width: 100%
-  background-size: cover
   box-sizing: border-box
   padding: 0.5rem 10%
   padding-top: 2rem

@@ -43,7 +43,7 @@ header
   display: flex
   flex-flow: column nowrap
   align-items: center
-  justify-content: flex-end
+  justify-content: center
   position: relative
   min-height: 10vh
   z-index: 1
@@ -55,7 +55,8 @@ header
   display: flex
   flex-flow: row nowrap
   justify-content: center
-  position: relative
+  position: absolute
+  bottom: 0
   width: 100%
   background: #c8c3c2
   -webkit-box-shadow: inset -3px -8px 10px -10px #000000, inset 0px 4px 4px -3px #000000
