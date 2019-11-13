@@ -59,9 +59,9 @@ export default {
   min-height: 10vh
 
 .fade-enter-active
-  transition: opacity 100ms ease-in 150ms
+  transition: opacity 100ms ease-in
 .fade-leave-active
-  transition: opacity 200ms ease-in
+  transition: opacity 100ms ease-in
 .fade-enter, .fade-leave-to
   opacity: 0
 
