@@ -47,6 +47,7 @@ header
   position: relative
   min-height: 10vh
   z-index: 1
+  overflow: hidden
 .header_bottom
   display: -webkit-flex
   display: -moz-flex

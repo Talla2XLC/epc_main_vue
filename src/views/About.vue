@@ -1,17 +1,13 @@
 <template>
-
+  <div class="about"></div>
 </template>
 
 <script>
-
 export default {
   name: "About",
-  components: {
-  },
-  methods: {
-  }
+  components: {},
+  methods: {}
 };
 </script>
 
-<style lang="sass">
-</style>
+<style lang="sass"></style>

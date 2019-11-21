@@ -5,7 +5,7 @@
       :to="`/`"
       class="copyright_span copyright_epc"
       @click.native="selectPage"
-      >epc.</router-link
+      >epc llc</router-link
     >
     <span class="copyright_span rights_reserved">Все права защищены</span>
     <span class="copyright_span rights_reserved"
@@ -38,12 +38,17 @@ footer
   flex-flow: row nowrap
   justify-content: center
   align-items: center
+  font-family: "raleway-regular", "calibri", sans-serif
+  font-size: 0.8rem
+  line-height: 0.8rem
+  padding: 0 10%
 
 .copyright_span
-  line-height: 1rem
-  padding: 0 0.5rem 0 0.7rem
+  padding: 0 4% 0 4%
   color: #c0c0c0
   text-transform: uppercase
+  &:first-child
+    padding: 0
 
 .copyright_epc
   color: white
@@ -62,4 +67,8 @@ footer
   -webkit-border-radius: 100%
   border-radius: 100%
   background: #c0c0c0
+
+@media (min-width: 1850px)
+  .footer
+    padding: 0.5rem 20%
 </style>

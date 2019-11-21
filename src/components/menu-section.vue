@@ -56,6 +56,7 @@ export default {
   font-size: 24px
   transition: transform 100ms ease-in
   position: relative
+  z-index: 1
   &:hover
     font-weight: 800
   &:focus

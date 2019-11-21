@@ -1,8 +1,13 @@
 module.exports = {
+  devServer: {
+    hot: true,
+    liveReload: true
+  },
   css: {
-    modules: true,
     loaderOptions: {
-      sass: {}
+      sass: {
+        prependData: `@import "@/assets/sass/_fonts.sass"`
+      }
     }
   }
 };

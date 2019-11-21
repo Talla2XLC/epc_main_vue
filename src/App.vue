@@ -3,7 +3,7 @@
     <app-header />
     <main>
       <router-view />
-      <product-nav />      
+      <product-nav />
     </main>
     <app-footer />
   </div>

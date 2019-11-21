@@ -23,8 +23,9 @@
 
 .burger-top
     width: 3rem
-    border-bottom: solid #ed001e 1px
+    border-bottom: 1px solid #ed001e
     animation: glow 3s infinite ease-in-out 1s
+    box-sizing: border-box
 .burger-center
     margin: 0.5rem 0
     width: 2rem

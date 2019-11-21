@@ -61,13 +61,14 @@ export default {
 <style lang="sass" scoped>
 .main_page
   flex-grow: 1
+  position: relative
   display: -webkit-flex
   display: -moz-flex
   display: -ms-flex
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  z-index: 3
+  z-index: 2
 
 .main_content
   flex-grow: 1
@@ -82,6 +83,7 @@ export default {
   padding: 0 10%
   box-sizing: border-box
   position: relative
+  z-index: 2
 
 .main_left
   width: 50%
@@ -105,7 +107,7 @@ export default {
 
 .content_div
   width: 50%
-  font-family: "montserrat-regular", "calibri", sans-serif
+  font-family: "raleway-regular", "calibri", sans-serif
   text-align: justify
   box-sizing: border-box
   line-height: 1.5rem
