@@ -15,7 +15,7 @@
         </router-link>
       </div>
       <div class="content_div">
-<!--         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
+        <!--         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
         porro. Iure voluptates voluptatem assumenda reiciendis. Autem modi ipsa,
         iure voluptatum saepe voluptatibus provident ducimus consequuntur qui
         optio! Magni ullam blanditiis, quasi, perspiciatis autem beatae eum
