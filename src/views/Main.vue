@@ -7,10 +7,7 @@
           class="epc_logo_div"
           @click.native="selectPage"
         >
-          <img
-            class="epc_logo_img"
-            src="@/assets/logo.png"
-          />
+          <img class="epc_logo_img" src="@/assets/logo.png" />
         </router-link>
       </div>
       <div class="content_div">

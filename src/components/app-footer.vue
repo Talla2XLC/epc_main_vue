@@ -8,9 +8,8 @@
         @click.native="selectPage"
       >
         epc&nbsp;llc
-      </router-link
-      >
-    </div>    
+      </router-link>
+    </div>
     <span class="copyright_span rights_reserved">Все права защищены</span>
     <span class="copyright_span rights_reserved"
       >Политика конфиденциальности</span

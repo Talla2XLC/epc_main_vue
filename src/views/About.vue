@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <img class="epc_logo_img"
+    <img
+      class="epc_logo_img"
       src="@/assets/logo.png"
       @click.native="selectPage"
     />
