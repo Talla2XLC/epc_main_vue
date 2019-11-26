@@ -23,25 +23,25 @@
       </inner-menu-section>
       <transition name="fade">
         <img
-          src="../assets/products/nupi.png"
+          src="@/assets/products/nupi.png"
           alt="nupi_img"
           class="product_nav_img to_left"
           v-if="this.productNavImg === 'nupi'"
         />
         <img
-          src="../assets/products/scully.png"
+          src="@/assets/products/scully.png"
           alt="scully_img"
           class="product_nav_img"
           v-if="this.productNavImg === 'scully'"
         />
         <img
-          src="../assets/products/emco.png"
+          src="@/assets/products/emco.png"
           alt="emco_img"
           class="product_nav_img"
           v-if="this.productNavImg === 'emco'"
         />
         <img
-          src="../assets/products/rotork.png"
+          src="@/assets/products/rotork.png"
           alt="rotork_img"
           class="product_nav_img"
           v-if="this.productNavImg === 'rotork'"

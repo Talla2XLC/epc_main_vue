@@ -7,8 +7,8 @@
       { selected_page: this.selectedPage === this.page_name }
     ]"
     @click.native="selectPage"
-    @mouseover.native="setProductNavImg"
-    @mouseleave.native="hideProductNavImg"
+    @mouseover="setProductNavImg"
+    @mouseleave="hideProductNavImg"
   >
     <slot></slot>
   </a>
