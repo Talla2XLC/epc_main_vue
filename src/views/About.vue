@@ -1,6 +1,9 @@
 <template>
   <div class="about">
-    <img class="epc_logo_img" src="@/assets/logo.png" @click="switchMainMenu" />
+    <img class="epc_logo_img"
+      src="@/assets/logo.png"
+      @click.native="selectPage"
+    />
   </div>
 </template>
 
@@ -8,7 +11,11 @@
 export default {
   name: "About",
   components: {},
-  methods: {}
+  methods: {
+    selectPage() {
+      this.$store.dispatch("selectPage", "about");
+    }
+  }
 };
 </script>
 
@@ -28,6 +35,7 @@ export default {
   cursor: pointer
   transition: transform 200ms ease-in
   z-index: 2
+  max-width: 30vw
   &:hover
     transform: scale(1.15)
 </style>

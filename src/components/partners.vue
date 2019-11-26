@@ -2,7 +2,7 @@
   <div class="partners">
     <a href="https://www.nupiindustrieitaliane.com/en/index.html">
       <img
-        class="partner_logo"
+        class="partner_logo nupi_logo"
         src="@/assets/partners_logo/nupi_logo.png"
         height="75"
         width="76"
@@ -58,7 +58,7 @@ export default {
   display: flex
   flex-flow: row nowrap
   justify-content: space-between
-  padding: 0.5rem 10%
+  padding: 0 5%
   min-height: 5vh
   background: #dad7d7
   position: relative
@@ -66,7 +66,8 @@ export default {
 
 .partner_logo
   height: 4rem
-  width: auto
+  max-width: 13vw
+  object-fit: contain
   cursor: pointer
   filter: grayscale(100%) contrast(80%)
   opacity: 0.7
@@ -75,6 +76,13 @@ export default {
     filter: none
     opacity: 1
     transform: scale(1.1)
+
+.nupi_logo
+  max-width: 5vw
+
+@media (min-width: 900px)
+  .partners
+    padding: 0 10%
 
 @media (min-width: 1850px)
   .partners

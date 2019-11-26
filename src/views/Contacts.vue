@@ -12,7 +12,9 @@
         <span class="details_span">Телефон: +7 (499) 125-44-55</span>
         <span class="details_span">Факс: +7 (495) 633-01-41</span>
       </div>
-      <google-map class="map" lat="55.703543" lng="37.591152" zoom="14" />
+      <transition name="fade" appear>
+        <google-map class="map" lat="55.703543" lng="37.591152" zoom="14" />
+      </transition>
     </div>
     <div class="contact_stock">
       <span>Склад</span>
@@ -26,7 +28,9 @@
         >
         <span class="details_span">Телефон: +7 (499) 125-44-55</span>
       </div>
-      <google-map class="map" lat="55.494308" lng="37.033840" zoom="12" />
+      <transition name="fade" appear>
+        <google-map class="map" lat="55.494308" lng="37.033840" zoom="12" />
+      </transition>
     </div>
   </div>
 </template>
@@ -70,17 +74,18 @@ export default {
   width: 100%
   >span
     font-family: "raleway-medium", "calibri", sans-serif
-    padding: 0.5rem 10%
+    font-size: 3vw
+    padding: 0 5%
     margin-top: 3rem
 
 .office_line, .stock_line
   border-bottom: 2px solid #ec021c
-  width: 90%
+  width: 95%
   position: relative
 .office_line
   left: 0
 .stock_line
-  right: -10%
+  right: -5%
 
 .contact_office_details, .contact_stock_details
   display: -webkit-flex
@@ -90,8 +95,9 @@ export default {
   display: flex
   flex-flow: column nowrap
   font-family: "raleway-regular", "calibri", sans-serif
-  padding: 0.5rem 10%
-  line-height: 1.2rem
+  padding: 0 5%
+  font-size: 1.8vw
+  line-height: 120%
   margin-bottom: 3rem
 
 .details_span
@@ -103,23 +109,55 @@ export default {
   width: 30%
   height: 100%
   top: 0
-  right: 10%
+  right: 12%
   -webkit-box-shadow: 0px 0px 4px 1px #000000
   box-shadow: 0px 0px 4px 1px #000000
 
 .moving_left-enter-active, .moving_left-leave-active
-  transition: left 500ms ease-in
+  transition: left 1s ease-in
 .moving_left-enter, .moving_left-leave-to
   left: -100%
 
 .moving_right-enter-active, .moving_right-leave-active
-  transition: right 500ms ease-in
+  transition: right 1s ease-in
 .moving_right-enter, .moving_right-leave-to
   right: -110%
+
+.fade-enter-active, .fade-leave-active
+  transition: opacity 100ms ease-in 1s
+.fade-enter, .fade-leave-to
+  opacity: 0
+
+@media (min-width: 900px)
+  .contact_office > span,
+  .contact_stock > span,
+  .contact_office_details, .contact_stock_details
+    padding: 0 10%
+  .contact_office > span,
+  .contact_stock > span
+    font-size: 2vw
+  .contact_office_details, .contact_stock_details
+    font-size: 1.2vw
+  .office_line
+    width: 90%
+  .stock_line
+    width: 90%
+    transform: translateX(5%)
 
 @media (min-width: 1450px)
   .contact_office > span,
   .contact_stock > span,
   .contact_office_details, .contact_stock_details
+    padding: 0.5rem 15%
+
+@media (min-width: 1850px)
+  .contact_office > span,
+  .contact_stock > span,
+  .contact_office_details, .contact_stock_details
     padding: 0.5rem 20%
+  .contact_office > span,
+  .contact_stock > span
+    font-size: 1.1vw
+  .contact_office_details, .contact_stock_details
+    font-size: 0.7vw
 </style>

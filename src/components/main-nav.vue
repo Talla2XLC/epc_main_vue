@@ -19,6 +19,7 @@
           src="@/assets/epcelectro_logo.svg"
           height="100"
           widht="300"
+          alt="epcelectro_logo"
         />
       </a>
     </nav>
@@ -62,7 +63,7 @@ export default {
   align-items: center
   box-sizing: border-box
   width: 100%
-  padding: 0.5rem 10%
+  padding: 0 5%
   z-index: 1
   min-height: 10vh
 
@@ -72,10 +73,18 @@ export default {
   opacity: 0
 
 .epcelectro
-  height: 2rem
+  height: 2vw
   transition: transform 200ms ease-in
+  filter: grayscale(100%) contrast(80%)
   &:hover
     transform: scale(1.15)
+    filter: none
+
+@media (min-width: 900px)
+  .main_nav
+    padding: 0 10%
+  .epcelectro
+    height: 1.5vw
 
 @media (min-width: 1850px)
   .main_nav

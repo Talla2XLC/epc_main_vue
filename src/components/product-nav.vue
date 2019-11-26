@@ -94,7 +94,7 @@ export default {
   display: flex
   flex-flow: column nowrap
   height: 100%
-  width: 50%
+  width: 55%
   top: 0
   right: 0
   padding: 3rem

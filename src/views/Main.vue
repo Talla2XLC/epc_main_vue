@@ -10,7 +10,6 @@
           <img
             class="epc_logo_img"
             src="@/assets/logo.png"
-            @click="switchMainMenu"
           />
         </router-link>
       </div>
@@ -52,7 +51,7 @@ export default {
       this.$store.dispatch("hideProductNav");
     },
     selectPage() {
-      this.$store.dispatch("selectPage", "epc");
+      this.$store.dispatch("selectPage", "about");
     }
   }
 };
@@ -80,7 +79,7 @@ export default {
   flex-flow: row nowrap
   align-items: center
   justify-content: center
-  padding: 0 10%
+  padding: 0 5%
   box-sizing: border-box
   position: relative
   z-index: 2
@@ -100,6 +99,7 @@ export default {
   cursor: pointer
   transition: transform 200ms ease-in
   margin-right: 5rem
+  max-width: 30vw
   &:hover
     transform: scale(1.15)
 
@@ -109,6 +109,10 @@ export default {
   text-align: justify
   box-sizing: border-box
   line-height: 1.5rem
+
+@media (min-width: 900px)
+  .main_content
+    padding: 0 10%
 
 @media (min-width: 1850px)
   .main_content

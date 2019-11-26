@@ -53,12 +53,10 @@ export default {
   text-decoration: none
   color: black
   box-sizing: border-box
-  font-size: 20px
+  font-size: 1.5vw
   transition: transform 100ms ease-in
   position: relative
   z-index: 1
-  &:hover
-    font-weight: 800
   &:focus
     outline: none
 .main_btn
@@ -89,4 +87,12 @@ export default {
     width: 0
   100%
     width: 100%
+
+@media (min-width: 1000px)
+  .btn
+    font-size: 1vw
+
+@media (min-width: 900px)
+  .btn
+    font-size: 1.2vw
 </style>

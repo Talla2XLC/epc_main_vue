@@ -45,7 +45,7 @@ export default {
   cursor: pointer
   text-decoration: none
   box-sizing: border-box
-  font-size: 24px
+  font-size: 2vw
   transition: transform 100ms ease-in
   position: relative
   font-family: "montserrat-regular", "calibri", sans-serif
@@ -59,7 +59,6 @@ export default {
     outline: none
 
 .inner_btn
-  font-size: 24px
   color: rgb(255, 255, 255)
   margin-bottom: 2rem
   text-transform: none
@@ -74,4 +73,9 @@ export default {
   color: #910102
   &:hover
     transform: none
+
+@media (min-width: 900px)
+  .btn
+    font-size: 1.5vw
+    line-height: 2vw
 </style>
