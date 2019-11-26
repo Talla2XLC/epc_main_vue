@@ -1,48 +1,46 @@
-<template>	
-	<div class="container">
-		<gmap-map
-      v-bind="options"
-	    id="map"
-	  >
-    <gmap-marker :position="options.center"/>
-	  </gmap-map>
-	</div>	
+<template>
+  <div class="container">
+    <gmap-map v-bind="options" id="map" :options="mapControl">
+      <gmap-marker :position="options.center" />
+    </gmap-map>
+  </div>
 </template>
 
 <script>
-import { gmapApi } from 'vue2-google-maps';
+import { gmapApi } from "vue2-google-maps";
 
 export default {
   name: "GoogleMap",
-  props: ["lat", "lng"],
+  props: ["lat", "lng", "zoom"],
   data() {
     return {
       options: {
-        zoom: 16,
+        zoom: +this.zoom,
         center: {
           lat: +this.lat,
           lng: +this.lng
         },
-        mapTypeId: 'roadmap'
+        mapTypeId: "roadmap"
+      },
+      mapControl: {
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: false
       }
     };
   },
   computed: {
-    google: gmapApi,
-    mapMarkers: function () {
-      return this.markers
-    }
+    google: gmapApi
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
 <style lang="sass" scoped>
 #map
-  position: absolute
-  width: 40%
-  height: 80%
-  top: 10%
-  right: 5%
+  width: 100%
+  height: 100%
 </style>

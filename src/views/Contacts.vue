@@ -2,22 +2,32 @@
   <div class="contacts_page_div">
     <div class="contact_office">
       <span>Офис</span>
-      <div class="office_line"></div>
+      <transition name="moving_left" appear>
+        <div class="office_line"></div>
+      </transition>
       <div class="contact_office_details">
-        <span class="details_span">Адрес: г. Москва, ул. Вавилова, д.5, корп.3</span>
+        <span class="details_span"
+          >Адрес: г. Москва, ул. Вавилова, д.5, корп.3</span
+        >
         <span class="details_span">Телефон: +7 (499) 125-44-55</span>
         <span class="details_span">Факс: +7 (495) 633-01-41</span>
       </div>
+      <google-map class="map" lat="55.703543" lng="37.591152" zoom="14" />
     </div>
     <div class="contact_stock">
       <span>Склад</span>
-      <div class="stock_line"></div>
-      <div class="contact_stock_details">        
-        <span class="details_span">Адрес: Московская обл, г. Наро-Фоминск, д. Селятино,<br>3-й Шоссейный проезд, 3&nbsp;км автодороги А107</span>
+      <transition name="moving_right" appear>
+        <div class="stock_line"></div>
+      </transition>
+      <div class="contact_stock_details">
+        <span class="details_span"
+          >Адрес: Московская обл, г. Наро-Фоминск, д. Селятино,<br />3-й
+          Шоссейный проезд, 3&nbsp;км автодороги А107</span
+        >
         <span class="details_span">Телефон: +7 (499) 125-44-55</span>
       </div>
+      <google-map class="map" lat="55.494308" lng="37.033840" zoom="12" />
     </div>
-    <google-map lat="55.703543" lng="37.591152" />
   </div>
 </template>
 
@@ -67,8 +77,10 @@ export default {
   border-bottom: 2px solid #ec021c
   width: 90%
   position: relative
+.office_line
+  left: 0
 .stock_line
-  left: 10%
+  right: -10%
 
 .contact_office_details, .contact_stock_details
   display: -webkit-flex
@@ -79,16 +91,35 @@ export default {
   flex-flow: column nowrap
   font-family: "raleway-regular", "calibri", sans-serif
   padding: 0.5rem 10%
+  line-height: 1.2rem
   margin-bottom: 3rem
 
 .details_span
   padding: 0.2rem 0
   width: 50%
 
+.map
+  position: absolute
+  width: 30%
+  height: 100%
+  top: 0
+  right: 10%
+  -webkit-box-shadow: 0px 0px 4px 1px #000000
+  box-shadow: 0px 0px 4px 1px #000000
+
+.moving_left-enter-active, .moving_left-leave-active
+  transition: left 500ms ease-in
+.moving_left-enter, .moving_left-leave-to
+  left: -100%
+
+.moving_right-enter-active, .moving_right-leave-active
+  transition: right 500ms ease-in
+.moving_right-enter, .moving_right-leave-to
+  right: -110%
+
 @media (min-width: 1450px)
   .contact_office > span,
   .contact_stock > span,
   .contact_office_details, .contact_stock_details
     padding: 0.5rem 20%
-
 </style>

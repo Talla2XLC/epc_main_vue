@@ -3,7 +3,7 @@
     <div class="main_content">
       <div class="main_left" @mouseover="hideProductNav">
         <router-link
-          :to="`/epc`"
+          :to="`/about`"
           class="epc_logo_div"
           @click.native="selectPage"
         >
@@ -15,7 +15,7 @@
         </router-link>
       </div>
       <div class="content_div">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
+<!--         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
         porro. Iure voluptates voluptatem assumenda reiciendis. Autem modi ipsa,
         iure voluptatum saepe voluptatibus provident ducimus consequuntur qui
         optio! Magni ullam blanditiis, quasi, perspiciatis autem beatae eum
@@ -25,7 +25,7 @@
         nobis repellendus mollitia beatae, itaque aut. Eaque nam ex&nbsp;maiores
         necessitatibus, dolor animi assumenda iste eius repellat rem, quia
         labore enim voluptate placeat perspiciatis quis doloribus sed quos
-        tempore distinctio&nbsp;ut. Molestiae dolores impedit temporibus?
+        tempore distinctio&nbsp;ut. Molestiae dolores impedit temporibus? -->
       </div>
     </div>
     <partners />
@@ -95,8 +95,6 @@ export default {
   display: flex
   flex-flow: row nowrap
   align-items: center
-
-.epc_logo_div
 
 .epc_logo_img
   cursor: pointer

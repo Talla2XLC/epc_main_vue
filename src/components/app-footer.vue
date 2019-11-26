@@ -53,6 +53,8 @@ footer
 .copyright_epc
   color: white
   text-decoration: none
+  &:hover
+    color: #ec021c
 
 .rights_reserved
   position: relative

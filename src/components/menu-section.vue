@@ -53,7 +53,7 @@ export default {
   text-decoration: none
   color: black
   box-sizing: border-box
-  font-size: 24px
+  font-size: 20px
   transition: transform 100ms ease-in
   position: relative
   z-index: 1

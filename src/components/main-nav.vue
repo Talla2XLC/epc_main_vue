@@ -4,7 +4,7 @@
       <menu-section page_name="" @mouseover.native="hideProductNav"
         >главная</menu-section
       >
-      <menu-section page_name="epc" @mouseover.native="hideProductNav"
+      <menu-section page_name="about" @mouseover.native="hideProductNav"
         >о компании</menu-section
       >
       <menu-section page_name="products" @mouseover.native="showProductNav"
@@ -13,6 +13,14 @@
       <menu-section page_name="contacts" @mouseover.native="hideProductNav"
         >контакты</menu-section
       >
+      <a href="http://epcelectro.ru/">
+        <img
+          class="epcelectro"
+          src="@/assets/epcelectro_logo.svg"
+          height="100"
+          widht="300"
+        />
+      </a>
     </nav>
   </transition>
 </template>
@@ -58,12 +66,16 @@ export default {
   z-index: 1
   min-height: 10vh
 
-.fade-enter-active
-  transition: opacity 200ms ease-in
-.fade-leave-active
+.fade-enter-active, .fade-leave-active
   transition: opacity 200ms ease-in
 .fade-enter, .fade-leave-to
   opacity: 0
+
+.epcelectro
+  height: 2rem
+  transition: transform 200ms ease-in
+  &:hover
+    transform: scale(1.15)
 
 @media (min-width: 1850px)
   .main_nav
