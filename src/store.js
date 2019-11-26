@@ -8,7 +8,12 @@ export default new Vuex.Store({
     productNavVisible: false,
     mainMenuVisible: false,
     selectedPage: "",
-    productNavImg: ""
+    productNavImg: "",
+    nupi: "https://www.nupiindustrieitaliane.com/en/index.html",
+    scully: "https://www.scully.com",
+    emco: "https://www.gardnerdenver.com/ru-ru/emcowheaton",
+    rotork: "https://www.rotork.com/en",
+    progauge: "http://tokheim.com/products-solutions/progauge/"
   },
   getters: {
     productSelected(state) {

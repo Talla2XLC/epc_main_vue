@@ -1,6 +1,6 @@
 <template>
-  <router-link
-    :to="`/products/${page_name}`"
+  <a
+    :href="pageLink"
     class="btn inner_btn"
     :class="[
       page_name + '_page',
@@ -11,16 +11,20 @@
     @mouseleave.native="hideProductNavImg"
   >
     <slot></slot>
-  </router-link>
+  </a>
 </template>
 
 <script>
+// :to="`/products/${page_name}`"
 export default {
   name: "inner-menu-section",
   props: ["page_name"],
   computed: {
     selectedPage() {
       return this.$store.state.selectedPage;
+    },
+    pageLink() {
+      return this.$store.state[this.page_name];
     }
   },
   methods: {
