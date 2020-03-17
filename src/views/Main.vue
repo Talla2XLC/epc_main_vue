@@ -11,17 +11,7 @@
         </router-link>
       </div>
       <div class="content_div">
-        <!--         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure illum eum
-        porro. Iure voluptates voluptatem assumenda reiciendis. Autem modi ipsa,
-        iure voluptatum saepe voluptatibus provident ducimus consequuntur qui
-        optio! Magni ullam blanditiis, quasi, perspiciatis autem beatae eum
-        at&nbsp;ad&nbsp;sed commodi mollitia. Similique officia
-        accusantium&nbsp;et, nulla cumque. Vel esse quas quo non, totam rem eum
-        consequuntur pariatur excepturi animi quam eos, quibusdam modi commodi
-        nobis repellendus mollitia beatae, itaque aut. Eaque nam ex&nbsp;maiores
-        necessitatibus, dolor animi assumenda iste eius repellat rem, quia
-        labore enim voluptate placeat perspiciatis quis doloribus sed quos
-        tempore distinctio&nbsp;ut. Molestiae dolores impedit temporibus? -->
+        <nupi-banner />
       </div>
     </div>
     <partners />
@@ -30,11 +20,13 @@
 
 <script>
 import partners from "@/components/partners";
+import nupiBanner from "@/components/Main/nupi-banner";
 
 export default {
   name: "Main",
   components: {
-    partners
+    partners,
+    nupiBanner
   },
   methods: {
     switchMainMenu() {
@@ -102,6 +94,13 @@ export default {
 
 .content_div
   width: 50%
+  height: 100%
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: -o-flex
+  display: flex
+  padding: 5rem
   font-family: "raleway-regular", "calibri", sans-serif
   text-align: justify
   box-sizing: border-box
