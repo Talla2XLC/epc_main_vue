@@ -100,7 +100,6 @@ export default {
   display: -ms-flex
   display: -o-flex
   display: flex
-  padding: 5rem
   font-family: "raleway-regular", "calibri", sans-serif
   text-align: justify
   box-sizing: border-box
@@ -112,5 +111,5 @@ export default {
 
 @media (min-width: 1850px)
   .main_content
-    padding: 0.5rem 20%
+    padding: 0 20%
 </style>
