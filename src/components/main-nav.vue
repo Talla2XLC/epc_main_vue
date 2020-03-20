@@ -4,9 +4,9 @@
       <menu-section page_name="" @mouseover.native="hideProductNav"
         >главная</menu-section
       >
-      <menu-section page_name="about" @mouseover.native="hideProductNav"
+      <!-- <menu-section page_name="about" @mouseover.native="hideProductNav"
         >о компании</menu-section
-      >
+      > -->
       <menu-section page_name="products" @mouseover.native="showProductNav"
         >партнёры</menu-section
       >

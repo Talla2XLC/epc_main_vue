@@ -11,6 +11,19 @@
         </router-link>
       </div>
       <div class="content_div">
+        <div class="mission-txt">
+          <p>
+            Наша компания является официальным сервисно-логистическим партнёром
+            мировых производителей технологического оборудования: Nupi Industrie
+            Italiane S.p.A., Scully Signal Company, Emco Wheaton GmbH, Rotork
+            plc и Start Italiana s.r.l.
+          </p>
+          <p>
+            Наша совместная задача - предоставить российским клиентам
+            технологическое оборудование высшего качества по ценам производителя
+            в совокупности с высоким уровнем сервисной поддержки.
+          </p>
+        </div>
         <nupi-banner />
       </div>
     </div>
@@ -100,10 +113,24 @@ export default {
   display: -ms-flex
   display: -o-flex
   display: flex
-  font-family: "raleway-regular", "calibri", sans-serif
-  text-align: justify
   box-sizing: border-box
+  flex-flow: column nowrap
+  justify-content: center
+
+.mission-txt
   line-height: 1.5rem
+  box-sizing: border-box
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: -o-flex
+  display: flex
+  flex-flow: column nowrap
+  justify-content: space-around
+  height: 50%
+  font-family: Ubuntu
+  text-align: justify
+  padding: 0 3rem
 
 @media (min-width: 900px)
   .main_content

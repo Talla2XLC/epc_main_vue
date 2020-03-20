@@ -22,6 +22,10 @@ export default {
     appHeader,
     appFooter,
     productNav
+  },
+  metaInfo: {
+    title: "Vue App",
+    meta: [{ name: "yandex-verification", content: "945fdb6f1a94a0c8" }]
   }
 };
 </script>
