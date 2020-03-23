@@ -40,6 +40,9 @@ import GoogleMap from "@/components/GoogleMap.vue";
 
 export default {
   name: "About",
+  metaInfo: {
+    title: "EPC Contacts"
+  },
   components: {
     GoogleMap
   },

@@ -1,0 +1,26 @@
+$xs: 300px
+$s: 500px
+$m: 800px
+$l: 1200px
+$xl: 1800px
+
+@mixin respond-to($media)
+  @if $media == xs
+    @media only screen and (max-width: $s - 1)
+        @content
+
+  @else if $media == s
+    @media only screen and (min-width: $s) and (max-width: $m - 1)
+        @content
+
+  @else if $media == m
+    @media only screen and (min-width: $m) and (max-width: $l - 1)
+        @content
+
+  @else if $media == l
+    @media only screen and (min-width: $l) and (max-width: $xl - 1)
+        @content
+
+  @else if $media == xl
+    @media only screen and (min-width: $xl)
+        @content

@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="epc_copyright_div">
-      <span class="copyright_span">© 2019 </span>
+      <span class="copyright_span">© {{ new Date().getFullYear() }} </span>
       <router-link
         :to="`/`"
         class="copyright_span copyright_epc"

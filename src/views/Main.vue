@@ -13,15 +13,16 @@
       <div class="content_div">
         <div class="mission-txt">
           <p>
-            Наша компания является официальным сервисно-логистическим партнёром
-            мировых производителей технологического оборудования: Nupi Industrie
-            Italiane S.p.A., Scully Signal Company, Emco Wheaton GmbH, Rotork
-            plc и Start Italiana s.r.l.
+            Наша компания является официальным сервисным и логистическим
+            партнёром ряда европейских производителей технологичесокго
+            оборудования, таких как Nupi Industrie Italiane S.p.A., Scully
+            Signal Company, Emco Wheaton GmbH, Rotork plc и Start Italiana
+            s.r.l.
           </p>
           <p>
-            Наша совместная задача - предоставить российским клиентам
-            технологическое оборудование высшего качества по ценам производителя
-            в совокупности с высоким уровнем сервисной поддержки.
+            Наша основная задача - предоставить российским клиентам европейское
+            технологическое оборудование по ценам производителей в совокупности
+            с высоким уровнем технической поддержки.
           </p>
         </div>
         <nupi-banner />
@@ -37,6 +38,9 @@ import nupiBanner from "@/components/Main/nupi-banner";
 
 export default {
   name: "Main",
+  metaInfo: {
+    title: "EPC Main"
+  },
   components: {
     partners,
     nupiBanner
@@ -60,6 +64,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import "@/sass/_media.sass"
+
 .main_page
   flex-grow: 1
   position: relative
@@ -85,6 +91,16 @@ export default {
   box-sizing: border-box
   position: relative
   z-index: 2
+  @include respond-to(xs)
+    padding: 0 5%
+  @include respond-to(s)
+    padding: 0 5%
+  @include respond-to(m)
+    padding: 0 10%
+  @include respond-to(l)
+    padding: 0 10%
+  @include respond-to(xl)
+    padding: 0 20%
 
 .main_left
   width: 50%
@@ -131,12 +147,24 @@ export default {
   font-family: Ubuntu
   text-align: justify
   padding: 0 3rem
-
-@media (min-width: 900px)
-  .main_content
-    padding: 0 10%
-
-@media (min-width: 1850px)
-  .main_content
-    padding: 0 20%
+  @include respond-to(xs)
+    font-size: 8px
+    line-height: 1rem
+    padding: 0 0.2rem
+  @include respond-to(s)
+    font-size: 12px
+    line-height: 1rem
+    padding: 0 1rem
+  @include respond-to(m)
+    font-size: 14px
+    line-height: 1.5rem
+    padding: 0 1rem
+  @include respond-to(l)
+    font-size: 16px
+    line-height: 1.5rem
+    padding: 0 2rem
+  @include respond-to(xl)
+    font-size: 20px
+    line-height: 1.5rem
+    padding: 0 3rem
 </style>

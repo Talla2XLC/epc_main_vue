@@ -15,6 +15,7 @@ import appFooter from "@/components/app-footer";
 import productNav from "@/components/product-nav";
 import "reset-css";
 import "@/sass/_fonts.sass";
+import "@/sass/_classes.sass";
 
 export default {
   name: "App",
@@ -24,7 +25,6 @@ export default {
     productNav
   },
   metaInfo: {
-    title: "Vue App",
     meta: [{ name: "yandex-verification", content: "945fdb6f1a94a0c8" }]
   }
 };

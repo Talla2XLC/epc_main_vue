@@ -14,7 +14,7 @@
       Скачать розничный прайс-лист :
       <a
         class="download-link"
-        href="~@/assets/downloads/Прейскурант_Nupi.docx"
+        href="/downloads/Прейскурант_Nupi.docx"
         download
       >
         <svg
@@ -37,7 +37,9 @@
     </p>
     <p>
       Чтобы получить персональную скидку, звоните по телефону:<br />
-      +7 (499) 125-44-55
+      +7 (499) 125-44-55<br />
+      e-mail: 
+      <a href="mailto:kirill.terekhov@epc.com.ru" class="email">kirill.terekhov@epc.com.ru</a>
     </p>
     <div class="arrow-8" ref="arrows" @click="switchPosition" />
   </div>
@@ -54,6 +56,7 @@ export default {
         this.$refs.nupiBanner.classList.remove("move-in");
       }
       this.$refs.nupiBanner.classList.toggle("move-out");
+      this.$refs.arrows.classList.remove("hide");
       this.$refs.arrows.classList.toggle("rotate");
     }
   },
@@ -62,6 +65,7 @@ export default {
 </script>
 
 <style lang="sass">
+@import "@/sass/_media.sass"
 
 .nupi-banner
   width: 55%
@@ -86,9 +90,32 @@ export default {
   font-family: Ubuntu
   text-align: center
   line-height: 1.5rem
-  animation: move-in-init 7s ease-out
+  animation: move-in-init 5s ease-in
   padding: 1% 0
   right: 0
+  @include respond-to(xs)
+    width: 100%
+    height: 60%
+    bottom: 0
+    font-size: 10px
+    line-height: 1rem
+  animation: move-in-init-xs 5s ease-in
+  @include respond-to(s)
+    font-size: 12px
+    line-height: 1rem
+    padding: 10% 1%
+  @include respond-to(m)
+    font-size: 14px
+    line-height: 1.5rem
+    padding: 3% 0
+  @include respond-to(l)
+    font-size: 18px
+    line-height: 2rem
+    padding: 2% 0
+  @include respond-to(xl)
+    font-size: 24px
+    line-height: 2.5rem
+    padding: 1% 0
   >span
   >p
 .arrow-8
@@ -100,6 +127,7 @@ export default {
   left: 3rem
   transform: rotate(-90deg)
   cursor: pointer
+  animation: appear 5s linear
 
 .arrow-8:before
   content: ''
@@ -141,9 +169,19 @@ export default {
 .nupi-img
   max-width: 30%
   margin: 1rem auto
+  @include respond-to(xs)
+    margin: 0.5rem auto
+    max-width: 15%
+  @include respond-to(s)
+    margin: 0.5rem auto
 
 .download-link
   margin-left: 1rem
+
+.email
+  color: grey
+  &:hover
+    color: white
 
 .download-svg
   fill: grey
@@ -153,44 +191,65 @@ export default {
     fill: white
 
 .move-in
-  animation: move-in 2s ease-out
+  animation: move-in 1.5s ease-in
   right: 0
 
 .move-out
-  animation: move-out 2s ease-out
+  animation: move-out 1.5s ease-in
   right: -50%
+  @include respond-to(xs)
+    right: -85%
 
 .rotate
   transform: rotate(90deg) translateX(-1.1rem)
 
 @keyframes move-in-init
-    0%
-        right: -50%
-    50%
-        right: -50%
-    100%
-        right: 0
+  0%
+    right: -50%
+  50%
+    right: -50%
+  100%
+    right: 0
+
+@keyframes move-in-init-xs
+  0%
+    right: -85%
+  50%
+    right: -85%
+  100%
+    right: 0
 
 @keyframes move-in
-    0%
-        right: -50%
-    100%
-        right: 0
+  0%
+    right: -50%
+  100%
+    right: 0
+
+@keyframes move-in-xs
+  0%
+    right: -85%
+  100%
+    right: 0
 
 @keyframes move-out
-    0%
-        right: 0
-    100%
-        right: -50%
+  0%
+    right: 0
+  100%
+    right: -50%
 
-@media (min-width: 900px)
-  .nupi-banner
-    font-size: 16px
-    line-height: 2rem
+@keyframes move-out-xs
+  0%
+    right: 0
+  100%
+    right: -85%
 
-@media (min-width: 1850px)
-  .nupi-banner
-    font-size: 24px
-    line-height: 2.5rem
-    padding: 5% 0
+@keyframes appear
+  0%
+    visibility: hidden
+  90%
+    visibility: hidden
+    opacity: 0
+  100%
+    visibility: visible
+    opacity: 1
 </style>
