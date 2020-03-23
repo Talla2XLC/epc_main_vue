@@ -25,7 +25,7 @@ export default {
     productNav
   },
   metaInfo: {
-    meta: [{ name: "yandex-verification", content: "945fdb6f1a94a0c8" }]
+    meta: [{ name: "Description", content: "Пластиковый трубопровод для АЗС по ценам изготовителя" }]
   }
 };
 </script>

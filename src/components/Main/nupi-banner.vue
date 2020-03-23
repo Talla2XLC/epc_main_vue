@@ -6,15 +6,23 @@
       в Российской Федерации и странах СНГ.
     </span>
     <img class="nupi-img" src="~@/assets/partners_logo/nupi_logo.png" />
-    <p>
-      Специальные цены, предложения и скидки<br />
+    <p>       
+      Специальные цены и скидки<br />
       для торговых и строительных компаний!
     </p>
-    <p>
-      Скачать розничный прайс-лист :
+    <p class="main-txt">
+
+
+      Узнайте выгодное для Вас предложение<br />
+      по телефону +7 (499) 125-44-55,<br />
+      e-mail: 
+      <a href="mailto:kirill.terekhov@epc.com.ru" class="email">kirill.terekhov@epc.com.ru</a>
+    </p>
+    <p class="minor-txt">
+      Розничный прайс-лист  
       <a
         class="download-link"
-        href="/downloads/Прейскурант_Nupi.docx"
+        :href="docLink"
         download
       >
         <svg
@@ -34,13 +42,7 @@
           </g>
         </svg>
       </a>
-    </p>
-    <p>
-      Чтобы получить персональную скидку, звоните по телефону:<br />
-      +7 (499) 125-44-55<br />
-      e-mail: 
-      <a href="mailto:kirill.terekhov@epc.com.ru" class="email">kirill.terekhov@epc.com.ru</a>
-    </p>
+    </p>    
     <div class="arrow-8" ref="arrows" @click="switchPosition" />
   </div>
 </template>
@@ -48,6 +50,11 @@
 <script>
 export default {
   name: "nupi-banner",
+  data () {
+    return {
+      docLink : require('@/assets/downloads/EPC_Nupi_price.docx')
+    }
+  },
   methods: {
     switchPosition() {
       if (this.$refs.nupiBanner.classList.contains("move-out")) {
@@ -79,13 +86,13 @@ export default {
   flex-grow: 1
   align-items: center
   justify-content: space-between
-  background: linear-gradient(179.95deg, rgba(255, 255, 255, 0) 62.59%, rgba(0, 0, 0, 0.46) 99.95%), linear-gradient(107deg, #A1000C 59.06%, #AA000E 70.61%, #BE0013 80.16%, #D90019 87.62%, #EE001E 91.98%)
+  background: linear-gradient(179.96deg, rgba(255, 255, 255, 0) 46.47%, rgba(0, 0, 0, 0.46) 82.52%), linear-gradient(107deg, #A1000C 59.06%, #AA000E 70.61%, #BE0013 80.16%, #D90019 87.62%, #EE001E 91.98%)
   padding: 1rem 0.5rem
   box-sizing: border-box
   position: absolute
   transition: 200ms ease-in
   clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%)
-  color: white
+  color: #DAD7D7
   font-size: 14px
   font-family: Ubuntu
   text-align: center
@@ -99,23 +106,23 @@ export default {
     bottom: 0
     font-size: 10px
     line-height: 1rem
-  animation: move-in-init-xs 5s ease-in
+    animation: move-in-init-xs 5s ease-in
   @include respond-to(s)
     font-size: 12px
     line-height: 1rem
-    padding: 10% 1%
+    padding-top: 7%
   @include respond-to(m)
     font-size: 14px
     line-height: 1.5rem
-    padding: 3% 0
+    padding-top: 5%
   @include respond-to(l)
     font-size: 18px
     line-height: 2rem
-    padding: 2% 0
+    padding-top: 5%
   @include respond-to(xl)
-    font-size: 24px
+    font-size: 22px
     line-height: 2.5rem
-    padding: 1% 0
+    padding-top: 7%
   >span
   >p
 .arrow-8
@@ -151,6 +158,14 @@ export default {
   transform: translate(26px, 0px) rotate(-45deg)
   animation: arrow-8 3s linear infinite -1.5s
 
+.main-txt
+  text-shadow: 0px 0px 10px #EE001E
+  color: white
+  font-size: 24px
+
+.minor-txt
+  font-size: 18px
+
 @keyframes arrow-8
     0%
         opacity: 0
@@ -179,9 +194,9 @@ export default {
   margin-left: 1rem
 
 .email
-  color: grey
+  color: white
   &:hover
-    color: white
+    color: #DAD7D7
 
 .download-svg
   fill: grey
