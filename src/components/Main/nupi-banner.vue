@@ -98,7 +98,7 @@ export default {
   text-align: center
   line-height: 1.5rem
   animation: move-in-init 5s ease-in
-  padding: 1% 0
+  padding: 0.5% 0
   right: 0
   @include respond-to(xs)
     width: 100%
@@ -117,8 +117,8 @@ export default {
     padding-top: 5%
   @include respond-to(l)
     font-size: 18px
-    line-height: 2rem
-    padding-top: 5%
+    line-height: 1.7rem
+    padding-top: 2%
   @include respond-to(xl)
     font-size: 22px
     line-height: 2.5rem
@@ -161,7 +161,15 @@ export default {
 .main-txt
   text-shadow: 0px 0px 10px #EE001E
   color: white
-  font-size: 24px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    font-size: 22px
+    line-height: 2rem
+  @include respond-to(xl)
+    font-size: 24px
+    line-height: 2rem
 
 .minor-txt
   font-size: 18px
@@ -182,13 +190,18 @@ export default {
         transform: translate(-6px, 26px) rotate(-45deg)
 
 .nupi-img
-  max-width: 30%
-  margin: 1rem auto
   @include respond-to(xs)
     margin: 0.5rem auto
     max-width: 15%
   @include respond-to(s)
     margin: 0.5rem auto
+  @include respond-to(m)
+  @include respond-to(l)
+    margin: 0.5rem auto
+    max-width: 23%
+  @include respond-to(xl)
+    max-width: 30%
+    margin: 1rem auto
 
 .download-link
   margin-left: 1rem

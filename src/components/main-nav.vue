@@ -51,6 +51,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+@import "@/sass/_media.sass"
+
 .main_nav
   position: absolute
   display: -webkit-flex
@@ -65,7 +67,14 @@ export default {
   width: 100%
   padding: 0 5%
   z-index: 1
-  min-height: 10vh
+  min-height: 8vh
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    min-height: 8vh
+  @include respond-to(xl)
+    min-height: 10vh
 
 .fade-enter-active, .fade-leave-active
   transition: opacity 200ms ease-in
