@@ -11,8 +11,10 @@ module.exports = {
     }
   },
   chainWebpack: config => {
-    config.module.rule('docx')
+    config.module
+      .rule("docx")
       .test(/\.docx$/)
-      .use('file-loader').loader('file-loader')
+      .use("file-loader")
+      .loader("file-loader");
   }
 };
