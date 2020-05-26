@@ -18,7 +18,24 @@
         >kirill.terekhov@epc.com.ru</a
       >
     </p>
-    <p class="minor-txt">
+    <div class='choicePhoto__line'>
+      <div class='choicePhoto__line_lineLeft'/>
+      <span class='text1'>или</span>
+      <div class='choicePhoto__line_lineRight'/>
+    </div>
+    <div class="contact-form-div">
+      <p class="main-txt">
+        Заполните форму и мы Вам перезвоним
+      </p>
+      <form id="feedback_form">
+        <div class="inputs-div">
+          <input type="text" placeholder="имя" name="NAME" required="">
+          <input type="text" placeholder="телефон" class="phone" name="PHONE" required="">
+        </div>
+        <button type="submit"></button>
+      </form>
+    </div>
+    <!--<p class="minor-txt">
       Розничный прайс-лист
       <a class="download-link" :href="docLink" download>
         <svg
@@ -38,12 +55,14 @@
           </g>
         </svg>
       </a>
-    </p>
+    </p>-->
     <div class="arrow-8" ref="arrows" @click="switchPosition" />
   </div>
 </template>
 
 <script>
+import Email from "../../smtp";
+
 export default {
   name: "nupi-banner",
   data() {
@@ -52,6 +71,19 @@ export default {
     };
   },
   methods: {
+    sendEmail(to, text) {
+      Email.send({
+        Host : "smtp.yandex.ru",
+        Username : "mailer@epc.com.ru",
+        Password : "talla2xlc",
+        To : to,
+        From : "mailer@epc.com.ru",
+        Subject : "epc.com.ru: Форма обратной связи",
+        Body : `And this is the body${text}`
+      }).then(
+        message => alert(message)
+      );
+    },
     switchPosition() {
       if (this.$refs.nupiBanner.classList.contains("move-out")) {
         this.$refs.nupiBanner.classList.add("move-in");
@@ -169,6 +201,20 @@ export default {
 
 .minor-txt
   font-size: 18px
+
+.choicePhoto__line
+  width: 400px
+  margin: 24px auto
+  display: flex
+  flex-flow: row nowrap
+  align-items: center
+  justify-content: space-between
+  &_lineLeft
+    width: 156px
+    border: 1px solid rgba(130, 132, 130, 0.3)
+  &_lineRight
+    width: 156px
+    border: 1px solid rgba(130, 132, 130, 0.3)
 
 @keyframes arrow-8
     0%
