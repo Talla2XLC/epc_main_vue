@@ -29,8 +29,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
 footer
-  min-height: 5vh
+  height: 60px
   background: #4f4f51
   position: relative
   display: -webkit-flex
@@ -40,11 +41,10 @@ footer
   display: flex
   flex-flow: row nowrap
   justify-content: space-between
+  box-sizing: border-box
   align-items: center
-  font-family: "raleway-regular", "calibri", sans-serif
-  font-size: 1vw
-  line-height: 0.8rem
-  padding: 0 5%
+  +text-h1()
+  padding: 16px 100px
 
 .epc_copyright_div
   display: -webkit-flex
@@ -87,10 +87,9 @@ footer
 
 @media (min-width: 900px)
   footer
-    padding: 0 10%
-    font-size: 0.6vw
+    height: 60px
+    padding: 16px 100px
 
 @media (min-width: 1850px)
   footer
-    padding: 0 20%
 </style>

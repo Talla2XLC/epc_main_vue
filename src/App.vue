@@ -14,9 +14,6 @@ import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
 import productNav from "@/components/product-nav";
 import "reset-css";
-import "@/sass/_fonts.sass";
-import "@/sass/_classes.sass";
-import "@/sass/_media.sass";
 
 export default {
   name: "App",

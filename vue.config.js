@@ -6,7 +6,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData: `@import "~@/sass/_media.sass"`
+        data: `@import "@/sass/_fonts.sass"`
       }
     }
   },
