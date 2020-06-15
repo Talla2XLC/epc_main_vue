@@ -24,7 +24,8 @@ export default {
     appHeader,
     appFooter,
     productNav
-  }
+  },
+  metaInfo: {}
 };
 </script>
 

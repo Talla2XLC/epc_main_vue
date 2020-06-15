@@ -6,25 +6,21 @@
       в Российской Федерации и странах СНГ.
     </span>
     <img class="nupi-img" src="~@/assets/partners_logo/nupi_logo.png" />
-    <p>       
+    <p>
       Специальные цены и скидки<br />
       для торговых и строительных компаний!
     </p>
     <p class="main-txt">
-
-
       Узнайте выгодное для Вас предложение<br />
       по телефону +7 (499) 125-44-55,<br />
-      e-mail: 
-      <a href="mailto:kirill.terekhov@epc.com.ru" class="email">kirill.terekhov@epc.com.ru</a>
+      e-mail:
+      <a href="mailto:kirill.terekhov@epc.com.ru" class="email"
+        >kirill.terekhov@epc.com.ru</a
+      >
     </p>
     <p class="minor-txt">
-      Розничный прайс-лист  
-      <a
-        class="download-link"
-        :href="docLink"
-        download
-      >
+      Розничный прайс-лист
+      <a class="download-link" :href="docLink" download>
         <svg
           class="download-svg"
           width="24"
@@ -42,7 +38,7 @@
           </g>
         </svg>
       </a>
-    </p>    
+    </p>
     <div class="arrow-8" ref="arrows" @click="switchPosition" />
   </div>
 </template>
@@ -50,10 +46,10 @@
 <script>
 export default {
   name: "nupi-banner",
-  data () {
+  data() {
     return {
-      docLink : require('@/assets/downloads/EPC_Nupi_price.docx')
-    }
+      docLink: require("@/assets/downloads/EPC_Nupi_price.docx")
+    };
   },
   methods: {
     switchPosition() {

@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /
+Allow: /$
+
+User-agent: Yandex
+Disallow: /
+Allow: /$
+Host: epc.com.ru
+
+Sitemap: http://epc.com.ru/sitemap.xml
