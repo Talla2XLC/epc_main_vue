@@ -24,9 +24,6 @@ export default {
     appHeader,
     appFooter,
     productNav
-  },
-  metaInfo: {
-    meta: [{ name: "Description", content: "Пластиковый трубопровод для АЗС по ценам изготовителя" }]
   }
 };
 </script>
