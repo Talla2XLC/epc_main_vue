@@ -6,15 +6,27 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `@import "@/sass/_fonts.sass"`
+        // data: `@import "@/sass/_fonts.sass"`
       }
     }
   },
   chainWebpack: config => {
+    config.module.rules.delete("svg");
+
     config.module
       .rule("docx")
       .test(/\.docx$/)
       .use("file-loader")
       .loader("file-loader");
+  },
+  configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.svg$/,
+          loader: 'vue-svg-loader',
+        },
+      ],
+    }
   }
 };

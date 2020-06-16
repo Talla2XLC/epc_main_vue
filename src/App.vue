@@ -13,6 +13,8 @@
 import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
 import productNav from "@/components/product-nav";
+
+import "@/sass/_fonts.sass";
 import "reset-css";
 
 export default {

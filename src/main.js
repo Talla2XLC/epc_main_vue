@@ -7,8 +7,6 @@ import VueMq from "vue-mq";
 
 import * as VueGoogleMaps from "vue2-google-maps";
 
-import "@/sass/_media.sass";
-
 Vue.use(Meta);
 Vue.use(VueGoogleMaps, {
   load: {

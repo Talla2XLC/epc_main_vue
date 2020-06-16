@@ -10,12 +10,11 @@
     @mouseover="setProductNavImg"
     @mouseleave="hideProductNavImg"
   >
-    <slot></slot>
+    <slot />
   </a>
 </template>
 
 <script>
-// :to="`/products/${page_name}`"
 export default {
   name: "inner-menu-section",
   props: ["page_name"],

@@ -6,7 +6,6 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     productNavVisible: false,
-    mainMenuVisible: false,
     selectedPage: "",
     productNavImg: "",
     nupi: "https://www.nupiindustrieitaliane.com/en/index.html",
@@ -31,9 +30,6 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    SET_MAIN_MENU_VISIBILITY(state, status) {
-      state.mainMenuVisible = status;
-    },
     SET_PRODUCT_NAV_VISIBILITY(state, status) {
       state.productNavVisible = status;
     },
@@ -45,16 +41,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    showMainMenu(context) {
-      context.commit("SET_MAIN_MENU_VISIBILITY", true);
-    },
-
-    hideMainMenu(context) {
-      if (!this.state.productNavVisible) {
-        context.commit("SET_MAIN_MENU_VISIBILITY", false);
-      }
-    },
-
     showProductNav(context) {
       context.commit("SET_PRODUCT_NAV_VISIBILITY", true);
     },

@@ -1,50 +1,33 @@
 <template>
-  <transition name="fade">
-    <nav class="main_nav" ref="main_nav" v-if="mainMenuVisible">
-      <menu-section page_name="" @mouseover.native="hideProductNav"
-        >главная</menu-section
-      >
-      <!-- <menu-section page_name="about" @mouseover.native="hideProductNav"
-        >о компании</menu-section
-      > -->
-      <menu-section page_name="products" @mouseover.native="showProductNav"
-        >партнёры</menu-section
-      >
-      <menu-section page_name="contacts" @mouseover.native="hideProductNav"
-        >контакты</menu-section
-      >
-      <a href="http://epcelectro.ru/">
-        <img
-          class="epcelectro"
-          src="@/assets/epcelectro_logo.svg"
-          height="100"
-          widht="300"
-          alt="epcelectro_logo"
-        />
-      </a>
-    </nav>
-  </transition>
+  <nav class="main_nav" ref="main_nav">
+    <router-link :to="`/`" class="epc_logo_div" @click.native="selectPage('')">
+      <EPCLogo class="epc-logo" viewBox="0 0 400 123" />
+    </router-link>
+    <menu-section page_name="about">О компании</menu-section>
+    <menu-section page_name="products">Каталог</menu-section>
+    <menu-section page_name="contacts">Контакты</menu-section>
+    <a href="http://epcelectro.ru/">
+      <EPCelectroLogo />
+    </a>
+  </nav>
 </template>
 
 <script type="text/javascript">
 import menuSection from "@/components/menu-section";
+import EPCLogo from "@/assets/svg/epc-logo.svg";
+import EPCelectroLogo from "@/assets/svg/epcelectro_logo.svg";
 
 export default {
   name: "main-nav",
   components: {
-    menuSection
+    menuSection,
+    EPCLogo,
+    EPCelectroLogo
   },
-  computed: {
-    mainMenuVisible() {
-      return this.$store.state.mainMenuVisible;
-    }
-  },
+  computed: {},
   methods: {
-    showProductNav() {
-      this.$store.dispatch("showProductNav");
-    },
-    hideProductNav() {
-      this.$store.dispatch("hideProductNav");
+    selectPage(page) {
+      this.$store.dispatch("selectPage", page);
     }
   }
 };
@@ -75,11 +58,10 @@ export default {
     min-height: 8vh
   @include respond-to(xl)
     min-height: 10vh
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity 200ms ease-in
-.fade-enter, .fade-leave-to
-  opacity: 0
+.epc-logo
+  width: 85px
+  height: 26px
+  /*viewBox: "0 0 85 26"*/
 
 .epcelectro
   height: 2vw
