@@ -1,13 +1,16 @@
 <template>
   <nav class="main_nav" ref="main_nav">
     <router-link :to="`/`" class="epc_logo_div" @click.native="selectPage('')">
-      <EPCLogo class="epc-logo" viewBox="0 0 400 123" />
+      <EPCLogo class="epc-logo" />
     </router-link>
-    <menu-section page_name="about">О компании</menu-section>
-    <menu-section page_name="products">Каталог</menu-section>
-    <menu-section page_name="contacts">Контакты</menu-section>
+    <div class="menu-list">
+      <menu-section page_name="news">Новости</menu-section>
+      <menu-section page_name="about">О компании</menu-section>
+      <menu-section page_name="products">Каталог</menu-section>
+      <menu-section page_name="contacts">Контакты</menu-section>
+    </div>
     <a href="http://epcelectro.ru/">
-      <EPCelectroLogo />
+      <EPCelectroLogo class="epcelectro-logo" />
     </a>
   </nav>
 </template>
@@ -59,23 +62,23 @@ export default {
   @include respond-to(xl)
     min-height: 10vh
 .epc-logo
-  width: 85px
-  height: 26px
-  /*viewBox: "0 0 85 26"*/
+  &:hover >path
+    &:nth-of-type(1)
+      fill: url(#color_radial)
+    &:nth-of-type(2), &:nth-of-type(4)
+      fill: #EC001D
 
-.epcelectro
-  height: 2vw
-  transition: transform 200ms ease-in
-  filter: grayscale(100%) contrast(80%)
-  &:hover
-    transform: scale(1.15)
-    filter: none
+
+.epcelectro-logo
+  &:hover >path
+    &:nth-of-type(1)
+      fill: #E6E6E6
+    &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(5)
+      fill: #18BFF6
 
 @media (min-width: 900px)
   .main_nav
     padding: 0 10%
-  .epcelectro
-    height: 1.5vw
 
 @media (min-width: 1850px)
   .main_nav

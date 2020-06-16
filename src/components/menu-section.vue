@@ -1,7 +1,7 @@
 <template>
   <router-link
     :to="link ? `/${page_name}` : ''"
-    class="btn main_btn"
+    class="btn main_btn text-body3"
     :class="[
       page_name + '_page',
       {
@@ -45,42 +45,33 @@ export default {
 
 <style lang="sass" scoped>
 .btn
-  text-transform: uppercase
   background: transparent
-  font-family: "montserrat-regular", "calibri", sans-serif
   border: none
   cursor: pointer
   text-decoration: none
   color: black
   box-sizing: border-box
-  font-size: 1.5vw
   transition: transform 100ms ease-in
   position: relative
   z-index: 1
   &:focus
     outline: none
 .main_btn
+  margin-right: 36px
   &:hover:after
     content: ""
     width: 100%
     display: block
-    border-bottom: 2px solid black
+    border-bottom: 1px solid black
     position: absolute
-    bottom: -0.5rem
     left: 0
     animation: lining 0.5s ease-in-out
 
 .selected_page
   color: #910102
-  &:hover
-    transform: none
   &:hover:after
     content: ""
-    display: block
-    border-bottom: 2px solid #910102
-    position: absolute
-    bottom: -0.5rem
-    animation: lining 0.5s ease-in-out
+    display: none
 
 @keyframes lining
   0%
@@ -88,11 +79,8 @@ export default {
   100%
     width: 100%
 
-@media (min-width: 1000px)
-  .btn
-    font-size: 1vw
+@media (min-width: 1300px)
 
-@media (min-width: 900px)
-  .btn
-    font-size: 1.2vw
+@media (min-width: 1600px)
+
 </style>

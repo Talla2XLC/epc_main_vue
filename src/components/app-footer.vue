@@ -47,12 +47,11 @@ footer
   &-right
     text-align: right
 
-@media (min-width: 900px)
+@media (min-width: 1300px)
   footer
     height: 60px
     padding: 0 100px
 
-@media (min-width: 1850px)
-  footer
-    height: 60px
+@media (min-width: 1600px)
+
 </style>
