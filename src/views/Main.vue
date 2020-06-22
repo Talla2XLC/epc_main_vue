@@ -7,22 +7,21 @@
           class="epc_logo_div"
           @click.native="selectPage"
         >
-          <img class="epc_logo_img" src="@/assets/logo.png" />
+          <EPCLogoFull />
         </router-link>
       </div>
       <div class="content_div">
         <div class="mission-txt">
-          <p>
-            Наша компания является официальным сервисным и логистическим
-            партнёром ряда европейских производителей технологичесокго
-            оборудования, таких как Nupi Industrie Italiane S.p.A., Scully
-            Signal Company, Emco Wheaton GmbH, Rotork plc и Start Italiana
-            s.r.l.
-          </p>
-          <p>
-            Наша основная задача - предоставить российским клиентам европейское
-            технологическое оборудование по ценам производителей в совокупности
-            с высоким уровнем технической поддержки.
+          <h1 class="main-content-header text-h1">
+            Технологии и качество на высшем уровне
+          </h1>
+          <p class="text-body2">
+            Наша компания является официальным сервисным <br />
+            и логистическим партнёром ряда европейских <br />
+            производителей технологического оборудования,<br />
+            таких как Nupi Industrie Italiane S.p.A.,<br />
+            Scully Signal Company, Emco Wheaton GmbH,<br />
+            Rotork Plc и Start Italiana s.r.l.
           </p>
         </div>
         <nupi-banner />
@@ -35,6 +34,7 @@
 <script>
 import partners from "@/components/partners";
 import nupiBanner from "@/components/Main/nupi-banner";
+import EPCLogoFull from "@/assets/svg/epc-logo-full.svg";
 
 export default {
   name: "Main",
@@ -43,7 +43,8 @@ export default {
   },
   components: {
     partners,
-    nupiBanner
+    nupiBanner,
+    EPCLogoFull
   },
   methods: {
     switchMainMenu() {
@@ -64,8 +65,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/sass/_media.sass"
-
 .main_page
   flex-grow: 1
   position: relative
@@ -87,20 +86,17 @@ export default {
   flex-flow: row nowrap
   align-items: center
   justify-content: center
-  padding: 0 5%
+  padding: 0 100px
   box-sizing: border-box
   position: relative
   z-index: 2
+  min-height: 780px
   @include respond-to(xs)
-    padding: 0 5%
   @include respond-to(s)
-    padding: 0 5%
   @include respond-to(m)
-    padding: 0 10%
   @include respond-to(l)
-    padding: 0 10%
+    padding: 0 100px
   @include respond-to(xl)
-    padding: 0 20%
 
 .main_left
   width: 50%
@@ -112,6 +108,7 @@ export default {
   display: flex
   flex-flow: row nowrap
   align-items: center
+  justify-content: center
 
 .epc_logo_img
   cursor: pointer
@@ -134,7 +131,6 @@ export default {
   justify-content: center
 
 .mission-txt
-  line-height: 1.5rem
   box-sizing: border-box
   display: -webkit-flex
   display: -moz-flex
@@ -143,28 +139,13 @@ export default {
   display: flex
   flex-flow: column nowrap
   justify-content: space-around
-  height: 50%
-  font-family: Ubuntu
-  text-align: justify
-  padding: 0 3rem
+  text-align: center
   @include respond-to(xs)
-    font-size: 8px
-    line-height: 1rem
-    padding: 0 0.2rem
   @include respond-to(s)
-    font-size: 12px
-    line-height: 1rem
-    padding: 0 1rem
   @include respond-to(m)
-    font-size: 14px
-    line-height: 1.5rem
-    padding: 0 1rem
   @include respond-to(l)
-    font-size: 16px
-    line-height: 1.5rem
-    padding: 0 2rem
   @include respond-to(xl)
-    font-size: 20px
-    line-height: 1.5rem
-    padding: 0 3rem
+
+.main-content-header
+  margin-bottom: 47px
 </style>

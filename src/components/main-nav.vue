@@ -37,10 +37,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/sass/_media.sass"
-
 .main_nav
-  position: absolute
   display: -webkit-flex
   display: -moz-flex
   display: -ms-flex
@@ -51,23 +48,22 @@ export default {
   align-items: center
   box-sizing: border-box
   width: 100%
-  padding: 0 5%
+  padding: 0 100px
   z-index: 1
-  min-height: 8vh
+  min-height: 80px
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
   @include respond-to(l)
-    min-height: 8vh
+    padding: 0 100px
+    min-height: 80px
   @include respond-to(xl)
-    min-height: 10vh
 .epc-logo
   &:hover >path
     &:nth-of-type(1)
       fill: url(#color_radial)
     &:nth-of-type(2), &:nth-of-type(4)
       fill: #EC001D
-
 
 .epcelectro-logo
   &:hover >path
@@ -76,11 +72,6 @@ export default {
     &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(5)
       fill: #18BFF6
 
-@media (min-width: 900px)
-  .main_nav
-    padding: 0 10%
-
-@media (min-width: 1850px)
-  .main_nav
-    padding: 0.5rem 20%
+.menu-list
+  margin-left: 30px
 </style>

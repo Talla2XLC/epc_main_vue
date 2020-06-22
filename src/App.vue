@@ -39,11 +39,9 @@ export default {
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  height: 100vh
-  overflow: hidden
+  overflow-x: hidden
 
 main
-  flex-grow: 1
   display: -webkit-flex
   display: -moz-flex
   display: -ms-flex

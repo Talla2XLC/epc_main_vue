@@ -6,7 +6,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        // data: `@import "@/sass/_fonts.sass"`
+        data: `@import "@/sass/_media.sass"`
       }
     }
   },

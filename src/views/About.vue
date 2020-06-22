@@ -1,17 +1,17 @@
 <template>
   <div class="about">
-    <img
-      class="epc_logo_img"
-      src="@/assets/logo.png"
-      @click.native="selectPage"
-    />
+    <EPCLogoFull />
   </div>
 </template>
 
 <script>
+import EPCLogoFull from "@/assets/svg/epc-logo-full.svg";
+
 export default {
   name: "About",
-  components: {},
+  components: {
+    EPCLogoFull
+  },
   methods: {
     selectPage() {
       this.$store.dispatch("selectPage", "about");

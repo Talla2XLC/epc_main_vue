@@ -18,8 +18,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-@import "@/sass/_media.sass"
-
 header
   display: -webkit-flex
   display: -moz-flex
@@ -32,14 +30,11 @@ header
   position: relative
   min-height: 8vh
   z-index: 1
-  overflow: hidden
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
   @include respond-to(l)
-    min-height: 8vh
   @include respond-to(xl)
-    min-height: 10vh
 .header_bottom
   display: -webkit-flex
   display: -moz-flex
@@ -48,21 +43,10 @@ header
   display: flex
   flex-flow: row nowrap
   justify-content: center
-  position: absolute
   bottom: 0
   width: 100%
-  background: #c8c3c2
-  -webkit-box-shadow: inset -3px -8px 10px -10px #000000, inset 0px 4px 4px -3px #000000
-  box-shadow: inset -3px -8px 10px -10px #000000, inset 0px 4px 4px -3px #000000
-  transition: min-height 300ms ease-in
+  background: #DAD7D7
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
   z-index: 1
-  min-height: 0.5rem
-.big_header_bottom
-  @include respond-to(xs)
-  @include respond-to(s)
-  @include respond-to(m)
-  @include respond-to(l)
-    min-height: 8vh
-  @include respond-to(xl)
-    min-height: 10vh
+  min-height: 10px
 </style>
