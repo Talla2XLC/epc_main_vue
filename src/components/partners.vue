@@ -75,8 +75,9 @@ export default {
   padding: 0 205px
   background: #dad7d7
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
-  position: relative
-  z-index: 6
+  position: sticky
+  bottom: 60px
+  z-index: 8
 
 .partner_logo
   &-img
@@ -104,4 +105,11 @@ export default {
 @media (min-width: 1850px)
   .partners
     padding: 0 205px
+
+@media (max-height: 950px)
+  .partners
+    bottom: 40px
+  .partner_logo-link
+    height: 64px
+
 </style>

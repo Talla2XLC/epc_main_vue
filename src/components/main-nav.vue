@@ -9,7 +9,7 @@
       <menu-section page_name="products">Каталог</menu-section>
       <menu-section page_name="contacts">Контакты</menu-section>
     </div>
-    <a href="http://epcelectro.ru/">
+    <a class="epcelectro-logo-link" href="http://epcelectro.ru/">
       <EPCelectroLogo class="epcelectro-logo" />
     </a>
   </nav>
@@ -71,7 +71,13 @@ export default {
       fill: #E6E6E6
     &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(5)
       fill: #18BFF6
+  &-link
+    l
 
 .menu-list
   margin-left: 30px
+
+@media (max-height: 950px)
+  .main_nav
+    min-height: 60px
 </style>

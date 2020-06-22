@@ -14,6 +14,7 @@ import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
 import productNav from "@/components/product-nav";
 
+import "./sass/normalize.css";
 import "@/sass/_fonts.sass";
 import "reset-css";
 
@@ -39,7 +40,8 @@ export default {
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  overflow-x: hidden
+  height: 100vh
+  overflow: hidden
 
 main
   display: -webkit-flex
@@ -50,4 +52,5 @@ main
   flex-flow: column nowrap
   position: relative
   z-index: 5
+  flex-grow: 1
 </style>

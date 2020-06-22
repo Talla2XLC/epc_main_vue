@@ -1,20 +1,22 @@
 <template>
   <div class="nupi-banner" ref="nupiBanner">
     <div class="nupi-banner-content">
-      <span class="text-h3">
+      <span class="nupi-banner-content-top text-h3">
         Официальный склад компании Nupi<br />
         Industrie Italiane S.p.A. в Российской<br />
         Федерации и странах СНГ.
       </span>
       <img class="nupi-img" src="~@/assets/partners_logo/nupi_logo.png" />
-      <span class="text-h3">
-        Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
-      </span>
-      <button class="callback-btn">
-        Перезвоните мне!
-      </button>
-      <div class="arrow-8" ref="arrows" @click="switchPosition" />
+      <div class="nupi-banner-content-bottom">
+        <span class="text-h3">
+          Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
+        </span>
+        <button class="callback-btn">
+          Перезвоните мне!
+        </button>
+      </div>
     </div>
+    <div class="arrow-8" ref="arrows" @click="switchPosition" />
   </div>
 </template>
 
@@ -46,8 +48,8 @@ export default {
 .nupi-banner
   width: 65%
   height: 100%
-  background: linear-gradient(179.96deg, rgba(255, 255, 255, 0) 46.47%, rgba(0, 0, 0, 0.46) 82.52%), linear-gradient(107deg, #A1000C 59.06%, #AA000E 70.61%, #BE0013 80.16%, #D90019 87.62%, #EE001E 91.98%)
-  padding: 65px 100px
+  background: linear-gradient(180.27deg, #EC001D -32.99%, #940000 60.02%), #940000
+  padding: 0 100px
   box-sizing: border-box
   position: absolute
   transition: 200ms ease-in
@@ -57,7 +59,7 @@ export default {
   display: flex
   flex-flow: column nowrap
   align-items: flex-end
-  justify-content: flex-end
+  justify-content: center
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
@@ -65,19 +67,27 @@ export default {
   @include respond-to(xl)
   &-content
     width: 505px
-    min-height: 572px
     display: flex
     flex-flow: column nowrap
     align-items: center
-    justify-content: flex-start
+    justify-content: center
+    position: relative
     color: #DAD7D7
     text-align: center
+    &-top
+      position: absolute
+      top: -160px
+    &-bottom
+      display: flex
+      flex-flow: column nowrap
+      position: absolute
+      bottom: -260px
 
 .nupi-img
   width: 124.95px
   height: 123px
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15)
-  margin: 48px 0 60px 0
+  position: relative
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
@@ -127,6 +137,22 @@ export default {
   border-bottom: 0.5rem solid white
   transform: translate(26px, 0px) rotate(-45deg)
   animation: arrow-8 3s linear infinite -1.5s
+
+@media (max-height: 950px)
+  .nupi-banner-content
+    &-bottom
+      bottom: -220px
+
+  .callback-btn
+    margin-top: 30px
+
+@media (max-height: 850px)
+  .nupi-banner-content
+    &-bottom
+      bottom: -200px
+
+  .callback-btn
+    margin-top: 20px
 
 @keyframes arrow-8
     0%

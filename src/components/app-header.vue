@@ -27,9 +27,10 @@ header
   flex-flow: column nowrap
   align-items: center
   justify-content: center
-  position: relative
-  min-height: 8vh
-  z-index: 1
+  position: sticky
+  top: 0
+  z-index: 8
+  background: #fff
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)

@@ -24,8 +24,8 @@
             Rotork Plc и Start Italiana s.r.l.
           </p>
         </div>
-        <nupi-banner />
       </div>
+      <nupi-banner />
     </div>
     <partners />
   </div>
@@ -65,6 +65,9 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.ps
+  height: 100%
+
 .main_page
   flex-grow: 1
   position: relative
@@ -90,7 +93,6 @@ export default {
   box-sizing: border-box
   position: relative
   z-index: 2
-  min-height: 780px
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
