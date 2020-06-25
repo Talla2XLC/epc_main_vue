@@ -154,6 +154,15 @@ export default {
   .callback-btn
     margin-top: 20px
 
+@media (max-height: 750px)
+  .nupi-banner
+    clip-path: polygon(29% 0, 100% 0, 100% 100%, 0 100%)
+    &-content-bottom
+      bottom: -185px
+
+  .callback-btn
+    margin-top: 15px
+
 @keyframes arrow-8
     0%
         opacity: 0
