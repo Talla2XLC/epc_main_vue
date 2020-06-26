@@ -1,31 +1,38 @@
 <template>
   <div class="nupi-banner" ref="nupiBanner">
-    <div class="nupi-banner-content">
+    <div class="nupi-banner-content" v-if="!formCreating">
       <span class="nupi-banner-content-top text-h3">
         Официальный склад компании Nupi<br />
         Industrie Italiane S.p.A. в Российской<br />
         Федерации и странах СНГ.
       </span>
-      <img class="nupi-img" src="~@/assets/partners_logo/nupi_logo.png" />
+      <img
+        class="nupi-img"
+        src="~@/assets/partners_logo/nupi_logo.png"
+        alt="Nupi logo"
+      />
       <div class="nupi-banner-content-bottom">
         <span class="text-h3">
           Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
         </span>
-        <button class="callback-btn">
+        <button class="callback-btn" @click="showForm">
           Перезвоните мне!
         </button>
       </div>
     </div>
+    <feedbackForm v-if="formCreating" />
     <div class="arrow-8" ref="arrows" @click="switchPosition" />
   </div>
 </template>
 
 <script>
+import feedbackForm from "./feedbackForm";
+
 export default {
   name: "nupi-banner",
   data() {
     return {
-      isFormEdit: false
+      formCreating: false
     };
   },
   methods: {
@@ -38,9 +45,15 @@ export default {
       this.$refs.nupiBanner.classList.toggle("move-out");
       this.$refs.arrows.classList.remove("hide");
       this.$refs.arrows.classList.toggle("rotate");
+    },
+
+    showForm(e) {
+      this.formCreating = true;
     }
   },
-  components: {}
+  components: {
+    feedbackForm
+  }
 };
 </script>
 
@@ -67,6 +80,7 @@ export default {
   @include respond-to(xl)
   &-content
     width: 505px
+    height: 80%
     display: flex
     flex-flow: column nowrap
     align-items: center
@@ -76,12 +90,12 @@ export default {
     text-align: center
     &-top
       position: absolute
-      top: -160px
+      top: 70px
     &-bottom
       display: flex
       flex-flow: column nowrap
       position: absolute
-      bottom: -260px
+      bottom: -10px
 
 .nupi-img
   width: 124.95px
@@ -141,15 +155,17 @@ export default {
 @media (max-height: 950px)
   .nupi-banner-content
     &-bottom
-      bottom: -220px
+      bottom: 0
 
   .callback-btn
     margin-top: 30px
 
 @media (max-height: 850px)
   .nupi-banner-content
+    &-top
+      top: 30px
     &-bottom
-      bottom: -200px
+      bottom: -15px
 
   .callback-btn
     margin-top: 20px
@@ -157,8 +173,11 @@ export default {
 @media (max-height: 750px)
   .nupi-banner
     clip-path: polygon(29% 0, 100% 0, 100% 100%, 0 100%)
-    &-content-bottom
-      bottom: -185px
+    &-content
+      &-top
+        top: 5px
+      &-bottom
+        bottom: -27px
 
   .callback-btn
     margin-top: 15px
