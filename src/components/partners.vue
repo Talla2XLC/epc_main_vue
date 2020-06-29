@@ -111,5 +111,4 @@ export default {
     bottom: 40px
   .partner_logo-link
     height: 64px
-
 </style>

@@ -1,58 +1,60 @@
 <template>
   <div class="nupi-banner" ref="nupiBanner">
-    <div class="nupi-banner-content" v-if="!formCreating">
-      <span class="nupi-banner-content-top text-h3">
-        Официальный склад компании Nupi<br />
-        Industrie Italiane S.p.A. в Российской<br />
-        Федерации и странах СНГ.
-      </span>
-      <img
-        class="nupi-img"
-        src="~@/assets/partners_logo/nupi_logo.png"
-        alt="Nupi logo"
-      />
-      <div class="nupi-banner-content-bottom">
-        <span class="text-h3">
-          Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
-        </span>
-        <button class="callback-btn" @click="showForm">
-          Перезвоните мне!
-        </button>
-      </div>
+    <div class="nupi-banner-contentArea">
+      <banner-content :showFeedbackForm="showForm" v-if="!formCreating" />
+      <feedbackForm :closeFeedbackForm="closeForm" v-if="formCreating" />
+      <showArrow @click.native="showBanner" v-if="bannerClosed" />
     </div>
-    <feedbackForm v-if="formCreating" />
-    <div class="arrow-8" ref="arrows" @click="switchPosition" />
   </div>
 </template>
 
 <script>
-import feedbackForm from "./feedbackForm";
+import feedbackForm from "./Banner/feedbackForm";
+import bannerContent from "./Banner/bannerContent";
+import showArrow from "./Banner/showArrow";
 
 export default {
   name: "nupi-banner",
   data() {
     return {
-      formCreating: false
+      formCreating: false,
+      bannerClosed: true
     };
   },
+  mounted() {
+    this.showBanner();
+  },
   methods: {
-    switchPosition() {
-      if (this.$refs.nupiBanner.classList.contains("move-out")) {
-        this.$refs.nupiBanner.classList.add("move-in");
-      } else {
-        this.$refs.nupiBanner.classList.remove("move-in");
-      }
-      this.$refs.nupiBanner.classList.toggle("move-out");
-      this.$refs.arrows.classList.remove("hide");
-      this.$refs.arrows.classList.toggle("rotate");
+    showForm() {
+      this.formCreating = true;
     },
 
-    showForm(e) {
-      this.formCreating = true;
+    closeForm() {
+      this.formCreating = false;
+    },
+
+    showBanner() {
+      this.$refs.nupiBanner.classList.remove("move-out");
+      this.$refs.nupiBanner.classList.add("move-in");
+      document.addEventListener("click", this.closeBanner);
+      this.bannerClosed = false;
+    },
+
+    closeBanner(e) {
+      if (!e.target || e.target.className.includes("nupi-banner")) {
+        return null;
+      } else {
+        this.$refs.nupiBanner.classList.remove("move-in");
+        this.$refs.nupiBanner.classList.add("move-out");
+        document.removeEventListener("click", this.closeBanner);
+        this.bannerClosed = true;
+      }
     }
   },
   components: {
-    feedbackForm
+    feedbackForm,
+    bannerContent,
+    showArrow
   }
 };
 </script>
@@ -78,124 +80,26 @@ export default {
   @include respond-to(m)
   @include respond-to(l)
   @include respond-to(xl)
-  &-content
+  &-contentArea
+    max-width: 505px
     width: 505px
+    max-height: 620px
     height: 80%
-    display: flex
-    flex-flow: column nowrap
-    align-items: center
-    justify-content: center
-    position: relative
-    color: #DAD7D7
-    text-align: center
-    &-top
-      position: absolute
-      top: 70px
-    &-bottom
-      display: flex
-      flex-flow: column nowrap
-      position: absolute
-      bottom: -10px
-
-.nupi-img
-  width: 124.95px
-  height: 123px
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15)
-  position: relative
-  @include respond-to(xs)
-  @include respond-to(s)
-  @include respond-to(m)
-  @include respond-to(l)
-  @include respond-to(xl)
-
-.callback-btn
-  background: #F0EFEF
-  box-shadow: 0 0 20px #EE001E
-  border-radius: 4px
-  border: none
-  align-self: stretch
-  margin-top: 40px
-  cursor: pointer
-  &:focus
-    outline: none
-
-.arrow-8
-  position: absolute
-  width: 2rem
-  height: 2rem
-  margin: 0
-  bottom: 1rem
-  left: 3rem
-  transform: rotate(-90deg)
-  cursor: pointer
-  animation: appear 5s linear
-
-.arrow-8:before
-  content: ''
-  position: absolute
-  box-sizing: border-box
-  width: 100%
-  height: 100%
-  border-left: 0.5rem solid white
-  border-bottom: 0.5rem solid white
-  transform: translate(13px, 52px) rotate(-45deg)
-  animation: arrow-8 3s linear infinite
-
-.arrow-8:after
-  content: ''
-  position: absolute
-  box-sizing: border-box
-  width: 100%
-  height: 100%
-  border-left: 0.5rem solid white
-  border-bottom: 0.5rem solid white
-  transform: translate(26px, 0px) rotate(-45deg)
-  animation: arrow-8 3s linear infinite -1.5s
-
-@media (max-height: 950px)
-  .nupi-banner-content
-    &-bottom
-      bottom: 0
-
-  .callback-btn
     margin-top: 30px
 
-@media (max-height: 850px)
-  .nupi-banner-content
-    &-top
-      top: 30px
-    &-bottom
-      bottom: -15px
+@media (max-height: 950px)
+  .nupi-banner-contentArea
+    margin-top: 70px
 
-  .callback-btn
-    margin-top: 20px
+@media (max-height: 850px)
+  .nupi-banner-contentArea
+    margin-top: 60px
 
 @media (max-height: 750px)
   .nupi-banner
     clip-path: polygon(29% 0, 100% 0, 100% 100%, 0 100%)
-    &-content
-      &-top
-        top: 5px
-      &-bottom
-        bottom: -27px
-
-  .callback-btn
-    margin-top: 15px
-
-@keyframes arrow-8
-    0%
-        opacity: 0
-        transform: translate(-6px, -26px) rotate(-45deg)
-    10%, 90%
-        opacity: 0
-    50%
-        opacity: 1
-        border-left: 0.5rem solid white
-        border-bottom: 0.5rem solid white
-        transform: translate(-6px, 0px) rotate(-45deg)
-    100%
-        opacity: 0
-        transform: translate(-6px, 26px) rotate(-45deg)
+    &-contentArea
+      margin-top: 50px
 
 .move-in
   animation: move-in 1.5s ease-in
@@ -205,9 +109,6 @@ export default {
   animation: move-out 1.5s ease-in
   right: -58%
   @include respond-to(xs)
-
-.rotate
-  transform: rotate(90deg) translateX(-1.1rem)
 
 @keyframes move-in-init
   0%
