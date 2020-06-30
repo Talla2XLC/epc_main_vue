@@ -41,7 +41,11 @@ export default {
     },
 
     closeBanner(e) {
-      if (!e.target || e.target.className.includes("nupi-banner")) {
+      console.log(e);
+      console.log(typeof e.target.className);
+      if (!e.target || typeof e.target.className !== "string") {
+        return null;
+      } else if (e.target.className.includes("nupi-banner")) {
         return null;
       } else {
         this.$refs.nupiBanner.classList.remove("move-in");
