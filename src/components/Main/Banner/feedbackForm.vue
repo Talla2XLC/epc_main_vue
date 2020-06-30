@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import CloseCross from "@/assets/svg/Banner/closeCross.svg";
-
 export default {
   name: "feedbackForm",
   props: ["closeFeedbackForm"],
@@ -28,9 +26,7 @@ export default {
       phone: null
     };
   },
-  components: {
-    CloseCross
-  }
+  components: {}
 };
 </script>
 
@@ -78,5 +74,4 @@ export default {
       background: #C4C4C4
     &:focus
       outline: none
-
 </style>

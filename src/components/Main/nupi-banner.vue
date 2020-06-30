@@ -1,5 +1,5 @@
 <template>
-  <div class="nupi-banner" ref="nupiBanner">
+  <div class="nupi-banner" v-click-outside="closeBanner" ref="nupiBanner">
     <div class="nupi-banner-contentArea">
       <banner-content :showFeedbackForm="showForm" v-if="!formCreating" />
       <feedbackForm :closeFeedbackForm="closeForm" v-if="formCreating" />
@@ -21,6 +21,25 @@ export default {
       bannerClosed: true
     };
   },
+  directives: {
+    clickOutside: {
+      bind: function(el, binding, vnode) {
+        el.clickOutsideEvent = function(event) {
+          console.log(el);
+          console.log(event.target);
+          // here I check that click was outside the el and his childrens
+          if (!(el === event.target || el.contains(event.target))) {
+            // and if it did, call method provided in attribute value
+            vnode.context[binding.expression](event);
+          }
+        };
+        document.body.addEventListener("click", el.clickOutsideEvent);
+      },
+      unbind: function(el) {
+        document.body.removeEventListener("click", el.clickOutsideEvent);
+      }
+    }
+  },
   mounted() {
     this.showBanner();
   },
@@ -36,23 +55,13 @@ export default {
     showBanner() {
       this.$refs.nupiBanner.classList.remove("move-out");
       this.$refs.nupiBanner.classList.add("move-in");
-      document.addEventListener("click", this.closeBanner);
       this.bannerClosed = false;
     },
 
-    closeBanner(e) {
-      console.log(e);
-      console.log(typeof e.target.className);
-      if (!e.target || typeof e.target.className !== "string") {
-        return null;
-      } else if (e.target.className.includes("nupi-banner")) {
-        return null;
-      } else {
-        this.$refs.nupiBanner.classList.remove("move-in");
-        this.$refs.nupiBanner.classList.add("move-out");
-        document.removeEventListener("click", this.closeBanner);
-        this.bannerClosed = true;
-      }
+    closeBanner() {
+      this.$refs.nupiBanner.classList.remove("move-in");
+      this.$refs.nupiBanner.classList.add("move-out");
+      this.bannerClosed = true;
     }
   },
   components: {
