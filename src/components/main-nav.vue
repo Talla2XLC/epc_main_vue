@@ -1,7 +1,9 @@
 <template>
   <nav class="main_nav" ref="main_nav">
     <router-link :to="`/`" class="epc_logo_div" @click.native="selectPage('')">
-      <EPCLogo class="epc-logo" />
+      <EPCLogo
+        :class="this.$route.path === '/' ? 'epc-logo-main' : 'epc-logo'"
+      />
     </router-link>
     <div class="menu-list">
       <menu-section page_name="news">Новости</menu-section>
@@ -58,12 +60,18 @@ export default {
     padding: 0 100px
     min-height: 80px
   @include respond-to(xl)
-.epc-logo
+
+.epc-logo-main
   &:hover >path
     &:nth-of-type(1)
       fill: url(#color_radial)
     &:nth-of-type(2), &:nth-of-type(4)
       fill: #EC001D
+.epc-logo > path
+  &:nth-of-type(1)
+    fill: url(#color_radial)
+  &:nth-of-type(2), &:nth-of-type(4)
+    fill: #EC001D
 
 .epcelectro-logo
   &:hover >path

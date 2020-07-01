@@ -1,15 +1,30 @@
 <template>
   <div class="nupi-banner" v-click-outside="closeBanner" ref="nupiBanner">
     <div class="nupi-banner-contentArea">
-      <banner-content :showFeedbackForm="showForm" v-if="!formCreating" />
-      <feedbackForm :closeFeedbackForm="closeForm" v-if="formCreating" />
+      <banner-content :showFeedbackForm="showForm" v-if="!formCreating && !emailDelivered" />
+      <feedbackForm
+        :popupForm="true"
+        :closeFeedbackForm="closeForm"
+        :emailDeliverHandler="setEmailDelivered"
+        v-if="formCreating && !emailDelivered"
+      >
+        Пожалуйста, отправьте нам Ваши данные и мы с Вами обязательно свяжемся!
+      </feedbackForm>
+      <div class="nupi-banner-emailDelivered" v-if="emailDelivered">
+        <span class="text-body2">
+          Спасибо! Ваши данные получены. Мы скоро Вам перезвоним!
+        </span>
+        <button class="email-closeBtn" @click.prevent="closeForm">
+          <span class="email-closeBtn-mark" />
+        </button>
+      </div>
       <showArrow @click.native="showBanner" v-if="bannerClosed" />
     </div>
   </div>
 </template>
 
 <script>
-import feedbackForm from "./Banner/feedbackForm";
+import feedbackForm from "../General/feedbackForm";
 import bannerContent from "./Banner/bannerContent";
 import showArrow from "./Banner/showArrow";
 
@@ -18,18 +33,15 @@ export default {
   data() {
     return {
       formCreating: false,
-      bannerClosed: true
+      bannerClosed: true,
+      emailDelivered: false
     };
   },
   directives: {
     clickOutside: {
       bind: function(el, binding, vnode) {
         el.clickOutsideEvent = function(event) {
-          console.log(el);
-          console.log(event.target);
-          // here I check that click was outside the el and his childrens
-          if (!(el === event.target || el.contains(event.target))) {
-            // and if it did, call method provided in attribute value
+          if (!(el === event.target || event.path.includes(el))) {
             vnode.context[binding.expression](event);
           }
         };
@@ -41,15 +53,16 @@ export default {
     }
   },
   mounted() {
-    this.showBanner();
+    setTimeout(this.showBanner, 1000);
   },
   methods: {
     showForm() {
       this.formCreating = true;
     },
 
-    closeForm() {
+    closeForm(e) {
       this.formCreating = false;
+      this.emailDelivered = false;
     },
 
     showBanner() {
@@ -59,9 +72,15 @@ export default {
     },
 
     closeBanner() {
-      this.$refs.nupiBanner.classList.remove("move-in");
-      this.$refs.nupiBanner.classList.add("move-out");
-      this.bannerClosed = true;
+      if (this.$refs.nupiBanner.classList.contains("move-in")) {
+        this.$refs.nupiBanner.classList.remove("move-in");
+        this.$refs.nupiBanner.classList.add("move-out");
+        this.bannerClosed = true;
+      }
+    },
+    setEmailDelivered() {
+      this.formCreating = false;
+      this.emailDelivered = true;
     }
   },
   components: {
@@ -99,6 +118,50 @@ export default {
     max-height: 620px
     height: 80%
     margin-top: 30px
+  &-emailDelivered
+    box-sizing: border-box
+    height: 100%
+    width: 100%
+    background: #FFFFFF
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
+    padding: 33px 47px 0
+    display: flex
+    flex-flow: column nowrap
+    justify-content: center
+    align-items: center
+    >span
+      display: block
+      text-align: center
+      margin-bottom: 70px
+
+.email-closeBtn
+  width: 70px
+  height: 70px
+  border-radius: 50%
+  background: transparent
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25)
+  border: none
+  display: flex
+  flex-flow: column nowrap
+  justify-content: center
+  align-items: center
+  position: relative
+  cursor: pointer
+  &-mark
+    display: block
+    width: 20px
+    height: 30px
+    position: relative
+    box-sizing: border-box
+    border-right: 4px solid #4F4F51
+    border-bottom: 4px solid #4F4F51
+    transform: rotate(45deg)
+    bottom: 5px
+  &:hover &-mark
+    border-right: 4px solid #C4C4C4
+    border-bottom: 4px solid #C4C4C4
+  &:focus
+    outline: none
 
 @media (max-height: 950px)
   .nupi-banner-contentArea

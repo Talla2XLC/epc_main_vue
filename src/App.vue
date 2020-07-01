@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="this.$route.path === '/' ? 'fixed-app' : ''">
     <app-header />
     <main>
       <router-view />
@@ -31,7 +31,6 @@ export default {
 
 <style lang="sass">
 #app
-  font-family: "montserrat-regular", "calibri", sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   display: -webkit-flex
@@ -40,8 +39,11 @@ export default {
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  height: 100vh
   overflow: hidden
+  min-height: 100vh
+
+.fixed-app
+  height: 100vh
 
 main
   display: -webkit-flex

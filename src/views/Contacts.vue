@@ -1,130 +1,187 @@
 <template>
-  <div class="contacts_page_div">
-    <div class="contact_office">
-      <span>Офис</span>
-      <transition name="moving_left" appear>
-        <div class="office_line"></div>
-      </transition>
-      <div class="contact_office_details">
-        <span class="details_span"
-          >Адрес: г. Москва, ул. Вавилова, д.5, корп.3</span
-        >
-        <span class="details_span">Телефон: +7 (499) 125-44-55</span>
-        <span class="details_span">Факс: +7 (495) 633-01-41</span>
+  <div class="contacts-page">
+    <div class="contacts-page-content">
+      <h1 class="contacts-page-content-header text-h1">Наши контакты</h1>
+      <div class="contacts-page-content-block">
+        <div class="contacts-page-content-block-header">
+          <h2 class="text-h2">
+            Офис
+          </h2>
+          <transition name="movingToMap" appear>
+            <div class="map_line" />
+          </transition>
+          <transition name="dot-appear" appear>
+            <div class="map_dot" />
+          </transition>
+        </div>
+        <div class="contacts-page-content-block-details">
+          <div class="contacts-page-content-details-block">
+            <h3 class="text-h3">Адрес</h3>
+            <span class="text-body2">
+              г. Москва<br />ул. Вавилова, д.5, корп.3
+            </span>
+          </div>
+          <div class="contacts-page-content-details-block">
+            <h3 class="text-h3">Телефон</h3>
+            <span class="text-body2">+7 (499) 125-44-55</span>
+          </div>
+          <div class="contacts-page-content-details-block">
+            <h3 class="text-h3">Факс</h3>
+            <span class="text-body2">+7 (495) 633-01-41</span>
+          </div>
+          <transition name="fade" appear>
+            <google-map class="map" lat="55.703543" lng="37.591152" zoom="14" />
+          </transition>
+        </div>
       </div>
-      <transition name="fade" appear>
-        <google-map class="map" lat="55.703543" lng="37.591152" zoom="14" />
-      </transition>
-    </div>
-    <div class="contact_stock">
-      <span>Склад</span>
-      <transition name="moving_right" appear>
-        <div class="stock_line"></div>
-      </transition>
-      <div class="contact_stock_details">
-        <span class="details_span"
-          >Адрес: Московская обл, г. Наро-Фоминск, д. Селятино,<br />3-й
-          Шоссейный проезд, 3&nbsp;км автодороги А107</span
-        >
-        <span class="details_span">Телефон: +7 (499) 125-44-55</span>
+
+      <div class="contacts-page-content-block">
+        <div class="contacts-page-content-block-header">
+          <h2 class="text-h2">
+            Склад
+          </h2>
+          <transition name="movingToMap" appear>
+            <div class="map_line" />
+          </transition>
+          <transition name="dot-appear" appear>
+            <div class="map_dot" />
+          </transition>
+        </div>
+        <div class="contacts-page-content-block-details">
+          <div class="contacts-page-content-details-block">
+            <h3 class="text-h3">Адрес</h3>
+            <span class="text-body2">
+              Московская обл, д. Селятино<br />
+              3-й Шоссейный проезд, 3&nbsp;км<br />
+              автодороги А107
+            </span>
+          </div>
+          <transition name="fade" appear>
+            <google-map class="map" lat="55.494308" lng="37.033840" zoom="12" />
+          </transition>
+        </div>
       </div>
-      <transition name="fade" appear>
-        <google-map class="map" lat="55.494308" lng="37.033840" zoom="12" />
-      </transition>
     </div>
+    <Modal v-if="showModal" :closeModal="closeModal">
+      <span class="text-body2" slot="body">Спасибо! Ваши данные получены. Мы скоро Вам перезвоним!</span>
+    </Modal>
+    <feedbackForm :emailDeliverHandler="openModal"
+      >Возникли вопросы?</feedbackForm
+    >
   </div>
 </template>
 
 <script>
 import GoogleMap from "@/components/GoogleMap.vue";
+import feedbackForm from "../components/General/feedbackForm";
+import Modal from "../components/General/Modal";
 
 export default {
   name: "About",
   metaInfo: {
     title: "EPC Contacts"
   },
-  components: {
-    GoogleMap
+  data() {
+    return {
+      showModal: false
+    };
   },
-  methods: {}
+  components: {
+    GoogleMap,
+    feedbackForm,
+    Modal
+  },
+  methods: {
+    closeModal() {
+      this.showModal = false;
+    },
+    openModal() {
+      this.showModal = true;
+    }
+  }
 };
 </script>
 
 <style lang="sass">
-.contacts_page_div
+.contacts-page
   display: -webkit-flex
   display: -moz-flex
   display: -ms-flex
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  justify-content: space-around
-  height: 100%
-  width: 100%
   box-sizing: border-box
-  padding: 2rem 0
+  padding: 100px
   position: relative
-  font-family: "raleway-regular", "calibri", sans-serif
+  &-content
+    display: flex
+    flex-flow: column nowrap
+    padding: 0 105px
+    margin-bottom: 93px
+    &-block
+      display: flex
+      flex-flow: column nowrap
+      align-items: stretch
+      position: relative
+      margin-bottom: 10px
+      min-height: 398px
+      &-header
+        margin-bottom: 46px
+        position: relative
+      &-details
+        position: relative
 
-.contact_office, .contact_stock
-  display: -webkit-flex
-  display: -moz-flex
-  display: -ms-flex
-  display: -o-flex
-  display: flex
-  flex-flow: column nowrap
-  position: relative
-  width: 100%
-  >span
-    font-family: "raleway-medium", "calibri", sans-serif
-    font-size: 3vw
-    padding: 0 5%
-    margin-top: 3rem
+    &-header
+      align-self: center
+      margin-bottom: 60px
+    &-details
+      &-block
+        display: flex
+        flex-flow: row nowrap
+        align-items: flex-start
+        >h3
+          width: 190px
+          margin-right: 20px
+          margin-bottom: 46px
 
-.office_line, .stock_line
-  border-bottom: 2px solid #ec021c
-  width: 95%
-  position: relative
-.office_line
-  left: 0
-.stock_line
-  right: -5%
-
-.contact_office_details, .contact_stock_details
-  display: -webkit-flex
-  display: -moz-flex
-  display: -ms-flex
-  display: -o-flex
-  display: flex
-  flex-flow: column nowrap
-  font-family: "raleway-regular", "calibri", sans-serif
-  padding: 0 5%
-  font-size: 1.8vw
-  line-height: 120%
-  margin-bottom: 3rem
-
-.details_span
-  padding: 0.2rem 0
-  width: 50%
+.map_line
+  border-top: 2px solid #940000
+  border-right: 2px solid #940000
+  width: 830px
+  height: 63px
+  position: absolute
+.map_dot
+  box-sizing: border-box
+  border: 10px solid #940000
+  border-radius: 50%
+  width: 20px
+  height: 20px
+  position: absolute
+  left: 820px
+  bottom: -73px
+  z-index: 6
+  opacity: 1
 
 .map
   position: absolute
-  width: 30%
-  height: 100%
+  padding: 20px 25px
+  box-sizing: border-box
+  width: 400px
+  height: 300px
   top: 0
-  right: 12%
-  -webkit-box-shadow: 0px 0px 4px 1px #000000
-  box-shadow: 0px 0px 4px 1px #000000
+  right: 0
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15)
 
-.moving_left-enter-active, .moving_left-leave-active
-  transition: left 1s ease-in
-.moving_left-enter, .moving_left-leave-to
-  left: -100%
+.movingToMap-enter-active, .movingToMap-leave-active
+  transition: width 0.8s ease-in, height 0.2s ease-in 0.8s
+.movingToMap-enter, .movingToMap-leave-to
+  width: 0
+  height: 0
 
-.moving_right-enter-active, .moving_right-leave-active
-  transition: right 1s ease-in
-.moving_right-enter, .moving_right-leave-to
-  right: -110%
+.dot-appear-enter-active, .dot-appear-leave-active
+  transition: opacity 0.1s ease-in 1s
+.dot-appear-enter, .dot-appear-leave-to
+  opacity: 0
 
 .fade-enter-active, .fade-leave-active
   transition: opacity 100ms ease-in 1s
@@ -132,35 +189,8 @@ export default {
   opacity: 0
 
 @media (min-width: 900px)
-  .contact_office > span,
-  .contact_stock > span,
-  .contact_office_details, .contact_stock_details
-    padding: 0 10%
-  .contact_office > span,
-  .contact_stock > span
-    font-size: 2vw
-  .contact_office_details, .contact_stock_details
-    font-size: 1.2vw
-  .office_line
-    width: 90%
-  .stock_line
-    width: 90%
-    transform: translateX(5%)
 
 @media (min-width: 1450px)
-  .contact_office > span,
-  .contact_stock > span,
-  .contact_office_details, .contact_stock_details
-    padding: 0.5rem 15%
 
 @media (min-width: 1850px)
-  .contact_office > span,
-  .contact_stock > span,
-  .contact_office_details, .contact_stock_details
-    padding: 0.5rem 20%
-  .contact_office > span,
-  .contact_stock > span
-    font-size: 1.1vw
-  .contact_office_details, .contact_stock_details
-    font-size: 0.7vw
 </style>

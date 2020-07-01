@@ -14,19 +14,24 @@
       <span class="nupi-banner-content-bottom-txt text-h3">
         Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
       </span>
-      <button class="nupi-banner-callback-btn" @click="showFeedbackForm">
-        Перезвоните мне!
-      </button>
+      <Button type="callback" color="white" @click.native="showFeedbackForm"
+        >Перезвоните мне!</Button
+      >
     </div>
   </div>
 </template>
 
 <script>
+import Button from "../../General/Button";
+
 export default {
   name: "banner-content",
   props: ["showFeedbackForm"],
   data() {
     return {};
+  },
+  components: {
+    Button
   }
 };
 </script>
@@ -45,6 +50,8 @@ export default {
     &-bottom
       display: flex
       flex-flow: column nowrap
+      &-txt
+        margin-bottom: 40px
 
 .nupi-banner-nupi-img
   width: 124.95px
@@ -78,9 +85,8 @@ export default {
       margin-top: 40px
     &-bottom
       margin-bottom: 30px
-
-  .nupi-banner-callback-btn
-    margin-top: 30px
+      &-txt
+        margin-bottom: 30px
 
 @media (max-height: 850px)
   .nupi-banner-content
@@ -88,17 +94,15 @@ export default {
       margin-top: 0
     &-bottom
       margin-bottom: 0
-
-  .nupi-banner-callback-btn
-    margin-top: 20px
+      &-txt
+        margin-bottom: 20px
 
 @media (max-height: 750px)
   .nupi-banner-content
-      &-top
-        margin-top: 0
-      &-bottom
-        margin-bottom: 0
-
-  .nupi-banner-callback-btn
-    margin-top: 15px
+    &-top
+      margin-top: 0
+    &-bottom
+      margin-bottom: 0
+      &-txt
+        margin-bottom: 15px
 </style>
