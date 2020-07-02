@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="this.$route.path === '/' ? 'fixed-app' : ''">
-    <perfect-scrollbar ref="scroll">
+    <perfect-scrollbar ref="scroll" :options="psOptions">
       <app-header />
       <main>
         <router-view />
@@ -21,6 +21,14 @@ import "reset-css";
 
 export default {
   name: "App",
+  data() {
+    return {
+      psOptions: {
+        suppressScrollX: true,
+        swipeEasing: true
+      }
+    };
+  },
   components: {
     appHeader,
     appFooter,
@@ -66,5 +74,9 @@ main
   height: 100%
   display: flex
   flex-flow: column nowrap
+  &__rail-y
+    z-index: 5
+  &__rail-x
+    display: none
 </style>
 <style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css" />

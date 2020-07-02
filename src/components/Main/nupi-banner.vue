@@ -1,7 +1,10 @@
 <template>
   <div class="nupi-banner" v-click-outside="closeBanner" ref="nupiBanner">
     <div class="nupi-banner-contentArea">
-      <banner-content :showFeedbackForm="showForm" v-if="!formCreating && !emailDelivered" />
+      <banner-content
+        :showFeedbackForm="showForm"
+        v-if="!formCreating && !emailDelivered"
+      />
       <feedbackForm
         :popupForm="true"
         :closeFeedbackForm="closeForm"
@@ -60,7 +63,7 @@ export default {
       this.formCreating = true;
     },
 
-    closeForm(e) {
+    closeForm() {
       this.formCreating = false;
       this.emailDelivered = false;
     },

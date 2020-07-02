@@ -63,7 +63,9 @@
       </div>
     </div>
     <Modal v-if="showModal" :closeModal="closeModal">
-      <span class="text-body2" slot="body">Спасибо! Ваши данные получены. Мы скоро Вам перезвоним!</span>
+      <span class="text-body2" slot="body">
+        Спасибо! Ваши данные получены. Мы скоро Вам перезвоним!
+      </span>
     </Modal>
     <feedbackForm :emailDeliverHandler="openModal"
       >Возникли вопросы?</feedbackForm

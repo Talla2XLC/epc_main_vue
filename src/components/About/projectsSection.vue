@@ -1,22 +1,12 @@
 <template>
-  <div class="about-history-section">
-    <div class="about-history-section-decor">
-      <div
-        class="about-history-section-decor-dot"
-        :class="{ bigDot: isLast }"
-      />
-      <div
-        class="about-history-section-decor-line"
-        :class="{ hidden: isLast }"
-      />
+  <div class="about-projects-section">
+    <div class="about-projects-section-decor">
+      <div class="about-projects-section-decor-dot" />
     </div>
-    <span
-      class="about-history-section-year text-body1"
-      :class="{ red: isLast }"
-    >
+    <span class="about-projects-section-year text-body1">
       <slot name="year"></slot>
     </span>
-    <p class="about-history-section-txt text-body3">
+    <p class="about-projects-section-txt text-body3">
       <slot name="text"></slot>
     </p>
   </div>
@@ -24,13 +14,12 @@
 
 <script>
 export default {
-  name: "history-section",
-  props: ["isLast"]
+  name: "projectsSection"
 };
 </script>
 
 <style scoped lang="sass">
-.about-history-section
+.about-projects-section
   display: flex
   flex-flow: row nowrap
   align-items: stretch
@@ -40,13 +29,13 @@ export default {
     width: 20px
     margin-left: 16px
     &-dot
-      width: 14px
-      height: 14px
-      background: #4F4F51
+      width: 20px
+      height: 20px
+      top: 8px
+      left: 0
+      background: #940000
       border-radius: 50%
       position: relative
-      top: 11px
-      left: 3px
       z-index: 2
 
     &-line
@@ -69,16 +58,4 @@ export default {
     padding-bottom: 30px
     box-sizing: border-box
     margin-left: 94px
-
-.bigDot
-  width: 20px
-  height: 20px
-  top: 8px
-  left: 0
-
-.red
-  color: #EC001D
-
-.hidden
-  display: none
 </style>

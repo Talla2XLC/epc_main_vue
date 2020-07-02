@@ -29,6 +29,8 @@ header
   justify-content: center
   z-index: 8
   background: #fff
+  position: sticky
+  top: 0
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)

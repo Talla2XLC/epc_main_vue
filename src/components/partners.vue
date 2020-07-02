@@ -1,5 +1,12 @@
 <template>
   <div class="partners">
+    <a class="partner_logo-link" href="https://www.scully.com">
+      <img
+        class="partner_logo-img"
+        src="@/assets/partners_logo/scully_logo.png"
+        alt="partner_logo"
+      />
+    </a>
     <a
       class="partner_logo-link"
       href="https://www.gardnerdenver.com/ru-ru/emcowheaton"
@@ -7,17 +14,6 @@
       <img
         class="partner_logo-img"
         src="@/assets/partners_logo/emco_logo.png"
-        height="40"
-        width="162"
-        alt="partner_logo"
-      />
-    </a>
-    <a class="partner_logo-link" href="https://www.scully.com">
-      <img
-        class="partner_logo-img"
-        src="@/assets/partners_logo/scully_logo.png"
-        height="40"
-        width="150"
         alt="partner_logo"
       />
     </a>
@@ -28,20 +24,6 @@
       <img
         class="partner_logo-img nupi_logo"
         src="@/assets/partners_logo/nupi_logo.png"
-        height="50"
-        width="50"
-        alt="partner_logo"
-      />
-    </a>
-    <a
-      class="partner_logo-link"
-      href="http://tokheim.com/products-solutions/progauge/"
-    >
-      <img
-        class="partner_logo-img"
-        src="@/assets/partners_logo/progauge_logo.png"
-        height="46"
-        width="122"
         alt="partner_logo"
       />
     </a>
@@ -49,8 +31,13 @@
       <img
         class="partner_logo-img"
         src="@/assets/partners_logo/rotork_logo.png"
-        height="40"
-        width="136"
+        alt="partner_logo"
+      />
+    </a>
+    <a class="partner_logo-link" href="https://evbox.com/en/">
+      <img
+        class="partner_logo-img"
+        src="@/assets/partners_logo/evbox_logo.png"
         alt="partner_logo"
       />
     </a>
