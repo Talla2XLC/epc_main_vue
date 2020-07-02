@@ -218,7 +218,9 @@ export default {
       text-align: center
 
 @media (max-height: 950px)
-
+  .popup-form
+    &-content
+      padding: 40px 48px
 @media (max-height: 850px)
   .feedback-form-header
       position: absolute

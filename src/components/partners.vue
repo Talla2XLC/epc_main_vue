@@ -76,7 +76,7 @@ export default {
   background: #dad7d7
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
   position: sticky
-  bottom: 60px
+  bottom: 40px
   z-index: 8
 
 .partner_logo
@@ -95,7 +95,7 @@ export default {
     flex-flow: row nowrap
     align-items: center
     justify-content: center
-    height: 94px
+    height: 80px
     width: 190px
 
 @media (min-width: 900px)

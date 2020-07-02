@@ -175,7 +175,7 @@ export default {
   .nupi-banner
     clip-path: polygon(29% 0, 100% 0, 100% 100%, 0 100%)
     &-contentArea
-      margin-top: 50px
+      margin-top: 40px
 
 .move-in
   animation: move-in 1.5s ease-in

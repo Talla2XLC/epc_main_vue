@@ -169,7 +169,7 @@ export default {
   width: 400px
   height: 300px
   top: 0
-  right: 0
+  left: 632px
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.15)
 
 .movingToMap-enter-active, .movingToMap-leave-active

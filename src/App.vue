@@ -1,18 +1,19 @@
 <template>
   <div id="app" :class="this.$route.path === '/' ? 'fixed-app' : ''">
-    <app-header />
-    <main>
-      <router-view />
-      <product-nav />
-    </main>
-    <app-footer />
+    <perfect-scrollbar ref="scroll">
+      <app-header />
+      <main>
+        <router-view />
+      </main>
+      <app-footer />
+    </perfect-scrollbar>
   </div>
 </template>
 
 <script>
 import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
-import productNav from "@/components/product-nav";
+import { PerfectScrollbar } from "vue2-perfect-scrollbar";
 
 import "./sass/normalize.css";
 import "@/sass/_fonts.sass";
@@ -23,7 +24,12 @@ export default {
   components: {
     appHeader,
     appFooter,
-    productNav
+    PerfectScrollbar
+  },
+  watch: {
+    $route() {
+      this.$refs.scroll.$el.scrollTop = 0;
+    }
   },
   metaInfo: {}
 };
@@ -40,7 +46,7 @@ export default {
   display: flex
   flex-flow: column nowrap
   overflow: hidden
-  min-height: 100vh
+  height: 100vh
 
 .fixed-app
   height: 100vh
@@ -55,4 +61,10 @@ main
   position: relative
   z-index: 5
   flex-grow: 1
+
+.ps
+  height: 100%
+  display: flex
+  flex-flow: column nowrap
 </style>
+<style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css" />

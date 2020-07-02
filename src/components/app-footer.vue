@@ -24,7 +24,7 @@ export default {
 <style lang="sass" scoped>
 
 footer
-  min-height: 60px
+  min-height: 40px
   background: #4f4f51
   display: -webkit-flex
   display: -moz-flex
@@ -36,9 +36,6 @@ footer
   box-sizing: border-box
   align-items: center
   padding: 0 100px
-  position: sticky
-  bottom: 0
-  z-index: 8
 
 .footer_span
   color: #000000

@@ -52,13 +52,13 @@ export default {
   width: 100%
   padding: 0 100px
   z-index: 1
-  min-height: 80px
+  min-height: 60px
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
   @include respond-to(l)
     padding: 0 100px
-    min-height: 80px
+    min-height: 60px
   @include respond-to(xl)
 
 .epc-logo-main
