@@ -2,9 +2,11 @@
   <div class="partners">
     <a class="partner_logo-link" href="https://www.scully.com">
       <img
-        class="partner_logo-img"
+        class="partner_logo-img scully-logo"
         src="@/assets/partners_logo/scully_logo.png"
         alt="partner_logo"
+        height="40"
+        width="150"
       />
     </a>
     <a
@@ -12,9 +14,11 @@
       href="https://www.gardnerdenver.com/ru-ru/emcowheaton"
     >
       <img
-        class="partner_logo-img"
+        class="partner_logo-img emco-logo"
         src="@/assets/partners_logo/emco_logo.png"
         alt="partner_logo"
+        height="40"
+        width="162"
       />
     </a>
     <a
@@ -22,23 +26,29 @@
       href="https://www.nupiindustrieitaliane.com/en/index.html"
     >
       <img
-        class="partner_logo-img nupi_logo"
+        class="partner_logo-img nupi-logo"
         src="@/assets/partners_logo/nupi_logo.png"
         alt="partner_logo"
+        height="50"
+        width="50"
       />
     </a>
     <a class="partner_logo-link" href="https://www.rotork.com/en">
       <img
-        class="partner_logo-img"
+        class="partner_logo-img rotork-logo"
         src="@/assets/partners_logo/rotork_logo.png"
         alt="partner_logo"
+        height="40"
+        width="136"
       />
     </a>
     <a class="partner_logo-link" href="https://evbox.com/en/">
       <img
-        class="partner_logo-img"
+        class="partner_logo-img evbox-logo"
         src="@/assets/partners_logo/evbox_logo.png"
         alt="partner_logo"
+        height="46"
+        width="134"
       />
     </a>
   </div>
@@ -70,12 +80,9 @@ export default {
   &-img
     object-fit: contain
     cursor: pointer
-    filter: grayscale(100%) contrast(80%)
-    opacity: 0.7
     transition: transform 200ms ease-in
     &:hover
       filter: none
-      opacity: 1
       transform: scale(1.1)
   &-link
     display: flex
@@ -85,6 +92,20 @@ export default {
     height: 80px
     width: 190px
 
+.scully-logo
+  filter: saturate(0)
+
+.rotork-logo
+  filter: saturate(0) contrast(40%)
+
+.emco-logo
+  filter: saturate(0) opacity(50%)
+
+.nupi-logo
+  filter: saturate(0) opacity(60%)
+
+.evbox-logo
+  filter: saturate(0) contrast(0) brightness(0.9)
 @media (min-width: 900px)
   .partners
     padding: 0 205px
