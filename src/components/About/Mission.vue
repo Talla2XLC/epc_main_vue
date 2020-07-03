@@ -25,7 +25,7 @@ export default {
 .about-mission
   min-height: 595px
   background: url('../../assets/images/About/mission-road.png') no-repeat
-  background-size: contain
+  background-size: 100% auto
   width: 100%
   display: flex
   flex-flow: column nowrap
