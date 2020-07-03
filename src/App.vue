@@ -76,7 +76,5 @@ main
   flex-flow: column nowrap
   &__rail-y
     z-index: 5
-  &__rail-x
-    display: none
 </style>
 <style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css" />

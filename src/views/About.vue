@@ -4,9 +4,7 @@
     <History />
     <Customers />
     <Projects />
-    <div class="about-mission">
-
-    </div>
+    <Mission />
   </div>
 </template>
 
@@ -14,13 +12,15 @@
 import History from "../components/About/History";
 import Customers from "../components/About/Customers";
 import Projects from "../components/About/Projects";
+import Mission from "../components/About/Mission";
 
 export default {
   name: "About",
   components: {
     History,
     Customers,
-    Projects
+    Projects,
+    Mission
   },
   methods: {
     selectPage() {
@@ -41,7 +41,6 @@ export default {
   justify-content: flex-start
   align-items: center
   padding: 100px 50px
-  margin-bottom: 100px
   >h1
     margin-bottom: 60px
 

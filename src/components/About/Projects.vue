@@ -1,5 +1,6 @@
 <template>
   <div class="about-project">
+    <h2 class="text-h2">Наши проекты</h2>
     <projects-section>
       <template v-slot:year>2015</template>
       <template v-slot:text>
@@ -50,6 +51,12 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style scoped lang="sass">
+.about-project
+  display: flex
+  flex-flow: column nowrap
+  margin-bottom: 100px
+  >h2
+    margin-bottom: 60px
+    align-self: center
 </style>
