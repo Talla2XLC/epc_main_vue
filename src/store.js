@@ -5,64 +5,39 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    productNavVisible: false,
     selectedPage: "",
-    productNavImg: "",
-    nupi: "https://www.nupiindustrieitaliane.com/en/index.html",
-    scully: "https://www.scully.com",
-    emco: "https://www.gardnerdenver.com/ru-ru/emcowheaton",
-    rotork: "https://www.rotork.com/en",
-    progauge: "http://tokheim.com/products-solutions/progauge/"
-  },
-  getters: {
-    productSelected(state) {
-      if (
-        state.selectedPage === "nupi" ||
-        state.selectedPage === "scully" ||
-        state.selectedPage === "emco" ||
-        state.selectedPage === "rotork" ||
-        state.selectedPage === "progauge"
-      ) {
-        return true;
-      } else {
-        return false;
+    news: [
+      {
+        date: "июль 2020",
+        header: "Новинка! Станция быстрой зарядки EVBox Troniq 100",
+        desc: `Доступна для заказа новая модель станции зарядки EVBox\xa0Troniq\xa0100, обеспечивающая быстрейшую зарядку электромобиля постоянным током мощностью 100кВт\\ч. Зарядка происходит буквально в считанные минуты! Более подробная информация доступна в каталоге продукции.`,
+        img: "news3.png"
+      },
+      {
+        date: "июнь 2020",
+        header: "Получен допуск СРО на особо опасные объекты",
+        desc:
+          "Приказом Федеральной службы по экологическому, технологическому и атомному надзору от 4 марта 2019 г. №86 утверждено расширение полномочий ООО “ЕРС” в части проведения работ по подготовке проектной документации, строительству, реконструкции, капитальному ремонту и\xa0сносу объектов капитального строительства на особо опасных, технически сложные и уникальных объектах.",
+        img: "news2.png"
+      },
+      {
+        date: "февраль 2020",
+        header: "Создан логистический центр",
+        desc:
+          "Логистический центр создан при непосредственном участии Nupi Industrie Italiane S.p.A., которые совместно с\xa0ООО\xa0“ЕРС” разработали уникальную ценовую политику, позволяющую российским заказчикам приобретать оборудование по ценам завода, сократив транспортное плечо и давая возможность приобретать весь спектр продукции со склада в г.Москва.",
+        img: "news1.png"
       }
-    }
+    ]
   },
+  getters: {},
   mutations: {
-    SET_PRODUCT_NAV_VISIBILITY(state, status) {
-      state.productNavVisible = status;
-    },
     SELECT_PAGE(state, page) {
       state.selectedPage = page;
-    },
-    SET_PRODUCT_NAV_IMG(state, product) {
-      state.productNavImg = product;
     }
   },
   actions: {
-    showProductNav(context) {
-      context.commit("SET_PRODUCT_NAV_VISIBILITY", true);
-    },
-
-    hideProductNav(context) {
-      if (this.state.selectedPage != "products") {
-        context.commit("SET_PRODUCT_NAV_VISIBILITY", false);
-      }
-    },
-
     selectPage(context, page) {
       context.commit("SELECT_PAGE", page);
-      if (this.state.selectedPage != "products") {
-        context.commit("SET_PRODUCT_NAV_VISIBILITY", false);
-      }
-    },
-
-    setProductNavImg(context, product) {
-      context.commit("SET_PRODUCT_NAV_IMG", product);
-    },
-    hideProductNavImg(context) {
-      context.commit("SET_PRODUCT_NAV_IMG", "");
     }
   }
 });

@@ -1,7 +1,7 @@
 <template>
   <div class="main_page">
     <div class="main_content">
-      <div class="main_left" @mouseover="hideProductNav">
+      <div class="main_left">
         <router-link
           :to="`/about`"
           class="epc_logo_div"
@@ -47,16 +47,6 @@ export default {
     EPCLogoFull
   },
   methods: {
-    switchMainMenu() {
-      if (this.mainMenuVisible) {
-        this.$store.dispatch("hideMainMenu");
-      } else {
-        this.$store.dispatch("showMainMenu");
-      }
-    },
-    hideProductNav() {
-      this.$store.dispatch("hideProductNav");
-    },
     selectPage() {
       this.$store.dispatch("selectPage", "about");
     }

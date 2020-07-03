@@ -2,14 +2,31 @@
   <div class="news">
     <h1 class="text-h1">Новости нашей компании</h1>
     <div class="news-list">
-
+      <NewsSection
+        v-for="(item, index) in news"
+        :key="index"
+        :ind="index"
+        :date="item.date"
+        :header="item.header"
+        :desc="item.desc"
+        :img="item.img"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import NewsSection from "../components/News/newsSection";
 export default {
-  name: "News"
+  name: "News",
+  computed: {
+    news() {
+      return this.$store.state.news;
+    }
+  },
+  components: {
+    NewsSection
+  }
 };
 </script>
 
@@ -20,6 +37,8 @@ export default {
   align-items: center
   padding: 100px 50px
   box-sizing: border-box
+  >h1
+    margin-bottom: 60px
   &-list
     width: 100%
     display: flex
