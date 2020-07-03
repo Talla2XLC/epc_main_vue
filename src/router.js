@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Main from "./views/Main.vue";
 import About from "./views/About.vue";
-import Nupi from "./views/Nupi.vue";
+import News from "./views/News.vue";
 import Contacts from "./views/Contacts.vue";
 
 Vue.use(Router);
@@ -21,9 +21,9 @@ export default new Router({
       component: About
     },
     {
-      path: "/products/nupi",
-      name: "nupi",
-      component: Nupi
+      path: "/news",
+      name: "news",
+      component: News
     },
     {
       path: "/contacts",

@@ -1,13 +1,11 @@
 <template>
   <router-link
-    :to="link ? `/${page_name}` : ''"
+    :to="`/${page_name}`"
     class="btn main_btn text-body3"
     :class="[
       page_name + '_page',
       {
-        selected_page:
-          this.selectedPage === this.page_name ||
-          (this.page_name === 'products' && this.productSelected)
+        selected_page: this.selectedPage === this.page_name
       }
     ]"
     @click.native="selectPage"
@@ -23,16 +21,6 @@ export default {
   computed: {
     selectedPage() {
       return this.$store.state.selectedPage;
-    },
-    productSelected() {
-      return this.$store.getters.productSelected;
-    },
-    link() {
-      if (this.page_name != "products") {
-        return true;
-      } else {
-        return false;
-      }
     }
   },
   methods: {
@@ -82,5 +70,4 @@ export default {
 @media (min-width: 1300px)
 
 @media (min-width: 1600px)
-
 </style>
