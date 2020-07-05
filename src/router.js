@@ -4,6 +4,7 @@ import Main from "./views/Main.vue";
 import About from "./views/About.vue";
 import News from "./views/News.vue";
 import Contacts from "./views/Contacts.vue";
+import Catalog from "./views/Catalog.vue";
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: "/contacts",
       name: "contacts",
       component: Contacts
+    },
+    {
+      path: "/catalog",
+      name: "catalog",
+      component: Catalog
     }
   ]
 });

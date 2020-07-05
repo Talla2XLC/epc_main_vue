@@ -8,7 +8,7 @@
     <div class="menu-list">
       <menu-section page_name="news">Новости</menu-section>
       <menu-section page_name="about">О компании</menu-section>
-      <menu-section page_name="products">Каталог</menu-section>
+      <menu-section page_name="catalog">Каталог</menu-section>
       <menu-section page_name="contacts">Контакты</menu-section>
     </div>
     <a class="epcelectro-logo-link" href="http://epcelectro.ru/">
