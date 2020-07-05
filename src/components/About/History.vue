@@ -62,7 +62,7 @@ export default {
   components: {
     historySection
   }
-}
+};
 </script>
 
 <style scoped lang="sass">

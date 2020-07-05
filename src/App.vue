@@ -1,19 +1,19 @@
 <template>
   <div id="app" :class="this.$route.path === '/' ? 'fixed-app' : ''">
-    <perfect-scrollbar ref="scroll" :options="psOptions">
+    <vue-scroll :ops="ops" ref="vs">
       <app-header />
       <main>
         <router-view />
       </main>
       <app-footer />
-    </perfect-scrollbar>
+    </vue-scroll>
   </div>
 </template>
 
 <script>
 import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
-import { PerfectScrollbar } from "vue2-perfect-scrollbar";
+import vueScroll from "vuescroll";
 
 import "./sass/normalize.css";
 import "@/sass/_fonts.sass";
@@ -23,27 +23,73 @@ export default {
   name: "App",
   data() {
     return {
-      psOptions: {
-        suppressScrollX: true,
-        swipeEasing: true
+      ops: {
+        vuescroll: {
+          mode: "native",
+          sizeStrategy: "percent",
+          detectResize: true
+        },
+        scrollPanel: {
+          initialScrollY: 0,
+          initialScrollX: 0,
+          scrollingX: false,
+          scrollingY: true,
+          speed: 300,
+          easing: "easeInQuad",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#F0EFEF",
+          opacity: 0,
+          size: "6px",
+          specifyBorderRadius: false,
+          gutterOfEnds: null,
+          gutterOfSide: "2px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 800,
+          onlyShowBarOnScroll: false,
+          keepShow: false,
+          background: "#DAD7D7",
+          opacity: 1,
+          hoverStyle: {
+            background: "#FFF"
+          },
+          specifyBorderRadius: false,
+          minSize: 0,
+          size: "6px",
+          disable: false
+        }
       }
     };
   },
   components: {
     appHeader,
     appFooter,
-    PerfectScrollbar
+    vueScroll
   },
   watch: {
     $route() {
-      this.$refs.scroll.$el.scrollTop = 0;
+      this.$refs["vs"].scrollTo(
+        {
+          y: 0
+        },
+        500,
+        "easeInQuad"
+      );
     }
   },
+  methods: {},
   metaInfo: {}
 };
 </script>
 
 <style lang="sass">
+*
+  margin: 0
+  padding: 0
+
 #app
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
@@ -53,7 +99,6 @@ export default {
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  overflow: hidden
   height: 100vh
 
 .fixed-app
@@ -67,14 +112,15 @@ main
   display: flex
   flex-flow: column nowrap
   position: relative
-  z-index: 5
+  z-index: 1
   flex-grow: 1
 
-.ps
-  height: 100%
+.__view
   display: flex
   flex-flow: column nowrap
-  &__rail-y
-    z-index: 5
+  position: relative
+
+.__rail-is-vertical
+  z-index: 5 !important
 </style>
 <style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css" />

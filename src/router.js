@@ -35,6 +35,12 @@ export default new Router({
       path: "/catalog",
       name: "catalog",
       component: Catalog
+    },
+    {
+      path: "/catalog/:product",
+      name: "catalog",
+      component: Catalog,
+      props: true
     }
   ]
 });

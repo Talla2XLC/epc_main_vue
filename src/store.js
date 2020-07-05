@@ -31,7 +31,7 @@ export default new Vuex.Store({
     catalog: [
       {
         name: "Emco",
-        product: "Оборудование слива-налива Emco Wheaton",
+        fullName: "Оборудование слива-налива Emco Wheaton",
         items: [
           {
             name: "E3000",
@@ -52,6 +52,86 @@ export default new Vuex.Store({
           {
             name: "Marine",
             desc: "Морские стендеры B0030"
+          }
+        ]
+      },
+      {
+        name: "Scully",
+        fullName: "Устройства контроля налива Scully",
+        items: [
+          {
+            name: "ST-35C",
+            desc: "Монитор перелива ST-35C"
+          },
+          {
+            name: "ST-47C",
+            desc: "Устройство заземления ST-47C"
+          },
+          {
+            name: "Intellitrol",
+            desc: "Терминал контроля налива Intellitrol 2"
+          }
+        ]
+      },
+      {
+        name: "Nupi",
+        fullName: "Пластиковый трубопровод Nupi",
+        items: [
+          {
+            name: "SingleWall",
+            desc: "Одностенный трубопровод для АЗС"
+          },
+          {
+            name: "DoubleWall",
+            desc: "Двустенный трубопровод для АЗС"
+          },
+          {
+            name: "LPG",
+            desc: "Трубопровод для транспортировки газа"
+          }
+        ]
+      },
+      {
+        name: "Rotork",
+        fullName: "Интеллектуальные приводы Rotork",
+        items: [
+          {
+            name: "IQT",
+            desc: "Четвертьоборотный привод IQT"
+          },
+          {
+            name: "IQTM",
+            desc: "Регулирующий четвертьоборотный привод IQTM"
+          },
+          {
+            name: "IQTF",
+            desc: "Полнооборотный привод IQTF"
+          }
+        ]
+      },
+      {
+        name: "EVBox",
+        fullName: "Станции зарядки электромобилей EVBox",
+        items: [
+          {
+            name: "Elvi",
+            desc: "Станция зарядки для дома Elvi"
+          },
+          {
+            name: "BusinessLine",
+            desc: "Станция зарядки для бизнеса BusinessLine"
+          },
+          {
+            name: "Iqon",
+            desc: "Станция зарядки для бизнеса Iqon"
+          },
+          {
+            name: "PublicLine",
+            desc: "Станция зарядки для города PublicLine"
+          },
+          {
+            name: "Troniq",
+            desc: "Станция быстрой зарядки Troniq DC"
           }
         ]
       }

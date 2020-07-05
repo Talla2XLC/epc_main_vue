@@ -3,13 +3,13 @@
     <h1 class="text-h1">Каталог продукции</h1>
     <div class="catalog-list">
       <CatalogSection
-        v-for="(item, index) in catalog"
+        v-for="(product, index) in catalog"
         :key="index"
         :ind="index"
-        :date="item.date"
-        :header="item.header"
-        :desc="item.desc"
-        :img="item.img"
+        :name="product.name"
+        :fullName="product.fullName"
+        :items="product.items"
+        :isLast="index === catalog.length - 1"
       />
     </div>
   </div>
@@ -39,4 +39,6 @@ export default {
   align-items: center
   >h1
     margin-bottom: 60px
+  &-list
+    align-self: stretch
 </style>

@@ -36,7 +36,6 @@ import LukoilLogo from "@/assets/svg/About/customers-Lukoil.svg";
 import TatneftLogo from "@/assets/svg/About/customers-Tatneft.svg";
 import GPNLogo from "@/assets/svg/About/customers-GPN.svg";
 
-
 export default {
   name: "Customers",
   components: {
@@ -62,7 +61,7 @@ export default {
   &-list
     display: flex
     flex-flow: row nowrap
-    justify-content: space-between
+    justify-content: center
     width: 100%
     &-block
       background: #FFFFFF
@@ -75,6 +74,8 @@ export default {
       padding: 44px 52px 39px
       box-sizing: border-box
       position: relative
+      &:first-of-type
+        margin-right: 20px
       >span
         width: 505px
       &-svg

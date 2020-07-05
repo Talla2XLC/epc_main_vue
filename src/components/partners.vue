@@ -1,6 +1,9 @@
 <template>
   <div class="partners">
-    <a class="partner_logo-link" href="https://www.scully.com">
+    <router-link
+      :to="{ name: `catalog`, params: { product: 'Scully' } }"
+      class="partner_logo-link"
+    >
       <img
         class="partner_logo-img scully-logo"
         src="@/assets/partners_logo/scully_logo.png"
@@ -8,10 +11,10 @@
         height="40"
         width="150"
       />
-    </a>
-    <a
+    </router-link>
+    <router-link
+      :to="{ name: `catalog`, params: { product: 'Emco' } }"
       class="partner_logo-link"
-      href="https://www.gardnerdenver.com/ru-ru/emcowheaton"
     >
       <img
         class="partner_logo-img emco-logo"
@@ -20,10 +23,10 @@
         height="40"
         width="162"
       />
-    </a>
-    <a
+    </router-link>
+    <router-link
+      :to="{ name: `catalog`, params: { product: 'Nupi' } }"
       class="partner_logo-link"
-      href="https://www.nupiindustrieitaliane.com/en/index.html"
     >
       <img
         class="partner_logo-img nupi-logo"
@@ -32,8 +35,11 @@
         height="50"
         width="50"
       />
-    </a>
-    <a class="partner_logo-link" href="https://www.rotork.com/en">
+    </router-link>
+    <router-link
+      :to="{ name: `catalog`, params: { product: 'Rotork' } }"
+      class="partner_logo-link"
+    >
       <img
         class="partner_logo-img rotork-logo"
         src="@/assets/partners_logo/rotork_logo.png"
@@ -41,8 +47,11 @@
         height="40"
         width="136"
       />
-    </a>
-    <a class="partner_logo-link" href="https://evbox.com/en/">
+    </router-link>
+    <router-link
+      :to="{ name: `catalog`, params: { product: 'EVBox' } }"
+      class="partner_logo-link"
+    >
       <img
         class="partner_logo-img evbox-logo"
         src="@/assets/partners_logo/evbox_logo.png"
@@ -50,7 +59,7 @@
         height="46"
         width="134"
       />
-    </a>
+    </router-link>
   </div>
 </template>
 
