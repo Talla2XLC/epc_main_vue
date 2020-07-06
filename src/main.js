@@ -18,10 +18,10 @@ Vue.use(VueGoogleMaps, {
 
 Vue.use(VueMq, {
   breakpoints: {
-    xs: 300,
-    s: 500,
-    m: 800,
-    l: 1200,
+    xs: 500,
+    s: 800,
+    m: 1200,
+    l: 1800,
     xl: Infinity
   },
   defaultBreakpoint: "s"

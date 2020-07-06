@@ -32,10 +32,8 @@ export default {
   box-shadow: 0 0 20px #EE001E
   &:hover
     box-shadow: 0 0 20px #EC001D
-    backdrop-filter: blur(10px)
   &:active
     box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.15)
-    backdrop-filter: none
 
 .red-btn
   background: #4F4F51

@@ -123,4 +123,3 @@ main
 .__rail-is-vertical
   z-index: 5 !important
 </style>
-<style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css" />

@@ -83,7 +83,7 @@ export default {
     l
 
 .menu-list
-  margin-left: 30px
+  margin-left: 20px
 
 @media (max-height: 950px)
   .main_nav

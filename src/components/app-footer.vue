@@ -35,7 +35,14 @@ footer
   justify-content: space-between
   box-sizing: border-box
   align-items: center
-  padding: 0 100px
+  padding: 0 205px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    padding: 0 100px
+  @include respond-to(xl)
+    padding: 0 245px
 
 .footer_span
   color: #000000

@@ -4,24 +4,25 @@
       <div class="main_left">
         <router-link
           :to="`/about`"
-          class="epc_logo_div"
+          class="epc_logo_link"
           @click.native="selectPage"
         >
-          <EPCLogoFull />
+          <EPCLogoFull class="epc_logo_img" viewBox="0 0 400 123" />
         </router-link>
       </div>
       <div class="content_div">
         <div class="mission-txt">
-          <h1 class="main-content-header text-h1">
+          <h1
+            class="main-content-header"
+            :class="$mq === 'xl' ? 'text-hero' : 'text-h1'"
+          >
             Технологии и качество на высшем уровне
           </h1>
-          <p class="text-body2">
-            Наша компания является официальным сервисным <br />
-            и логистическим партнёром ряда европейских <br />
-            производителей технологического оборудования,<br />
-            таких как Nupi Industrie Italiane S.p.A.,<br />
-            Scully Signal Company, Emco Wheaton GmbH,<br />
-            Rotork Plc и Start Italiana s.r.l.
+          <p :class="$mq === 'xl' ? 'text-body1' : 'text-body2'">
+            Наша компания является официальным сервисным и&nbsp;логистическим
+            партнёром ряда европейских производителей технологического
+            оборудования, таких как Nupi Industrie Italiane S.p.A., Scully
+            Signal Company, Emco Wheaton GmbH, Rotork Plc и EVBox
           </p>
         </div>
       </div>
@@ -93,6 +94,8 @@ export default {
 .main_left
   width: 50%
   height: 100%
+  margin-right: 10px
+  box-sizing: border-box
   display: -webkit-flex
   display: -moz-flex
   display: -ms-flex
@@ -103,22 +106,27 @@ export default {
   justify-content: center
 
 .epc_logo_img
-  cursor: pointer
   transition: transform 200ms ease-in
-  margin-right: 5rem
-  max-width: 30vw
   &:hover
     transform: scale(1.15)
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+  @include respond-to(xl)
+    width: 560px
+    height: 173px
 
 .content_div
   width: 50%
   height: 100%
+  margin-left: 10px
+  box-sizing: border-box
   display: -webkit-flex
   display: -moz-flex
   display: -ms-flex
   display: -o-flex
   display: flex
-  box-sizing: border-box
   flex-flow: column nowrap
   justify-content: center
 

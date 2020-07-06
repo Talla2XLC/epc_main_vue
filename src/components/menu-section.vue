@@ -46,6 +46,8 @@ export default {
     outline: none
 .main_btn
   margin-right: 36px
+  &:last-of-type
+    margin-right: 0
   &:hover:after
     content: ""
     width: 100%

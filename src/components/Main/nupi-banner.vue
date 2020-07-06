@@ -99,7 +99,7 @@ export default {
   width: 65%
   height: 100%
   background: linear-gradient(180.27deg, #EC001D -32.99%, #940000 60.02%), #940000
-  padding: 0 100px
+  padding-right: 100px
   box-sizing: border-box
   position: absolute
   transition: 200ms ease-in
@@ -114,13 +114,22 @@ export default {
   @include respond-to(s)
   @include respond-to(m)
   @include respond-to(l)
+    padding-right: 100px
   @include respond-to(xl)
+    padding-right: 245px
   &-contentArea
-    max-width: 505px
+    max-width: 560px
     width: 505px
     max-height: 620px
     height: 80%
     margin-top: 30px
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+    @include respond-to(l)
+      width: 505px
+    @include respond-to(xl)
+      width: 560px
   &-emailDelivered
     box-sizing: border-box
     height: 100%
@@ -188,46 +197,46 @@ export default {
   animation: move-out 1.5s ease-in
   right: -58%
   @include respond-to(xs)
-
-@keyframes move-in-init
-  0%
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
     right: -58%
-  50%
-    right: -58%
-  100%
-    right: 0
-
-@keyframes move-in-init-xs
-  0%
-    right: -85%
-  50%
-    right: -85%
-  100%
-    right: 0
+  @include respond-to(xl)
+    right: -59.7%
 
 @keyframes move-in
-  0%
-    right: -58%
-  100%
-    right: 0
-
-@keyframes move-in-xs
-  0%
-    right: -85%
-  100%
-    right: 0
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    0%
+      right: -58%
+    50%
+      right: -58%
+    100%
+      right: 0
+  @include respond-to(xl)
+    0%
+      right: -59.7%
+    50%
+      right: -59.7%
+    100%
+      right: 0
 
 @keyframes move-out
-  0%
-    right: 0
-  100%
-    right: -58%
-
-@keyframes move-out-xs
-  0%
-    right: 0
-  100%
-    right: -85%
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    0%
+      right: 0
+    100%
+      right: -58%
+  @include respond-to(xl)
+    0%
+      right: 0
+    100%
+      right: -59.7%
 
 @keyframes appear
   0%

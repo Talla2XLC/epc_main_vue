@@ -78,12 +78,19 @@ export default {
   display: flex
   flex-flow: row nowrap
   justify-content: space-between
-  padding: 0 205px
+  padding: 0 225px
   background: #dad7d7
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
   position: sticky
   bottom: 40px
   z-index: 8
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    padding: 0 205px
+  @include respond-to(xl)
+    padding: 0 245px
 
 .partner_logo
   &-img
@@ -100,6 +107,13 @@ export default {
     justify-content: center
     height: 80px
     width: 190px
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+    @include respond-to(l)
+      width: 190px
+    @include respond-to(xl)
+      width: 270px
 
 .scully-logo
   filter: saturate(0)
@@ -115,13 +129,6 @@ export default {
 
 .evbox-logo
   filter: saturate(0) contrast(0) brightness(0.9)
-@media (min-width: 900px)
-  .partners
-    padding: 0 205px
-
-@media (min-width: 1850px)
-  .partners
-    padding: 0 205px
 
 @media (max-height: 950px)
   .partners
