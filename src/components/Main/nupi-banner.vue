@@ -11,11 +11,12 @@
         :emailDeliverHandler="setEmailDelivered"
         v-if="formCreating && !emailDelivered"
       >
-        Пожалуйста, отправьте нам Ваши данные и мы с Вами обязательно свяжемся!
+        Пожалуйста, отправьте нам Ваши&nbsp;данные и мы с Вами
+        обязательно&nbsp;свяжемся!
       </feedbackForm>
       <div class="nupi-banner-emailDelivered" v-if="emailDelivered">
         <span class="text-body2">
-          Спасибо! Ваши данные получены. Мы скоро Вам перезвоним!
+          Спасибо! Ваши данные получены. Мы&nbsp;скоро Вам перезвоним!
         </span>
         <button class="email-closeBtn" @click.prevent="closeForm">
           <span class="email-closeBtn-mark" />
@@ -117,6 +118,7 @@ export default {
     padding-right: 100px
   @include respond-to(xl)
     padding-right: 245px
+    clip-path: polygon(35.5% 0, 100% 0, 100% 100%, 0 100%)
   &-contentArea
     max-width: 560px
     width: 505px
@@ -169,9 +171,10 @@ export default {
     border-bottom: 4px solid #4F4F51
     transform: rotate(45deg)
     bottom: 5px
-  &:hover &-mark
-    border-right: 4px solid #C4C4C4
-    border-bottom: 4px solid #C4C4C4
+  &:hover
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4)
+  &:active
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4)
   &:focus
     outline: none
 

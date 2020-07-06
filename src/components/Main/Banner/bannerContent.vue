@@ -47,6 +47,13 @@ export default {
     color: #F0EFEF
     &-top
       margin-top: 55px
+      @include respond-to(xs)
+      @include respond-to(s)
+      @include respond-to(m)
+      @include respond-to(l)
+        margin-top: 55px
+      @include respond-to(xl)
+        margin-top: 30px
     &-bottom
       display: flex
       flex-flow: column nowrap
@@ -54,7 +61,7 @@ export default {
         margin-bottom: 40px
 
 .nupi-banner-nupi-img
-  width: 124.95px
+  width: 123px
   height: 123px
   box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15)
   position: absolute
@@ -65,7 +72,11 @@ export default {
   @include respond-to(s)
   @include respond-to(m)
   @include respond-to(l)
+    width: 123px
+    height: 123px
   @include respond-to(xl)
+    width: 150px
+    height: 150px
 
 .nupi-banner-callback-btn
   background: #F0EFEF

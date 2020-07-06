@@ -39,8 +39,10 @@ export default {
   background: #4F4F51
   color: #FFFFFF
   &:hover
-    color: #FFFFFF
     background: radial-gradient(70.49% 4739.6% at 50% 64%, #4F4F51 17.15%, #636365 60.95%, #838283 89.76%, #DAD7D7 100%)
+  &:active
+    background: radial-gradient(70.49% 4739.6% at 50% 64%, #4F4F51 17.15%, #636365 60.95%, #838283 89.76%, #DAD7D7 100%)
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25)
 .red-inactive-btn, .red-inactive-btn:hover, .red-inactive-btn:active
   background: #940000
   color: #FFFFFF
@@ -49,8 +51,10 @@ export default {
   background: #4F4F51
   color: #FFFFFF
   &:hover
-    color: #FFFFFF
     background: radial-gradient(70.49% 4739.6% at 50% 64%, #4F4F51 17.15%, #636365 60.95%, #838283 89.76%, #DAD7D7 100%)
+  &:active
+    background: radial-gradient(70.49% 4739.6% at 50% 64%, #4F4F51 17.15%, #636365 60.95%, #838283 89.76%, #DAD7D7 100%)
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25)
 .grey-inactive-btn, .grey-inactive-btn:hover, .grey-inactive-btn:active
   background: #F0EFEF
   color: #DAD7D7
