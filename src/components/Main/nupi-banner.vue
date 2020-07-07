@@ -15,7 +15,12 @@
         обязательно&nbsp;свяжемся!
       </feedbackForm>
       <div class="nupi-banner-emailDelivered" v-if="emailDelivered">
-        <span class="text-body2">
+        <span
+          :class="{
+            'text-body2': $mq === 'xl' || $mq === 'l',
+            'text-body3': $mq === 'm' || $mq === 's' || $mq === 'xs'
+          }"
+        >
           Спасибо! Ваши данные получены. Мы&nbsp;скоро Вам перезвоним!
         </span>
         <button class="email-closeBtn" @click.prevent="closeForm">
@@ -97,16 +102,15 @@ export default {
 
 <style lang="sass">
 .nupi-banner
-  width: 65%
+  width: 64%
   height: 100%
-  background: linear-gradient(180.27deg, #EC001D -32.99%, #940000 60.02%), #940000
+  background: linear-gradient(180.27deg, #EC001D -24.42%, #940000 62.59%), #940000
   padding-right: 100px
   box-sizing: border-box
   position: absolute
   transition: 200ms ease-in
-  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%)
-  animation: move-in-init 5s ease-in
-  right: 0
+  clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%)
+  right: -58%
   display: flex
   flex-flow: column nowrap
   align-items: flex-end
@@ -114,9 +118,18 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    width: 95%
+    right: -83%
+    padding-right: 40px
+    clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)
   @include respond-to(l)
+    width: 64%
+    right: -58%
     padding-right: 100px
+    clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%)
   @include respond-to(xl)
+    width: 64.5%
+    right: -59.7%
     padding-right: 245px
     clip-path: polygon(35.5% 0, 100% 0, 100% 100%, 0 100%)
   &-contentArea
@@ -125,9 +138,13 @@ export default {
     max-height: 620px
     height: 80%
     margin-top: 30px
+    display: flex
+    justify-content: flex-end
     @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
+      width: 505px
+      margin-top: 0
     @include respond-to(l)
       width: 505px
     @include respond-to(xl)
@@ -193,49 +210,51 @@ export default {
       margin-top: 40px
 
 .move-in
-  animation: move-in 1.5s ease-in
+  animation: move-in 1s ease-in
   right: 0
 
 .move-out
-  animation: move-out 1.5s ease-in
+  animation: move-out 1s ease-in
   right: -58%
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    right: -83%
   @include respond-to(l)
     right: -58%
   @include respond-to(xl)
     right: -59.7%
 
 @keyframes move-in
-  @include respond-to(xs)
-  @include respond-to(s)
-  @include respond-to(m)
-  @include respond-to(l)
-    0%
-      right: -58%
-    50%
-      right: -58%
-    100%
-      right: 0
-  @include respond-to(xl)
-    0%
-      right: -59.7%
-    50%
-      right: -59.7%
-    100%
-      right: 0
-
+  0%
+    right: -58%
+  100%
+    right: 0
 @keyframes move-out
-  @include respond-to(xs)
-  @include respond-to(s)
-  @include respond-to(m)
-  @include respond-to(l)
+  0%
+    right: 0
+  100%
+    right: -58%
+
+@media (max-width: 1200px)
+  @keyframes move-in
+    0%
+      right: -83%
+    100%
+      right: 0
+  @keyframes move-out
     0%
       right: 0
     100%
-      right: -58%
-  @include respond-to(xl)
+      right: -83%
+
+@media (min-width: 1800px)
+  @keyframes move-in
+    0%
+      right: -59.7%
+    100%
+      right: 0
+  @keyframes move-out
     0%
       right: 0
     100%

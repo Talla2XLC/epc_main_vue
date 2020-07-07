@@ -1,11 +1,13 @@
 <template>
   <router-link
     :to="`/${page_name}`"
-    class="btn main_btn text-body3"
+    class="btn main_btn "
     :class="[
       page_name + '_page',
       {
-        selected_page: this.selectedPage === this.page_name
+        selected_page: this.selectedPage === this.page_name,
+        'text-body3': $mq === 'xl' || $mq === 'l',
+        'text-body5': $mq === 'm'
       }
     ]"
     @click.native="selectPage"
@@ -46,6 +48,14 @@ export default {
     outline: none
 .main_btn
   margin-right: 36px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    margin-right: 20px
+  @include respond-to(l)
+    margin-right: 36px
+  @include respond-to(xl)
+    margin-right: 36px
   &:last-of-type
     margin-right: 0
   &:hover:after

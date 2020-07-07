@@ -11,15 +11,31 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.nupi-banner-show-arrowZone
+  position: absolute
+  width: 40px
+  height: 40px
+  bottom: 1rem
+  left: 3rem
+  cursor: pointer
+  @include respond-to(m)
+    left: 1.5rem
+  @include respond-to(l)
+    left: 2rem
+  @include respond-to(xl)
+    left: 2.5rem
+
 .arrow-8
   position: absolute
+  bottom: 0
+  right: 20%
   width: 20px
   height: 20px
   margin: 0
-  bottom: 1rem
-  left: 3rem
   transform: rotate(-270deg)
-  cursor: pointer
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
   &:before
     content: ''
     position: absolute

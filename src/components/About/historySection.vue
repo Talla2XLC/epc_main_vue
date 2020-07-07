@@ -39,6 +39,13 @@ export default {
     position: relative
     width: 20px
     margin-left: 16px
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+    @include respond-to(l)
+      margin-left: 40px
+    @include respond-to(xl)
+      margin-left: 0
     &-dot
       width: 14px
       height: 14px
@@ -63,12 +70,28 @@ export default {
     width: 116px
     margin-left: 53px
     box-sizing: border-box
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+    @include respond-to(l)
+      margin-left: 53px
+    @include respond-to(xl)
+      margin-left: 74px
 
   &-txt
     display: block
     padding-bottom: 30px
     box-sizing: border-box
     margin-left: 94px
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+    @include respond-to(l)
+      margin-left: 94px
+      width: 715px
+    @include respond-to(xl)
+      margin-left: 28px
+      width: 848px
 
 .bigDot
   width: 20px

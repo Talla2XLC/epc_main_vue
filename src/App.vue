@@ -15,9 +15,9 @@ import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
 import vueScroll from "vuescroll";
 
-import "./sass/normalize.css";
-import "@/sass/_fonts.sass";
+import "normalize.css";
 import "reset-css";
+import "@/sass/_fonts.sass";
 
 export default {
   name: "App",

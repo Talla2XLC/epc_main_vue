@@ -9,7 +9,12 @@
     >
       <span
         class="feedback-form-content-txt "
-        :class="popupForm ? 'text-body2' : 'text-h3'"
+        :class="{
+          'text-h3': !popupForm,
+          'text-body2': popupForm && ($mq === 'l' || $mq === 'xl'),
+          'text-body3':
+            popupForm && ($mq === 'm' || $mq === 's' || $mq === 'xs')
+        }"
       >
         <slot></slot>
       </span>

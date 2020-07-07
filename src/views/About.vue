@@ -41,6 +41,13 @@ export default {
   justify-content: flex-start
   align-items: center
   padding: 100px 50px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    padding: 100px 50px
+  @include respond-to(xl)
+    padding: 100px 245px
   >h1
     margin-bottom: 60px
 

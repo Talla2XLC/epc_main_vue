@@ -2,7 +2,11 @@
   <nav class="main_nav" ref="main_nav">
     <router-link :to="`/`" class="epc_logo_div" @click.native="selectPage('')">
       <EPCLogo
-        :class="this.$route.path === '/' ? 'epc-logo-main' : 'epc-logo'"
+        viewBox="0 0 85 26"
+        class="epc-logo"
+        :class="{
+          'epc-logo-colored': this.$route.path !== '/'
+        }"
       />
     </router-link>
     <div class="menu-list">
@@ -12,7 +16,10 @@
       <menu-section page_name="contacts">Контакты</menu-section>
     </div>
     <a class="epcelectro-logo-link" href="http://epcelectro.ru/">
-      <EPCelectroLogo class="epcelectro-logo" />
+      <EPCelectroLogo
+        viewBox="0 0 140 26"
+        class="epcelectro-logo"
+      />
     </a>
   </nav>
 </template>
@@ -56,24 +63,53 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    padding: 0 40px
   @include respond-to(l)
     padding: 0 100px
     min-height: 60px
   @include respond-to(xl)
+    padding: 0 100px
+    min-height: 60px
 
-.epc-logo-main
+.epc-logo
+  width: 85px
+  height: 26px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    width: 78px
+    height: 24px
+  @include respond-to(l)
+    width: 85px
+    height: 26px
+  @include respond-to(xl)
+    width: 85px
+    height: 26px
   &:hover >path
     &:nth-of-type(1)
       fill: url(#color_radial)
     &:nth-of-type(2), &:nth-of-type(4)
       fill: #EC001D
-.epc-logo > path
+.epc-logo-colored > path
   &:nth-of-type(1)
     fill: url(#color_radial)
   &:nth-of-type(2), &:nth-of-type(4)
     fill: #EC001D
 
 .epcelectro-logo
+  width: 140px
+  height: 26px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    width: 129px
+    height: 24px
+  @include respond-to(l)
+    width: 140px
+    height: 26px
+  @include respond-to(xl)
+    width: 140px
+    height: 26px
   &:hover >path
     &:nth-of-type(1)
       fill: #E6E6E6
@@ -84,6 +120,14 @@ export default {
 
 .menu-list
   margin-left: 20px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    margin-left: 0
+  @include respond-to(l)
+    margin-left: 20px
+  @include respond-to(xl)
+    margin-left: 20px
 
 @media (max-height: 950px)
   .main_nav

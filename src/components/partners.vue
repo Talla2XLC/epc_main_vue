@@ -87,6 +87,7 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    padding: 0 40px
   @include respond-to(l)
     padding: 0 205px
   @include respond-to(xl)
@@ -117,18 +118,100 @@ export default {
 
 .scully-logo
   filter: saturate(0)
-
-.rotork-logo
-  filter: saturate(0) contrast(40%)
+  width: 150px
+  height: 40px
+  @include respond-to(xs)
+    width: 98px
+    height: 26px
+  @include respond-to(s)
+    width: 98px
+    height: 26px
+  @include respond-to(m)
+    width: 98px
+    height: 26px
+  @include respond-to(l)
+    width: 150px
+    height: 40px
+  @include respond-to(xl)
+    width: 150px
+    height: 40px
 
 .emco-logo
   filter: saturate(0) opacity(50%)
+  width: 162px
+  height: 40px
+  @include respond-to(xs)
+    width: 100px
+    height: 24px
+  @include respond-to(s)
+    width: 100px
+    height: 24px
+  @include respond-to(m)
+    width: 100px
+    height: 24px
+  @include respond-to(l)
+    width: 162px
+    height: 40px
+  @include respond-to(xl)
+    width: 162px
+    height: 40px
 
 .nupi-logo
   filter: saturate(0) opacity(60%)
+  width: 50px
+  height: 50px
+  @include respond-to(xs)
+    width: 34px
+    height: 34px
+  @include respond-to(m)
+  @include respond-to(s)
+    width: 34px
+    height: 34px
+  @include respond-to(m)
+    width: 34px
+    height: 34px
+  @include respond-to(l)
+    width: 50px
+    height: 50px
+  @include respond-to(xl)
+    width: 50px
+    height: 50px
+
+.rotork-logo
+  filter: saturate(0) contrast(40%)
+  width: 136px
+  height: 40px
+  @include respond-to(xs)
+    width: 80px
+    height: 24px
+  @include respond-to(s)
+    width: 80px
+    height: 24px
+  @include respond-to(m)
+    width: 80px
+    height: 24px
+  @include respond-to(l)
+    width: 136px
+    height: 40px
+  @include respond-to(xl)
+    width: 136px
+    height: 40px
 
 .evbox-logo
   filter: saturate(0) contrast(0) brightness(0.9)
+  width: 134px
+  height: 46px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    width: 88px
+    height: 30px
+  @include respond-to(l)
+    width: 134px
+    height: 46px
+  @include respond-to(xl)
+    width: 134px
+    height: 46px
 
 @media (max-height: 950px)
   .partners

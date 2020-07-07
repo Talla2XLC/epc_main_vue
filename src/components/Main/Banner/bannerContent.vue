@@ -1,9 +1,9 @@
 <template>
   <div class="nupi-banner-content">
     <span class="nupi-banner-content-top text-h3">
-      Официальный логистический центр<br />
-      компании Nupi Industrie Italiane S.p.A.<br />
-      в РФ и странах СНГ.
+      Официальный логистический центр
+      компании Nupi Industrie Italiane S.p.A.
+      в&nbsp;РФ&nbsp;и&nbsp;странах&nbsp;СНГ.
     </span>
     <img
       class="nupi-banner-nupi-img"
@@ -38,27 +38,32 @@ export default {
 
 <style lang="sass" scoped>
 .nupi-banner-content
-    height: 100%
+  height: 100%
+  display: flex
+  flex-flow: column nowrap
+  align-items: center
+  justify-content: space-between
+  text-align: center
+  color: #F0EFEF
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    width: 452px
+  &-top
+    margin-top: 55px
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+      margin-top: 48px
+    @include respond-to(l)
+      margin-top: 55px
+    @include respond-to(xl)
+      margin-top: 30px
+  &-bottom
     display: flex
     flex-flow: column nowrap
-    align-items: center
-    justify-content: space-between
-    text-align: center
-    color: #F0EFEF
-    &-top
-      margin-top: 55px
-      @include respond-to(xs)
-      @include respond-to(s)
-      @include respond-to(m)
-      @include respond-to(l)
-        margin-top: 55px
-      @include respond-to(xl)
-        margin-top: 30px
-    &-bottom
-      display: flex
-      flex-flow: column nowrap
-      &-txt
-        margin-bottom: 40px
+    &-txt
+      margin-bottom: 40px
 
 .nupi-banner-nupi-img
   width: 123px
@@ -71,6 +76,10 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    position: relative
+    top: auto
+    bottom: auto
+    margin: 0
   @include respond-to(l)
     width: 123px
     height: 123px

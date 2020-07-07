@@ -1,12 +1,16 @@
 <template>
-  <footer class="text-body3">
-    <span class="footer_span footer_span-left"
-      >Политика конфиденциальности</span
-    >
-    <span class="footer_span footer_span-center"
-      >© {{ new Date().getFullYear() }}
+  <footer
+    :class="{
+      'text-body3': $mq === 'xl' || $mq === 'l',
+      'text-body5': $mq === 'm' || $mq === 's' || $mq === 'xs'
+    }"
+  >
+    <span class="footer_span footer_span-left">
+      Политика конфиденциальности
     </span>
-    <span class="footer_span footer_span-right">Все права защищены</span>
+    <span class="footer_span footer_span-right">
+      © {{ new Date().getFullYear() }} ООО "ЕРС"
+    </span>
   </footer>
 </template>
 
@@ -35,10 +39,13 @@ footer
   justify-content: space-between
   box-sizing: border-box
   align-items: center
-  padding: 0 205px
+  padding: 0 100px
   @include respond-to(xs)
+    padding: 0 40px
   @include respond-to(s)
+    padding: 0 40px
   @include respond-to(m)
+    padding: 0 40px
   @include respond-to(l)
     padding: 0 100px
   @include respond-to(xl)
@@ -47,7 +54,6 @@ footer
 .footer_span
   color: #000000
   text-align: center
-  width: 30%
   &-left
     text-align: left
   &-right
