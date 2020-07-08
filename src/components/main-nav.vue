@@ -16,10 +16,7 @@
       <menu-section page_name="contacts">Контакты</menu-section>
     </div>
     <a class="epcelectro-logo-link" href="http://epcelectro.ru/">
-      <EPCelectroLogo
-        viewBox="0 0 140 26"
-        class="epcelectro-logo"
-      />
+      <EPCelectroLogo viewBox="0 0 140 26" class="epcelectro-logo" />
     </a>
   </nav>
 </template>

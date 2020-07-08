@@ -1,5 +1,9 @@
 <template>
-  <div class="catalog-section" :class="{ 'catalog-section-last': isLast }" :ref="name + '-section'">
+  <div
+    class="catalog-section"
+    :class="{ 'catalog-section-last': isLast }"
+    :ref="name + '-section'"
+  >
     <div class="catalog-section-content">
       <div class="catalog-section-content-header" @click="toggleList">
         <h3 class="text-h3" ref="productHeader">{{ fullName }}</h3>
@@ -55,9 +59,9 @@ export default {
   computed: {
     choosedProduct() {
       if (this.$route.params.product) {
-        return this.$route.params.product
+        return this.$route.params.product;
       } else {
-        return null
+        return null;
       }
     }
   },
