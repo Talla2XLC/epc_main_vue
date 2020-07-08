@@ -49,7 +49,7 @@ footer
   @include respond-to(l)
     padding: 0 100px
   @include respond-to(xl)
-    padding: 0 245px
+    padding: 0 100px
 
 .footer_span
   color: #000000

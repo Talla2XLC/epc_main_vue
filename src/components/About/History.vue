@@ -11,15 +11,15 @@
     <history-section>
       <template v-slot:year>2016</template>
       <template v-slot:text>
-        Компания заключает партнерское соглашение с мировым лидером в области
-        производства оборудования для отпуска нефти и&nbsp;нефтепродуктов
-        западногерманским концерном Emco Wheaton GmbH.
+        Компания заключает партнерское соглашение с&nbsp;мировым лидером в
+        области производства оборудования для отпуска нефти
+        и&nbsp;нефтепродуктов западногерманским концерном Emco Wheaton GmbH.
       </template>
     </history-section>
     <history-section>
       <template v-slot:year>2017</template>
       <template v-slot:text>
-        Компанией произведена поставка и ввод в эксплуатацию семи зарядных
+        Компанией произведена поставка и ввод в&nbsp;эксплуатацию семи зарядных
         станций быстрой зарядки для электромобилей на АЗС впервые в&nbsp;России.
         Cоздание дочерней структуры - epc.electro.
       </template>
@@ -28,8 +28,16 @@
       <template v-slot:year>2017</template>
       <template v-slot:text>
         Переход ООО “ЕРС” в сегмент рынка электромобилей и создание
-        специализированного ресурса –
-        <a href="http://epcelectro.ru/" class="text-link">epcelectro.ru</a>
+        специализированного ресурса –<br v-if="$mq === 'm'" />
+        <a
+          href="http://epcelectro.ru/"
+          :class="{
+            'text-link': $mq === 'xl' || $mq === 'l',
+            'text-link2': $mq === 'm'
+          }"
+        >
+          epcelectro.ru
+        </a>
         , предоставляющего наиболее полное описание оборудования, которое
         обеспечивает зарядку электромобилей.
       </template>
@@ -38,8 +46,8 @@
       <template v-slot:year>2019</template>
       <template v-slot:text>
         Компания заключает партнерское соглашение с промышленным конгломератом
-        Nupi Industrie Italiane S.p.A., занимающимся производством решений для
-        инженерных и&nbsp;технологических сетей.
+        Nupi Industrie Italiane&nbsp;S.p.A., занимающимся производством решений
+        для инженерных и&nbsp;технологических сетей.
       </template>
     </history-section>
     <history-section :is-last="true">
@@ -70,7 +78,9 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    margin-bottom: 40px
   @include respond-to(l)
+    margin-bottom: 70px
   @include respond-to(xl)
-    margin-left: 50px
+    margin-bottom: 70px
 </style>

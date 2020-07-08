@@ -11,12 +11,22 @@
       />
     </div>
     <span
-      class="about-history-section-year text-body1"
-      :class="{ red: isLast }"
+      class="about-history-section-year "
+      :class="{
+        red: isLast,
+        'text-body1': $mq === 'xl' || $mq === 'l',
+        'text-body3': $mq === 'm'
+      }"
     >
       <slot name="year"></slot>
     </span>
-    <p class="about-history-section-txt text-body3">
+    <p
+      class="about-history-section-txt"
+      :class="{
+        'text-body3': $mq === 'xl' || $mq === 'l',
+        'text-body5': $mq === 'm'
+      }"
+    >
       <slot name="text"></slot>
     </p>
   </div>
@@ -35,17 +45,23 @@ export default {
   flex-flow: row nowrap
   align-items: stretch
   position: relative
+  margin-left: 40px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    margin-left: 40px
+  @include respond-to(l)
+    margin-left: 40px
+  @include respond-to(xl)
+    margin-left: 50px
   &-decor
     position: relative
     width: 20px
-    margin-left: 16px
     @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
     @include respond-to(l)
-      margin-left: 40px
     @include respond-to(xl)
-      margin-left: 0
     &-dot
       width: 14px
       height: 14px
@@ -73,9 +89,13 @@ export default {
     @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
+      width: 98px
+      margin-left: 56px
     @include respond-to(l)
+      width: 116px
       margin-left: 53px
     @include respond-to(xl)
+      width: 116px
       margin-left: 74px
 
   &-txt
@@ -83,15 +103,21 @@ export default {
     padding-bottom: 30px
     box-sizing: border-box
     margin-left: 94px
+    width: 715px
     @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
+      margin-left: 20px
+      width: 452px
+      padding-bottom: 14px
     @include respond-to(l)
       margin-left: 94px
       width: 715px
+      padding-bottom: 30px
     @include respond-to(xl)
       margin-left: 28px
       width: 848px
+      padding-bottom: 30px
 
 .bigDot
   width: 20px

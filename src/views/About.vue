@@ -1,6 +1,13 @@
 <template>
   <div class="about">
-    <h1 class="text-hero">ООО «Единый Процессинговый Центр»</h1>
+    <h1
+      :class="{
+        'text-hero': $mq === 'xl' || $mq === 'l',
+        'text-h2T': $mq === 'm'
+      }"
+    >
+      ООО «Единый Процессинговый Центр»
+    </h1>
     <History />
     <Customers />
     <Projects />
@@ -44,11 +51,19 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    padding: 70px 20px
   @include respond-to(l)
     padding: 100px 50px
   @include respond-to(xl)
     padding: 100px 245px
   >h1
     margin-bottom: 60px
-
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+      margin-bottom: 30px
+    @include respond-to(l)
+      margin-bottom: 60px
+    @include respond-to(xl)
+      margin-bottom: 60px
 </style>
