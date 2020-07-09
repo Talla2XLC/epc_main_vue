@@ -54,6 +54,13 @@
         </Button>
       </div>
     </div>
+    <img
+      class="feedback-form-background"
+      src="../../assets/images/feedbackForm.png"
+      alt="feedbackForm-background"
+      v-if="!popupForm"
+    />
+    <div class="feedback-form-background-filter" v-if="!popupForm" />
   </div>
 </template>
 
@@ -104,27 +111,29 @@ export default {
       this.validateForm();
     },
     sendEmail() {
-      let templateParams = {
-        name: this.name,
-        phone: this.phone
-      };
+      if (this.name && this.phone) {
+        let templateParams = {
+          name: this.name,
+          phone: this.phone
+        };
 
-      emailjs
-        .send(
-          "yandex",
-          "template_KZss3ia0",
-          templateParams,
-          "user_SDm5qWRIDzUplj7ponZjX"
-        )
-        .then(
-          result => {
-            this.emailDelivered();
-            console.log("SUCCESS!", result.status, result.text);
-          },
-          error => {
-            console.log("FAILED...", error);
-          }
-        );
+        emailjs
+          .send(
+            "yandex",
+            "template_KZss3ia0",
+            templateParams,
+            "user_SDm5qWRIDzUplj7ponZjX"
+          )
+          .then(
+            result => {
+              this.emailDelivered();
+              console.log("SUCCESS!", result.status, result.text);
+            },
+            error => {
+              console.log("FAILED...", error);
+            }
+          );
+      }
     },
     emailDelivered() {
       this.errors = [];
@@ -144,10 +153,43 @@ export default {
   flex-flow: column nowrap
   position: relative
   align-content: flex-start
-  padding: 105px
-  background: linear-gradient(87.27deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%), url('../../assets/images/feedbackFormBCG.jpg') no-repeat right
+  padding: 100px 105px
   background-size: contain
-  min-height: 563px
+  min-height: 536px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    padding: 70px 20px
+    min-height: 476px
+  @include respond-to(l)
+    padding: 100px 105px
+    min-height: 476px
+  @include respond-to(xl)
+    padding: 100px 145px
+    min-height: 476px
+  &-background
+    position: absolute
+    object-fit: cover
+    top: 0
+    right: 0
+    height: 100%
+    z-index: 0
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+      width: 672px
+      object-position: -165px
+    @include respond-to(l)
+      object-position: 100px
+    @include respond-to(xl)
+    &-filter
+      position: absolute
+      background: linear-gradient(87.27deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%)
+      top: 0
+      right: 0
+      left: 0
+      bottom: 0
+      z-index: 1
 
   &-header
     align-self: flex-end
@@ -160,6 +202,16 @@ export default {
     flex-flow: column nowrap
     justify-content: space-between
     width: 505px
+    position: relative
+    z-index: 3
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+      width: 334px
+    @include respond-to(l)
+      width: 505px
+    @include respond-to(xl)
+      width: 560px
     &-txt
       display: block
       text-align: left

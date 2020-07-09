@@ -64,6 +64,9 @@ export default {
       }
     };
   },
+  mounted() {
+    this.selectPage(this.$route.name);
+  },
   components: {
     appHeader,
     appFooter,
@@ -80,7 +83,11 @@ export default {
       );
     }
   },
-  methods: {},
+  methods: {
+    selectPage(page) {
+      this.$store.dispatch("selectPage", page);
+    }
+  },
   metaInfo: {}
 };
 </script>

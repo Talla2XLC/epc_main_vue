@@ -1,10 +1,23 @@
 <template>
   <div class="contacts-page">
     <div class="contacts-page-content">
-      <h1 class="contacts-page-content-header text-h1">Наши контакты</h1>
+      <h1
+        class="contacts-page-content-header"
+        :class="{
+          'text-h1': $mq === 'xl' || $mq === 'l',
+          'text-h2T': $mq === 'm'
+        }"
+      >
+        Наши контакты
+      </h1>
       <div class="contacts-page-content-block">
         <div class="contacts-page-content-block-header">
-          <h2 class="text-h2">
+          <h2
+            :class="{
+              'text-h2': $mq === 'xl' || $mq === 'l',
+              'text-h3': $mq === 'm'
+            }"
+          >
             Офис
           </h2>
           <transition name="movingToMap" appear>
@@ -16,18 +29,56 @@
         </div>
         <div class="contacts-page-content-block-details">
           <div class="contacts-page-content-details-block">
-            <h3 class="text-h3">Адрес</h3>
-            <span class="text-body2">
-              г. Москва<br />ул. Вавилова, д.5, корп.3
+            <h3
+              :class="{
+                'text-h3': $mq === 'xl' || $mq === 'l',
+                'text-button': $mq === 'm'
+              }"
+            >
+              Адрес
+            </h3>
+            <span
+              :class="{
+                'text-body2': $mq === 'xl' || $mq === 'l',
+                'text-body5': $mq === 'm'
+              }"
+            >
+              г. Москва<br />ул. Вавилова д.5 корп.3
             </span>
           </div>
           <div class="contacts-page-content-details-block">
-            <h3 class="text-h3">Телефон</h3>
-            <span class="text-body2">+7 (499) 125-44-55</span>
+            <h3
+              :class="{
+                'text-h3': $mq === 'xl' || $mq === 'l',
+                'text-button': $mq === 'm'
+              }"
+            >
+              Телефон
+            </h3>
+            <span
+              :class="{
+                'text-body2': $mq === 'xl' || $mq === 'l',
+                'text-body5': $mq === 'm'
+              }"
+              >+7 (499) 125-44-55</span
+            >
           </div>
           <div class="contacts-page-content-details-block">
-            <h3 class="text-h3">Факс</h3>
-            <span class="text-body2">+7 (495) 633-01-41</span>
+            <h3
+              :class="{
+                'text-h3': $mq === 'xl' || $mq === 'l',
+                'text-button': $mq === 'm'
+              }"
+            >
+              Факс
+            </h3>
+            <span
+              :class="{
+                'text-body2': $mq === 'xl' || $mq === 'l',
+                'text-body5': $mq === 'm'
+              }"
+              >+7 (495) 633-01-41</span
+            >
           </div>
           <transition name="fade" appear>
             <google-map class="map" lat="55.703543" lng="37.591152" zoom="14" />
@@ -37,7 +88,12 @@
 
       <div class="contacts-page-content-block">
         <div class="contacts-page-content-block-header">
-          <h2 class="text-h2">
+          <h2
+            :class="{
+              'text-h2': $mq === 'xl' || $mq === 'l',
+              'text-h3': $mq === 'm'
+            }"
+          >
             Склад
           </h2>
           <transition name="movingToMap" appear>
@@ -49,11 +105,22 @@
         </div>
         <div class="contacts-page-content-block-details">
           <div class="contacts-page-content-details-block">
-            <h3 class="text-h3">Адрес</h3>
-            <span class="text-body2">
-              Московская обл, д. Селятино<br />
-              3-й Шоссейный проезд, 3&nbsp;км<br />
-              автодороги А107
+            <h3
+              :class="{
+                'text-h3': $mq === 'xl' || $mq === 'l',
+                'text-button': $mq === 'm'
+              }"
+            >
+              Адрес
+            </h3>
+            <span
+              :class="{
+                'text-body2': $mq === 'xl' || $mq === 'l',
+                'text-body5': $mq === 'm'
+              }"
+            >
+              Московская обл, д.&nbsp;Селятино<br />
+              3-й Шоссейный проезд, 3&nbsp;км автодороги А107
             </span>
           </div>
           <transition name="fade" appear>
@@ -118,6 +185,7 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    padding: 70px 20px
   @include respond-to(l)
     padding: 100px
   @include respond-to(xl)
@@ -126,7 +194,18 @@ export default {
     display: flex
     flex-flow: column nowrap
     padding: 0 105px
-    margin-bottom: 93px
+    margin-bottom: 90px
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+      margin-bottom: 44px
+      padding: 0 20px
+    @include respond-to(l)
+      margin-bottom: 90px
+      padding: 0 105px
+    @include respond-to(xl)
+      margin-bottom: 90px
+      padding: 0 145px
     &-block
       display: flex
       flex-flow: column nowrap
@@ -134,15 +213,40 @@ export default {
       position: relative
       margin-bottom: 10px
       min-height: 398px
+      @include respond-to(xs)
+      @include respond-to(s)
+      @include respond-to(m)
+        min-height: 304px
+        margin-bottom: 26px
+      @include respond-to(l)
+        min-height: 398px
+      @include respond-to(xl)
+        min-height: 398px
       &-header
         margin-bottom: 46px
         position: relative
+        @include respond-to(xs)
+        @include respond-to(s)
+        @include respond-to(m)
+          margin-bottom: 24px
+        @include respond-to(l)
+          margin-bottom: 46px
+        @include respond-to(xl)
+          margin-bottom: 46px
       &-details
         position: relative
 
     &-header
       align-self: center
       margin-bottom: 60px
+      @include respond-to(xs)
+      @include respond-to(s)
+      @include respond-to(m)
+        margin-bottom: 30px
+      @include respond-to(l)
+        margin-bottom: 60px
+      @include respond-to(xl)
+        margin-bottom: 60px
     &-details
       &-block
         display: flex
@@ -152,6 +256,26 @@ export default {
           width: 190px
           margin-right: 20px
           margin-bottom: 46px
+          @include respond-to(xs)
+          @include respond-to(s)
+          @include respond-to(m)
+            width: 98px
+            margin-bottom: 22px
+          @include respond-to(l)
+            width: 190px
+          @include respond-to(xl)
+            width: 190px
+        >span
+          width: 400px
+          @include respond-to(xs)
+          @include respond-to(s)
+          @include respond-to(m)
+            padding-top: 5px
+            width: 216px
+          @include respond-to(l)
+            width: 400px
+          @include respond-to(xl)
+            width: 400px
 
 .map_line
   border-top: 2px solid #940000
@@ -159,6 +283,14 @@ export default {
   width: 830px
   height: 63px
   position: absolute
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    width: 520px
+  @include respond-to(l)
+    width: 830px
+  @include respond-to(xl)
+    width: 932px
 .map_dot
   box-sizing: border-box
   border: 10px solid #940000
@@ -170,6 +302,17 @@ export default {
   bottom: -73px
   z-index: 6
   opacity: 1
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    left: 510px
+    bottom: -51px
+  @include respond-to(l)
+    left: 820px
+    bottom: -73px
+  @include respond-to(xl)
+    left: 922px
+    bottom: -73px
 
 .map
   position: absolute
@@ -183,10 +326,15 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    height: 240px
+    width: 334px
+    left: 355px
   @include respond-to(l)
+    height: 300px
     width: 400px
     left: 632px
   @include respond-to(xl)
+    height: 300px
     width: 415px
     left: 727px
 

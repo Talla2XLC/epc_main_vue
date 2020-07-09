@@ -5,7 +5,7 @@
         <router-link
           :to="`/about`"
           class="epc_logo_link"
-          @click.native="selectPage"
+          @click.native="selectPage('about')"
         >
           <EPCLogoFull class="epc_logo_big" viewBox="0 0 400 123" />
         </router-link>
@@ -57,8 +57,8 @@ export default {
     EPCLogoFull
   },
   methods: {
-    selectPage() {
-      this.$store.dispatch("selectPage", "about");
+    selectPage(page) {
+      this.$store.dispatch("selectPage", page);
     }
   }
 };

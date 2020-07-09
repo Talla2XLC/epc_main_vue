@@ -71,7 +71,7 @@ export default {
     }
   },
   mounted() {
-    if(this.choosedProduct == this.name) {
+    if (this.choosedProduct == this.name) {
       this.isOpened = true;
       this.$refs[this.name + "-section"].scrollIntoView({
         alignToTop: true,
