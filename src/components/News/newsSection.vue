@@ -1,9 +1,30 @@
 <template>
   <div class="news-section">
     <div class="news-section-content">
-      <span class="text-body2">{{ date }}</span>
-      <h2 class="text-h2 red">{{ header }}</h2>
-      <p class="text-body3">{{ desc }}</p>
+      <span
+        :class="{
+          'text-body2': $mq === 'xl' || $mq === 'l',
+          'text-body3': $mq === 'm'
+        }"
+        >{{ date }}</span
+      >
+      <h2
+        class="red"
+        :class="{
+          'text-h2': $mq === 'xl' || $mq === 'l',
+          'text-h3': $mq === 'm'
+        }"
+      >
+        {{ header }}
+      </h2>
+      <p
+        :class="{
+          'text-body3': $mq === 'xl' || $mq === 'l',
+          'text-body5': $mq === 'm'
+        }"
+      >
+        {{ desc }}
+      </p>
     </div>
     <div class="news-section-imgDiv">
       <img
@@ -35,6 +56,13 @@ export default {
   padding: 60px 105px
   box-sizing: border-box
   margin-bottom: 40px
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    padding: 60px 105px
+  @include respond-to(xl)
+    padding: 60px 145px
   &:last-of-type
     margin-bottom: 0
   &-content
@@ -47,6 +75,13 @@ export default {
       margin-bottom: 30px
     >p
       max-width: 610px
+      @include respond-to(xs)
+      @include respond-to(s)
+      @include respond-to(m)
+      @include respond-to(l)
+        max-width: 610px
+      @include respond-to(xl)
+        max-width: 705px
   &-imgDiv
     min-width: 400px
     display: flex
@@ -54,12 +89,20 @@ export default {
     justify-content: center
     align-items: center
     position: relative
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+      min-width: 216px
+    @include respond-to(l)
+      min-width: 400px
+    @include respond-to(xl)
+      min-width: 415px
   &-img
-    object-fit: cover
-    height: 100%
-    max-width: 400px
-    position: relative
+    object-fit: contain
+    position: absolute
     z-index: 0
+    width: 100%
+    height: 100%
     &-filer
       width: 100%
       height: 100%

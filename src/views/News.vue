@@ -1,6 +1,13 @@
 <template>
   <div class="news">
-    <h1 class="text-h1">Новости нашей компании</h1>
+    <h1
+      :class="{
+        'text-h1': $mq === 'xl' || $mq === 'l',
+        'text-h2T': $mq === 'm'
+      }"
+    >
+      Новости нашей компании
+    </h1>
     <div class="news-list">
       <NewsSection
         v-for="(item, index) in news"
@@ -37,8 +44,24 @@ export default {
   align-items: center
   padding: 100px 50px
   box-sizing: border-box
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+    padding: 70px 0
+  @include respond-to(l)
+    padding: 100px 50px
+  @include respond-to(xl)
+    padding: 100px 100px
   >h1
     margin-bottom: 60px
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+      margin-bottom: 30px
+    @include respond-to(l)
+      margin-bottom: 60px
+    @include respond-to(xl)
+      margin-bottom: 60px
   &-list
     width: 100%
     display: flex
@@ -46,6 +69,12 @@ export default {
     align-items: stretch
     padding: 60px 50px
     box-sizing: border-box
-    background: linear-gradient(112.3deg, #F0EFEF 11.28%, rgba(240, 239, 239, 0) 112.64%), url('../assets/images/News/news-list.png') no-repeat right bottom
-    background-size: cover
+    background: linear-gradient(112.3deg, #F0EFEF 11.28%, rgba(240, 239, 239, 0) 112.64%), top / cover no-repeat url('../assets/images/News/news-list.png')
+    @include respond-to(xs)
+    @include respond-to(s)
+    @include respond-to(m)
+    @include respond-to(l)
+      padding: 60px 50px
+    @include respond-to(xl)
+      padding: 60px 145px
 </style>
