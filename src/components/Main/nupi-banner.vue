@@ -195,6 +195,10 @@ export default {
   &:focus
     outline: none
 
+@media (max-height: 1399px)
+  .nupi-banner
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%)
+
 @media (max-height: 950px)
   .nupi-banner-contentArea
     margin-top: 70px
@@ -205,7 +209,6 @@ export default {
 
 @media (max-height: 750px)
   .nupi-banner
-    clip-path: polygon(29% 0, 100% 0, 100% 100%, 0 100%)
     &-contentArea
       margin-top: 40px
 

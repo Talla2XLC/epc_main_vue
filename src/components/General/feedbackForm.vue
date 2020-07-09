@@ -222,10 +222,11 @@ export default {
     > span
       text-align: center
 
-@media (max-height: 950px)
+@media (max-height: 850px)
   .popup-form
     &-content
       padding: 40px 48px
+      justify-content: space-around
 @media (max-height: 850px)
   .feedback-form-header
       position: absolute

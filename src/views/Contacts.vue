@@ -115,6 +115,13 @@ export default {
   box-sizing: border-box
   padding: 100px
   position: relative
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    padding: 100px
+  @include respond-to(xl)
+    padding: 100px 245px
   &-content
     display: flex
     flex-flow: column nowrap
@@ -173,6 +180,15 @@ export default {
   top: 0
   left: 632px
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.15)
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    width: 400px
+    left: 632px
+  @include respond-to(xl)
+    width: 415px
+    left: 727px
 
 .movingToMap-enter-active, .movingToMap-leave-active
   transition: width 0.8s ease-in, height 0.2s ease-in 0.8s
