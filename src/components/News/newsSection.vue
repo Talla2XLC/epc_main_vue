@@ -59,6 +59,7 @@ export default {
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    padding: 40px 20px
   @include respond-to(l)
     padding: 60px 105px
   @include respond-to(xl)
@@ -71,13 +72,33 @@ export default {
     align-items: flex-start
     >span
       margin-bottom: 10px
+      @include respond-to(xs)
+      @include respond-to(s)
+      @include respond-to(m)
+        margin-bottom: 4px
+      @include respond-to(l)
+        margin-bottom: 10px
+      @include respond-to(xl)
+        margin-bottom: 10px
     >h2
       margin-bottom: 30px
+      @include respond-to(xs)
+      @include respond-to(s)
+      @include respond-to(m)
+        margin-bottom: 14px
+        max-width: 450px
+      @include respond-to(l)
+        margin-bottom: 30px
+        max-width: 610px
+      @include respond-to(xl)
+        margin-bottom: 30px
+        max-width: 705px
     >p
       max-width: 610px
       @include respond-to(xs)
       @include respond-to(s)
       @include respond-to(m)
+        max-width: 450px
       @include respond-to(l)
         max-width: 610px
       @include respond-to(xl)
@@ -98,7 +119,7 @@ export default {
     @include respond-to(xl)
       min-width: 415px
   &-img
-    object-fit: contain
+    object-fit: cover
     position: absolute
     z-index: 0
     width: 100%

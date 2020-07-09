@@ -73,6 +73,7 @@ export default {
     @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
+      padding: 30px 20px
     @include respond-to(l)
       padding: 60px 50px
     @include respond-to(xl)
