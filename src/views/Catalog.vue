@@ -37,6 +37,13 @@ export default {
   display: flex
   flex-flow: column nowrap
   align-items: center
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    padding: 100px 50px
+  @include respond-to(xl)
+    padding: 100px 100px
   >h1
     margin-bottom: 60px
   &-list

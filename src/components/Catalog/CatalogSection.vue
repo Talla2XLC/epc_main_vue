@@ -90,6 +90,13 @@ export default {
   margin-bottom: 40px
   position: relative
   overflow: hidden
+  @include respond-to(xs)
+  @include respond-to(s)
+  @include respond-to(m)
+  @include respond-to(l)
+    padding: 100px 155px
+  @include respond-to(xl)
+    padding: 100px 290px
   &-last
     margin-bottom: 0
   &-content

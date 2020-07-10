@@ -32,6 +32,20 @@ export default new Vuex.Store({
       {
         name: "Emco",
         fullName: "Оборудование слива-налива Emco Wheaton",
+        imagePosition: {
+          l: {
+            top: 0,
+            right: 0
+          },
+          m: {
+            top: 10,
+            right: 100
+          },
+          s: {
+            top: 20,
+            right: 120
+          }
+        },
         items: [
           {
             name: "E3000",
@@ -58,6 +72,20 @@ export default new Vuex.Store({
       {
         name: "Scully",
         fullName: "Устройства контроля налива Scully",
+        imagePosition: {
+          l: {
+            top: 0,
+            right: 0
+          },
+          m: {
+            top: 0,
+            right: 0
+          },
+          s: {
+            top: 20,
+            right: 120
+          }
+        },
         items: [
           {
             name: "ST-35C",
@@ -76,6 +104,20 @@ export default new Vuex.Store({
       {
         name: "Nupi",
         fullName: "Пластиковый трубопровод Nupi",
+        imagePosition: {
+          l: {
+            top: 0,
+            right: 0
+          },
+          m: {
+            top: 0,
+            right: 0
+          },
+          s: {
+            top: 30,
+            right: 120
+          }
+        },
         items: [
           {
             name: "SingleWall",
@@ -94,6 +136,20 @@ export default new Vuex.Store({
       {
         name: "Rotork",
         fullName: "Интеллектуальные приводы Rotork",
+        imagePosition: {
+          l: {
+            top: 0,
+            right: 0
+          },
+          m: {
+            top: 0,
+            right: 0
+          },
+          s: {
+            top: 0,
+            right: 0
+          }
+        },
         items: [
           {
             name: "IQT",
@@ -112,6 +168,20 @@ export default new Vuex.Store({
       {
         name: "EVBox",
         fullName: "Станции зарядки электромобилей EVBox",
+        imagePosition: {
+          l: {
+            top: 0,
+            right: 0
+          },
+          m: {
+            top: 0,
+            right: 60
+          },
+          s: {
+            top: 30,
+            right: 120
+          }
+        },
         items: [
           {
             name: "Elvi",

@@ -112,9 +112,6 @@ export default {
       fill: #E6E6E6
     &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(5)
       fill: #18BFF6
-  &-link
-    l
-
 .menu-list
   margin-left: 20px
   @include respond-to(xs)
