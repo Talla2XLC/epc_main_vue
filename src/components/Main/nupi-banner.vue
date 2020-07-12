@@ -42,9 +42,13 @@ export default {
   data() {
     return {
       formCreating: false,
-      bannerClosed: true,
       emailDelivered: false
     };
+  },
+  computed: {
+    bannerClosed() {
+      return this.$store.state.bannerClosed;
+    }
   },
   directives: {
     clickOutside: {
@@ -77,14 +81,14 @@ export default {
     showBanner() {
       this.$refs.nupiBanner.classList.remove("move-out");
       this.$refs.nupiBanner.classList.add("move-in");
-      this.bannerClosed = false;
+      this.$store.dispatch("showBanner");
     },
 
     closeBanner() {
       if (this.$refs.nupiBanner.classList.contains("move-in")) {
         this.$refs.nupiBanner.classList.remove("move-in");
         this.$refs.nupiBanner.classList.add("move-out");
-        this.bannerClosed = true;
+        this.$store.dispatch("closeBanner");
       }
     },
     setEmailDelivered() {
@@ -121,7 +125,7 @@ export default {
     width: 95%
     right: -83%
     padding-right: 40px
-    clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)
+    clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%) !important
   @include respond-to(l)
     width: 64%
     right: -58%

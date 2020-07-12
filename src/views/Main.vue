@@ -22,7 +22,8 @@
           >
             Технологии и качество на&nbsp;высшем&nbsp;уровне
           </h1>
-          <p :class="{
+          <p
+            :class="{
               'text-body1': $mq === 'xl',
               'text-body2': $mq === 'l',
               'text-body4': $mq === 'm'
@@ -60,6 +61,10 @@ export default {
     selectPage(page) {
       this.$store.dispatch("selectPage", page);
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$store.dispatch("closeBanner");
+    next();
   }
 };
 </script>

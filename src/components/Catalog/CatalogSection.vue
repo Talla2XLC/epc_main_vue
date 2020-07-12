@@ -6,7 +6,15 @@
   >
     <div class="catalog-section-content">
       <div class="catalog-section-content-header" @click="toggleList">
-        <h3 class="text-h3" ref="productHeader">{{ fullName }}</h3>
+        <h3
+          ref="productHeader"
+          :class="{
+            'text-h3': $mq === 'xl' || $mq === 'l',
+            'text-h4': $mq === 'm'
+          }"
+        >
+          {{ fullName }}
+        </h3>
         <div class="list-arrow" :class="{ rotated: isOpened }" />
       </div>
       <transition-group
@@ -22,7 +30,15 @@
           v-if="isOpened"
         >
           <div class="catalog-section-content-list-item-dot" />
-          <span class="text-body2"> {{ item.desc }} </span>
+          <span
+            :class="{
+              'text-body2': $mq === 'xl' || $mq === 'l',
+              'text-body4': $mq === 'm'
+            }"
+            @click="selectHandler(name, item.name)"
+          >
+            {{ item.fullName }}
+          </span>
         </li>
         <div
           class="catalog-section-content-list-line"
@@ -33,7 +49,7 @@
       </transition-group>
     </div>
     <img
-      :src="require(`@/assets/images/Catalog/${name}_l.png`)"
+      :src="this.$mq === 'm' && this.name === 'Scully' ? require(`@/assets/images/Catalog/${name}_l_small.png`) : require(`@/assets/images/Catalog/${name}_l.png`)"
       class="catalog-section-img-l"
       :alt="'catalog' + ind + '_left_pic'"
     />
@@ -41,16 +57,20 @@
     <img
       :src="require(`@/assets/images/Catalog/${name}_r.png`)"
       class="catalog-section-img-r"
+      :style="imgPosition"
       :alt="'catalog' + ind + 'right_pic'"
     />
-    <div class="catalog-section-img-filter-r" />
+    <div
+      class="catalog-section-img-filter-r"
+      :class="this.$mq === 'm' && this.name === 'Emco' ? 'emco-m-filter' : ''"
+    />
   </div>
 </template>
 
 <script>
 export default {
   name: "CatalogSection",
-  props: ["name", "fullName", "items", "isLast", "ind"],
+  props: ["name", "fullName", "items", "imagePosition", "isLast", "ind", "selectHandler"],
   data() {
     return {
       isOpened: false
@@ -62,6 +82,54 @@ export default {
         return this.$route.params.product;
       } else {
         return null;
+      }
+    },
+    imgPosition() {
+      switch (this.$mq) {
+        case "l":
+          return {
+            objectPosition:
+              this.imagePosition.l.right +
+              "px " +
+              this.imagePosition.l.top +
+              "px"
+          };
+
+        case "m":
+          if (this.name === "Emco") {
+            return {
+              objectPosition:
+                this.imagePosition.m.right +
+                "px " +
+                this.imagePosition.m.top +
+                "px",
+
+            };
+          } else {
+            return {
+              objectPosition:
+                this.imagePosition.m.right +
+                "px " +
+                this.imagePosition.m.top +
+                "px"
+            };
+          }
+
+        case "s":
+        case "xs":
+          return {
+            objectPosition:
+              this.imagePosition.s.right +
+              "px " +
+              this.imagePosition.s.top +
+              "px"
+          };
+
+        default:
+          return {
+            top: 0,
+            right: 0
+          };
       }
     }
   },
@@ -84,19 +152,19 @@ export default {
 
 <style scoped lang="sass">
 .catalog-section
-  padding: 100px 155px
+  padding: 100px 0 100px 155px
   box-sizing: border-box
-  background: linear-gradient(83.36deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%)
   margin-bottom: 40px
   position: relative
   overflow: hidden
   @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
+    padding: 70px 0 70px 135px
   @include respond-to(l)
-    padding: 100px 155px
+    padding: 100px 0 100px 155px
   @include respond-to(xl)
-    padding: 100px 290px
+    padding: 100px 0 100px 290px
   &-last
     margin-bottom: 0
   &-content
@@ -123,6 +191,20 @@ export default {
         height: 32px
         margin-bottom: 20px
         margin-top: 50px
+        @include respond-to(xs)
+        @include respond-to(s)
+        @include respond-to(m)
+          height: 26px
+          margin-top: 30px
+          margin-bottom: 14px
+        @include respond-to(l)
+          height: 32px
+          margin-top: 50px
+          margin-bottom: 20px
+        @include respond-to(xl)
+          height: 32px
+          margin-top: 50px
+          margin-bottom: 20px
         &:last-of-type
           margin-bottom: 0
         &:not(:first-of-type)
@@ -134,6 +216,10 @@ export default {
           background: #940000
           border-radius: 50%
           left: -72px
+        >span
+          cursor: pointer
+          position: relative
+          z-index: 1
       &-line
         position: absolute
         border-left: 2px solid #940000
@@ -141,12 +227,15 @@ export default {
         height: calc(100% - 20px)
         top: 0
         left: -63px
+        z-index: 0
   >img
     position: absolute
     top: 0
-    object-fit: contain
+    object-fit: cover
   &-img
     &-l
+      max-width: 50%
+      height: initial
       left: 0
       z-index: 2
     &-r
@@ -168,6 +257,17 @@ export default {
       height: 100%
       z-index: 1
       background: linear-gradient(83.36deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%)
+      @include respond-to(xs)
+      @include respond-to(s)
+      @include respond-to(m)
+        background: linear-gradient(85.02deg, #F0EFEF 65.15%, rgba(240, 239, 239, 0) 97.5%)
+      @include respond-to(l)
+        background: linear-gradient(83.36deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%)
+      @include respond-to(xl)
+        background: linear-gradient(81.54deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%)
+
+.emco-m-filter
+  background: linear-gradient(87.79deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%)
 
 .list-arrow
   width: 8px

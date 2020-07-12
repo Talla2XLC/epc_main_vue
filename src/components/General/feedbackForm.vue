@@ -233,6 +233,7 @@ export default {
       transform: rotate(-45deg)
       top: 20%
       right: 45%
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
     &:before
       content: ""
       position: absolute
@@ -242,8 +243,13 @@ export default {
       transform: rotate(-135deg)
       top: 20%
       right: 45%
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
     &:hover:after, &:hover:before
-      background: #C4C4C4
+      background: #F0EFEF
+      box-shadow: none
+    &:active:after, &:active:before
+      background: #F0EFEF
+      box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.15)
     &:focus
       outline: none
 

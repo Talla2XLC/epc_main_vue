@@ -5,7 +5,7 @@
         viewBox="0 0 85 26"
         class="epc-logo"
         :class="{
-          'epc-logo-colored': this.$route.path !== '/'
+          'epc-logo-colored': this.$route.path !== '/' || !this.bannerClosed
         }"
       />
     </router-link>
@@ -33,7 +33,11 @@ export default {
     EPCLogo,
     EPCelectroLogo
   },
-  computed: {},
+  computed: {
+    bannerClosed() {
+      return this.$store.state.bannerClosed;
+    }
+  },
   methods: {
     selectPage(page) {
       this.$store.dispatch("selectPage", page);
