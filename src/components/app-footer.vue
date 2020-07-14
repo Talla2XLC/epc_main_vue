@@ -5,7 +5,7 @@
       'text-body5': $mq === 'm' || $mq === 's' || $mq === 'xs'
     }"
   >
-    <span class="footer_span footer_span-left">
+    <span class="footer_span footer_span-confidential" @click="openConfidential">
       Политика конфиденциальности
     </span>
     <span class="footer_span footer_span-right">
@@ -17,6 +17,7 @@
 <script>
 export default {
   name: "app-footer",
+  props: ["openConfidential"],
   methods: {
     selectPage() {
       this.$store.dispatch("selectPage", "");
@@ -54,8 +55,9 @@ footer
 .footer_span
   color: #000000
   text-align: center
-  &-left
+  &-confidential
     text-align: left
+    cursor: pointer
   &-right
     text-align: right
 

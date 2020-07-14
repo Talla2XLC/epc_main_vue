@@ -87,8 +87,7 @@ export default {
   name: "ProductModal",
   props: ["closeModal", "product", "producer"],
   computed: {},
-  methods: {
-  }
+  methods: {}
 };
 </script>
 
@@ -134,37 +133,76 @@ export default {
 
 .modal-close-cross
   position: absolute
-  width: 48px
-  height: 48px
+  width: 72px
+  height: 72px
   cursor: pointer
   top: 0
   right: 0
+  @include respond-to(xs)
+    width: 48px
+    height: 48px
+  @include respond-to(s)
+    width: 72px
+    height: 72px
+  @include respond-to(m)
+    width: 72px
+    height: 72px
+  @include respond-to(l)
+    width: 72px
+    height: 72px
+  @include respond-to(xl)
+    width: 72px
+    height: 72px
   &:after
     content: ""
     position: absolute
-    width: 4px
-    height: 30px
-    background: #EC001D
+    width: 6px
+    height: 45px
+    background: #F0EFEF
     transform: rotate(-45deg)
     top: 20%
     right: 45%
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
+    @include respond-to(xs)
+    @include respond-to(s)
+      width: 4px
+      height: 30px
+    @include respond-to(m)
+      width: 6px
+      height: 45px
+    @include respond-to(l)
+      width: 6px
+      height: 45px
+    @include respond-to(xl)
+      width: 6px
+      height: 45px
   &:before
     content: ""
     position: absolute
-    width: 4px
-    height: 30px
-    background: #EC001D
+    width: 6px
+    height: 45px
+    background: #F0EFEF
     transform: rotate(-135deg)
     top: 20%
     right: 45%
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
+    @include respond-to(xs)
+    @include respond-to(s)
+      width: 4px
+      height: 30px
+    @include respond-to(m)
+      width: 6px
+      height: 45px
+    @include respond-to(l)
+      width: 6px
+      height: 45px
+    @include respond-to(xl)
+      width: 6px
+      height: 45px
   &:hover:after, &:hover:before
-    background: #F0EFEF
+    background: #4F4F51
     box-shadow: none
   &:active:after, &:active:before
-    background: #F0EFEF
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.15)
+    background: #4F4F51
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.25)
   &:focus
     outline: none
 

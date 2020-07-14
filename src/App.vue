@@ -3,9 +3,10 @@
     <vue-scroll :ops="ops" ref="vs">
       <app-header />
       <main>
-        <router-view />
+        <router-view @open-modal="scrollToTop" />
+        <Confidential :closeModal="closeConfidential" v-if="showConfidential" />
       </main>
-      <app-footer />
+      <app-footer :openConfidential="openConfidential" />
     </vue-scroll>
   </div>
 </template>
@@ -13,6 +14,7 @@
 <script>
 import appHeader from "@/components/app-header";
 import appFooter from "@/components/app-footer";
+import Confidential from "./components/General/Confidential";
 import vueScroll from "vuescroll";
 
 import "normalize.css";
@@ -23,6 +25,7 @@ export default {
   name: "App",
   data() {
     return {
+      showConfidential: false,
       ops: {
         vuescroll: {
           mode: "native",
@@ -70,12 +73,33 @@ export default {
   },
   computed: {},
   components: {
+    Confidential,
     appHeader,
     appFooter,
     vueScroll
   },
   watch: {
     $route() {
+      this.scrollToTop();
+    },
+    $mq() {
+      this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
+    },
+    showConfidential() {
+      this.scrollToTop();
+    }
+  },
+  methods: {
+    selectPage(page) {
+      this.$store.dispatch("selectPage", page);
+    },
+    closeConfidential() {
+      this.showConfidential = false;
+    },
+    openConfidential() {
+      this.showConfidential = true;
+    },
+    scrollToTop() {
       this.$refs["vs"].scrollTo(
         {
           y: 0
@@ -83,14 +107,6 @@ export default {
         500,
         "easeInQuad"
       );
-    },
-    $mq() {
-      this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
-    }
-  },
-  methods: {
-    selectPage(page) {
-      this.$store.dispatch("selectPage", page);
     }
   },
   metaInfo: {}

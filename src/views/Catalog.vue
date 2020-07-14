@@ -61,6 +61,11 @@ export default {
       this.selectedProduct = null;
     }
   },
+  watch: {
+    showModal() {
+      this.$emit("open-modal");
+    }
+  },
   components: {
     ProductModal,
     CatalogSection

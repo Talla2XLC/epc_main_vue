@@ -301,7 +301,6 @@ export default {
   height: 0
   margin: 0
 
-
 @keyframes lining
   0%
     width: 0
