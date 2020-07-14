@@ -49,13 +49,13 @@
       </transition-group>
     </div>
     <img
-      :src="this.$mq === 'm' && this.name === 'Scully' ? require(`@/assets/images/Catalog/${name}_l_small.png`) : require(`@/assets/images/Catalog/${name}_l.png`)"
+      :src="this.$mq === 'm' && this.name === 'Scully' ? require(`@/assets/images/Catalog/${name.toLowerCase()}_l_small.png`) : require(`@/assets/images/Catalog/${name.toLowerCase()}_l.png`)"
       class="catalog-section-img-l"
       :alt="'catalog' + ind + '_left_pic'"
     />
     <div class="catalog-section-img-filter-l" />
     <img
-      :src="require(`@/assets/images/Catalog/${name}_r.png`)"
+      :src="require(`@/assets/images/Catalog/${name.toLowerCase()}_r.png`)"
       class="catalog-section-img-r"
       :style="imgPosition"
       :alt="'catalog' + ind + 'right_pic'"

@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask">
+    <div class="modal-mask" v-click-outside="setOutsideClickListener">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-close-cross" @click="closeModal" />
@@ -65,7 +65,7 @@
             <div class="modal-body-imgDiv">
               <img
                 :src="
-                  require(`@/assets/images/Catalog/${producer}/${product.name}.png`)
+                  require(`@/assets/images/Catalog/${producer}/${product.name.toLowerCase()}.png`)
                 "
                 class="modal-body-img"
                 :alt="product.name + '_image'"
@@ -88,8 +88,25 @@ export default {
   props: ["closeModal", "product", "producer"],
   computed: {},
   methods: {
-    importAll(r) {
-      return r.keys().map(r);
+    setOutsideClickListener() {
+      console.log(123);
+      setTimeout(this.closeModal, 500);
+    }
+  },
+  directives: {
+    clickOutside: {
+      bind: function(el, binding, vnode) {
+        el.clickOutsideEvent = function(event) {
+          event.stopPropagation();
+          if (!(el === event.target || event.path.includes(el))) {
+            vnode.context[binding.expression](event);
+          }
+        };
+        document.body.addEventListener("click", el.clickOutsideEvent);
+      },
+      unbind: function(el) {
+        document.body.removeEventListener("click", el.clickOutsideEvent);
+      }
     }
   }
 };
