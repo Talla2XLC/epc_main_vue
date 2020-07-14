@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" v-click-outside="setOutsideClickListener">
+    <div class="modal-mask" @click.self="closeModal">
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-close-cross" @click="closeModal" />
@@ -88,26 +88,6 @@ export default {
   props: ["closeModal", "product", "producer"],
   computed: {},
   methods: {
-    setOutsideClickListener() {
-      console.log(123);
-      setTimeout(this.closeModal, 500);
-    }
-  },
-  directives: {
-    clickOutside: {
-      bind: function(el, binding, vnode) {
-        el.clickOutsideEvent = function(event) {
-          event.stopPropagation();
-          if (!(el === event.target || event.path.includes(el))) {
-            vnode.context[binding.expression](event);
-          }
-        };
-        document.body.addEventListener("click", el.clickOutsideEvent);
-      },
-      unbind: function(el) {
-        document.body.removeEventListener("click", el.clickOutsideEvent);
-      }
-    }
   }
 };
 </script>
@@ -122,10 +102,13 @@ export default {
   height: 100%
   background-color: rgba(0, 0, 0, 0.5)
   transition: opacity 0.3s ease
+  &:hover
+    cursor: pointer
 
 .modal-wrapper
   position: relative
   width: 100%
+  cursor: default
 
 .modal-container
   box-sizing: border-box

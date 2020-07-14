@@ -66,7 +66,9 @@ export default {
   },
   mounted() {
     this.selectPage(this.$route.name);
+    this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
   },
+  computed: {},
   components: {
     appHeader,
     appFooter,
@@ -81,6 +83,9 @@ export default {
         500,
         "easeInQuad"
       );
+    },
+    $mq() {
+      this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
     }
   },
   methods: {

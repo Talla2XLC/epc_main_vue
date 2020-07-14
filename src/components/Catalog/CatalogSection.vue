@@ -220,6 +220,14 @@ export default {
           cursor: pointer
           position: relative
           z-index: 1
+          &:hover:after
+            content: ""
+            width: 100%
+            display: block
+            border-bottom: 1px solid black
+            position: absolute
+            left: 0
+            animation: lining 0.5s ease-in-out
       &-line
         position: absolute
         border-left: 2px solid #940000
@@ -292,4 +300,11 @@ export default {
   opacity: 0
   height: 0
   margin: 0
+
+
+@keyframes lining
+  0%
+    width: 0
+  100%
+    width: 100%
 </style>
