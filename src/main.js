@@ -18,8 +18,7 @@ Vue.use(VueGoogleMaps, {
 
 Vue.use(VueMq, {
   breakpoints: {
-    xs: 500,
-    s: 700,
+    s: 425,
     m: 1200,
     l: 1800,
     xl: Infinity

@@ -133,70 +133,65 @@ export default {
 
 .modal-close-cross
   position: absolute
-  width: 72px
-  height: 72px
+  width: 48px
+  height: 48px
   cursor: pointer
   top: 0
   right: 0
-  @include respond-to(xs)
+  @include respond-to(s)
+    width: 24px
+    height: 24px
+  @include respond-to(m)
     width: 48px
     height: 48px
-  @include respond-to(s)
-    width: 72px
-    height: 72px
-  @include respond-to(m)
-    width: 72px
-    height: 72px
   @include respond-to(l)
-    width: 72px
-    height: 72px
+    width: 48px
+    height: 48px
   @include respond-to(xl)
-    width: 72px
-    height: 72px
+    width: 48px
+    height: 48px
   &:after
     content: ""
     position: absolute
-    width: 6px
-    height: 45px
+    width: 4px
+    height: 30px
     background: #F0EFEF
     transform: rotate(-45deg)
     top: 20%
     right: 45%
-    @include respond-to(xs)
     @include respond-to(s)
+      width: 2px
+      height: 15px
+    @include respond-to(m)
       width: 4px
       height: 30px
-    @include respond-to(m)
-      width: 6px
-      height: 45px
     @include respond-to(l)
-      width: 6px
-      height: 45px
+      width: 4px
+      height: 30px
     @include respond-to(xl)
-      width: 6px
-      height: 45px
+      width: 4px
+      height: 30px
   &:before
     content: ""
     position: absolute
-    width: 6px
-    height: 45px
+    width: 4px
+    height: 30px
     background: #F0EFEF
     transform: rotate(-135deg)
     top: 20%
     right: 45%
-    @include respond-to(xs)
     @include respond-to(s)
+      width: 2px
+      height: 15px
+    @include respond-to(m)
       width: 4px
       height: 30px
-    @include respond-to(m)
-      width: 6px
-      height: 45px
     @include respond-to(l)
-      width: 6px
-      height: 45px
+      width: 4px
+      height: 30px
     @include respond-to(xl)
-      width: 6px
-      height: 45px
+      width: 4px
+      height: 30px
   &:hover:after, &:hover:before
     background: #4F4F51
     box-shadow: none

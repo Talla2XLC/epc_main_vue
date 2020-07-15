@@ -156,7 +156,7 @@ export default {
   padding: 100px 105px
   background-size: contain
   min-height: 536px
-  @include respond-to(xs)
+  overflow: hidden
   @include respond-to(s)
   @include respond-to(m)
     padding: 70px 20px
@@ -174,7 +174,6 @@ export default {
     right: 0
     height: 100%
     z-index: 0
-    @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
       width: 672px
@@ -200,11 +199,9 @@ export default {
     box-sizing: border-box
     display: flex
     flex-flow: column nowrap
-    justify-content: space-between
     width: 505px
     position: relative
     z-index: 3
-    @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
       width: 334px
@@ -215,6 +212,15 @@ export default {
     &-txt
       display: block
       text-align: left
+      margin-bottom: 37px
+      @include respond-to(s)
+        margin-bottom: 20px
+      @include respond-to(m)
+        margin-bottom: 37px
+      @include respond-to(l)
+        margin-bottom: 37px
+      @include respond-to(xl)
+        margin-bottom: 37px
     &-fields
       display: flex
       flex-flow: column nowrap
@@ -279,6 +285,15 @@ export default {
     padding: 72px 48px 90px
     > span
       text-align: center
+      margin-bottom: 60px
+      @include respond-to(s)
+        margin-bottom: 16px
+      @include respond-to(m)
+        margin-bottom: 60px
+      @include respond-to(l)
+        margin-bottom: 60px
+      @include respond-to(xl)
+        margin-bottom: 60px
 
 @media (max-height: 850px)
   .popup-form

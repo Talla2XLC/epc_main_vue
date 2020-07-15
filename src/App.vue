@@ -3,7 +3,7 @@
     <vue-scroll :ops="ops" ref="vs">
       <app-header />
       <main>
-        <router-view @open-modal="scrollToTop" />
+        <router-view @open-modal="setToTopView" />
         <Confidential :closeModal="closeConfidential" v-if="showConfidential" />
       </main>
       <app-footer :openConfidential="openConfidential" />
@@ -87,7 +87,7 @@ export default {
     },
     showConfidential() {
       if (this.showConfidential) {
-        this.scrollToTop();
+        this.setToTopView();
       }
     }
   },
@@ -107,6 +107,15 @@ export default {
           y: 0
         },
         500,
+        "easeInQuad"
+      );
+    },
+    setToTopView() {
+      this.$refs["vs"].scrollTo(
+        {
+          y: 0
+        },
+        0,
         "easeInQuad"
       );
     }
