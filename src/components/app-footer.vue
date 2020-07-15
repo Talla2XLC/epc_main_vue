@@ -5,7 +5,10 @@
       'text-body5': $mq === 'm' || $mq === 's' || $mq === 'xs'
     }"
   >
-    <span class="footer_span footer_span-confidential" @click="openConfidential">
+    <span
+      class="footer_span footer_span-confidential"
+      @click="openConfidential"
+    >
       Политика конфиденциальности
     </span>
     <span class="footer_span footer_span-right">

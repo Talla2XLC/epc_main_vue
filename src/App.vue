@@ -86,7 +86,9 @@ export default {
       this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
     },
     showConfidential() {
-      this.scrollToTop();
+      if (this.showConfidential) {
+        this.scrollToTop();
+      }
     }
   },
   methods: {

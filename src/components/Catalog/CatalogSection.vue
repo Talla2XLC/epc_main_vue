@@ -49,7 +49,11 @@
       </transition-group>
     </div>
     <img
-      :src="this.$mq === 'm' && this.name === 'Scully' ? require(`@/assets/images/Catalog/${name.toLowerCase()}_l_small.png`) : require(`@/assets/images/Catalog/${name.toLowerCase()}_l.png`)"
+      :src="
+        this.$mq === 'm' && this.name === 'Scully'
+          ? require(`@/assets/images/Catalog/${name.toLowerCase()}_l_small.png`)
+          : require(`@/assets/images/Catalog/${name.toLowerCase()}_l.png`)
+      "
       class="catalog-section-img-l"
       :alt="'catalog' + ind + '_left_pic'"
     />
@@ -70,7 +74,15 @@
 <script>
 export default {
   name: "CatalogSection",
-  props: ["name", "fullName", "items", "imagePosition", "isLast", "ind", "selectHandler"],
+  props: [
+    "name",
+    "fullName",
+    "items",
+    "imagePosition",
+    "isLast",
+    "ind",
+    "selectHandler"
+  ],
   data() {
     return {
       isOpened: false
@@ -102,8 +114,7 @@ export default {
                 this.imagePosition.m.right +
                 "px " +
                 this.imagePosition.m.top +
-                "px",
-
+                "px"
             };
           } else {
             return {

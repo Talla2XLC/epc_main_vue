@@ -63,7 +63,9 @@ export default {
   },
   watch: {
     showModal() {
-      this.$emit("open-modal");
+      if (this.showModal) {
+        this.$emit("open-modal");
+      }
     }
   },
   components: {
