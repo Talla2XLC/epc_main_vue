@@ -62,6 +62,9 @@ export default {
     }
   },
   watch: {
+    $route() {
+      this.showModal = false;
+    },
     showModal() {
       if (this.showModal) {
         this.$emit("open-modal");

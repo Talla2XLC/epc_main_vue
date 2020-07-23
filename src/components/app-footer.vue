@@ -61,8 +61,24 @@ footer
   &-confidential
     text-align: left
     cursor: pointer
+    display: block
+    position: relative
+    &:hover:after
+      content: ""
+      width: 100%
+      display: block
+      border-bottom: 1px solid black
+      position: absolute
+      left: 0
+      animation: lining 0.5s ease-in-out
   &-right
     text-align: right
+
+@keyframes lining
+  0%
+    width: 0
+  100%
+    width: 100%
 
 @media (max-height: 950px)
   footer

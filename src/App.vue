@@ -81,6 +81,7 @@ export default {
   watch: {
     $route() {
       this.scrollToTop();
+      this.showConfidential = false;
     },
     $mq() {
       this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
