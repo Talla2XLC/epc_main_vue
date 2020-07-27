@@ -42,7 +42,8 @@ export default {
   data() {
     return {
       formCreating: false,
-      emailDelivered: false
+      emailDelivered: false,
+      isMounted: false
     };
   },
   computed: {
@@ -51,8 +52,8 @@ export default {
     },
     isBannerFullyOpen() {
       if (!this.isMounted) return null;
-      let elem = this.$refs.flexibleArea;
-      return window.getComputedStyle(elem,null).getPropertyValue("width")
+      let elem = this.$refs.nupiBanner;
+      return window.getComputedStyle(elem, null).getPropertyValue("right");
     }
   },
   directives: {
@@ -72,6 +73,7 @@ export default {
   },
   mounted() {
     setTimeout(this.showBanner, 1000);
+    this.isMounted = true;
   },
   methods: {
     showForm() {
@@ -90,8 +92,10 @@ export default {
     },
 
     closeBanner() {
-      console.log(this.$refs.nupiBanner.style.height);
-      if (this.$refs.nupiBanner.classList.contains("move-in")) {
+      if (
+        this.isBannerFullyOpen &&
+        this.$refs.nupiBanner.classList.contains("move-in")
+      ) {
         this.$refs.nupiBanner.classList.remove("move-in");
         this.$refs.nupiBanner.classList.add("move-out");
         this.$store.dispatch("closeBanner");
