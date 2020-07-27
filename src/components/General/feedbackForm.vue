@@ -278,6 +278,7 @@ export default {
   padding: 0
   background: none
   min-height: 0
+  overflow: visible
   &-content
     width: 100%
     background: #FFFFFF
@@ -300,9 +301,15 @@ export default {
     &-content
       padding: 40px 48px
       justify-content: space-around
-@media (max-height: 850px)
   .feedback-form-header
       position: absolute
       top: -50px
-@media (max-height: 750px)
+@media (max-height: 790px)
+  .popup-form
+    &-content
+      > span
+        margin-bottom: 0
+  .feedback-form-header
+    top: 0
+    z-index: 4
 </style>

@@ -48,6 +48,11 @@ export default {
   computed: {
     bannerClosed() {
       return this.$store.state.bannerClosed;
+    },
+    isBannerFullyOpen() {
+      if (!this.isMounted) return null;
+      let elem = this.$refs.flexibleArea;
+      return window.getComputedStyle(elem,null).getPropertyValue("width")
     }
   },
   directives: {
@@ -85,6 +90,7 @@ export default {
     },
 
     closeBanner() {
+      console.log(this.$refs.nupiBanner.style.height);
       if (this.$refs.nupiBanner.classList.contains("move-in")) {
         this.$refs.nupiBanner.classList.remove("move-in");
         this.$refs.nupiBanner.classList.add("move-out");
@@ -215,6 +221,15 @@ export default {
   .nupi-banner
     &-contentArea
       margin-top: 40px
+
+@media (max-height: 700px)
+  .nupi-banner
+    justify-content: flex-end
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%)
+    &-contentArea
+      margin-top: 0
+      margin-bottom: 10px
+      height: 90%
 
 .move-in
   animation: move-in 1s ease-in

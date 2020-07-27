@@ -125,4 +125,10 @@ export default {
       margin-bottom: 0
       &-txt
         margin-bottom: 15px
+
+@media (max-height: 750px)
+  .nupi-banner-content
+    &-bottom
+      &-txt
+        margin-bottom: 5px
 </style>
