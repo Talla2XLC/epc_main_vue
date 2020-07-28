@@ -31,7 +31,6 @@ header
   background: #fff
   position: sticky
   top: 0
-  @include respond-to(xs)
   @include respond-to(s)
   @include respond-to(m)
   @include respond-to(l)
@@ -50,4 +49,12 @@ header
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
   z-index: 1
   min-height: 10px
+  @include respond-to(s)
+    min-height: 6px
+  @include respond-to(m)
+    min-height: 10px
+  @include respond-to(l)
+    min-height: 10px
+  @include respond-to(xl)
+    min-height: 10px
 </style>

@@ -1,17 +1,15 @@
 <template>
-  <transition name="glow" appear>
-    <div class="burger_div">
-      <div class="burger-top"></div>
-      <div class="burger-center"></div>
-      <div class="burger-bot"></div>
-    </div>
-  </transition>
+  <div class="burger-div">
+    <div class="burger-top"></div>
+    <div class="burger-center"></div>
+    <div class="burger-bot"></div>
+  </div>
 </template>
 
 <script></script>
 
 <style lang="sass" scoped>
-.burger_div
+.burger-div
     position: relative
     display: -webkit-flex
     display: -moz-flex
@@ -36,17 +34,4 @@
     width: 3rem
     border: 0.5px solid #ed001e
     animation: glow 3s infinite ease-in-out
-@keyframes glow
-    0%
-        -webkit-box-shadow: none
-        -moz-box-shadow: none
-        box-shadow: none
-    50%
-        -webkit-box-shadow: 0px 0px 4px 0.3px rgba(237, 0, 30, 1)
-        -moz-box-shadow: 0px 0px 4px 0.3px rgba(237, 0, 30, 1)
-        box-shadow: 0px 0px 4px 0.3px rgba(237, 0, 30, 1)
-    100%
-        -webkit-box-shadow: none
-        -moz-box-shadow: none
-        box-shadow: none
 </style>

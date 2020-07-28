@@ -7,7 +7,8 @@
       {
         selected_page: this.selectedPage === this.page_name,
         'text-body3': $mq === 'xl' || $mq === 'l',
-        'text-body5': $mq === 'm'
+        'text-body5': $mq === 'm',
+        'text-body6': $mq === 's'
       }
     ]"
     @click.native="selectPage"
@@ -48,8 +49,9 @@ export default {
     outline: none
 .main_btn
   margin-right: 36px
-  @include respond-to(xs)
   @include respond-to(s)
+    margin-right: 0
+    margin-bottom: 12px
   @include respond-to(m)
     margin-right: 20px
   @include respond-to(l)

@@ -36,24 +36,86 @@
 import feedbackForm from "../General/feedbackForm";
 import bannerContent from "./Banner/bannerContent";
 import showArrow from "./Banner/showArrow";
+import { gsap } from "gsap";
 
 export default {
   name: "nupi-banner",
   data() {
     return {
       formCreating: false,
-      emailDelivered: false,
-      isMounted: false
+      emailDelivered: false
     };
   },
   computed: {
     bannerClosed() {
       return this.$store.state.bannerClosed;
+    }
+  },
+  watch: {
+    bannerClosed(state) {
+      if (state) {
+        switch (this.$mq) {
+          case "xl":
+            gsap.to(this.$refs.nupiBanner, {
+              duration: 1.5,
+              right: "-59.7%",
+              ease: "power1.out"
+            });
+            break;
+          case "l":
+            gsap.to(this.$refs.nupiBanner, {
+              duration: 1.5,
+              right: "-58%",
+              ease: "power1.out"
+            });
+            break;
+          case "m":
+            gsap.to(this.$refs.nupiBanner, {
+              duration: 1.5,
+              right: "-83%",
+              ease: "power1.out"
+            });
+            break;
+          default:
+            gsap.to(this.$refs.nupiBanner, {
+              duration: 1.5,
+              right: "-58%",
+              ease: "power1.out"
+            });
+            break;
+        }
+      } else {
+        gsap.to(this.$refs.nupiBanner, {
+          duration: 1.5,
+          right: 0,
+          ease: "power1.out"
+        });
+      }
     },
-    isBannerFullyOpen() {
-      if (!this.isMounted) return null;
-      let elem = this.$refs.nupiBanner;
-      return window.getComputedStyle(elem, null).getPropertyValue("right");
+    $mq(size) {
+      if (!this.bannerClosed) return;
+      switch (size) {
+        case "xl":
+          gsap.set(this.$refs.nupiBanner, {
+            right: "-59.7%"
+          });
+          break;
+        case "l":
+          gsap.set(this.$refs.nupiBanner, {
+            right: "-58%"
+          });
+          break;
+        case "m":
+          gsap.set(this.$refs.nupiBanner, {
+            right: "-83%"
+          });
+          break;
+        default:
+          gsap.set(this.$refs.nupiBanner, {
+            right: "-58%"
+          });
+          break;
+      }
     }
   },
   directives: {
@@ -73,7 +135,6 @@ export default {
   },
   mounted() {
     setTimeout(this.showBanner, 1000);
-    this.isMounted = true;
   },
   methods: {
     showForm() {
@@ -86,20 +147,11 @@ export default {
     },
 
     showBanner() {
-      this.$refs.nupiBanner.classList.remove("move-out");
-      this.$refs.nupiBanner.classList.add("move-in");
       this.$store.dispatch("showBanner");
     },
 
     closeBanner() {
-      if (
-        this.isBannerFullyOpen &&
-        this.$refs.nupiBanner.classList.contains("move-in")
-      ) {
-        this.$refs.nupiBanner.classList.remove("move-in");
-        this.$refs.nupiBanner.classList.add("move-out");
-        this.$store.dispatch("closeBanner");
-      }
+      this.$store.dispatch("closeBanner");
     },
     setEmailDelivered() {
       this.formCreating = false;
@@ -122,7 +174,6 @@ export default {
   padding-right: 100px
   box-sizing: border-box
   position: absolute
-  transition: 200ms ease-in
   clip-path: polygon(35% 0, 100% 0, 100% 100%, 0 100%)
   right: -58%
   display: flex
@@ -234,57 +285,6 @@ export default {
       margin-top: 0
       margin-bottom: 10px
       height: 90%
-
-.move-in
-  animation: move-in 1s ease-in
-  right: 0
-
-.move-out
-  animation: move-out 1s ease-in
-  right: -58%
-  @include respond-to(xs)
-  @include respond-to(s)
-  @include respond-to(m)
-    right: -83%
-  @include respond-to(l)
-    right: -58%
-  @include respond-to(xl)
-    right: -59.7%
-
-@keyframes move-in
-  0%
-    right: -58%
-  100%
-    right: 0
-@keyframes move-out
-  0%
-    right: 0
-  100%
-    right: -58%
-
-@media (max-width: 1200px)
-  @keyframes move-in
-    0%
-      right: -83%
-    100%
-      right: 0
-  @keyframes move-out
-    0%
-      right: 0
-    100%
-      right: -83%
-
-@media (min-width: 1800px)
-  @keyframes move-in
-    0%
-      right: -59.7%
-    100%
-      right: 0
-  @keyframes move-out
-    0%
-      right: 0
-    100%
-      right: -59.7%
 
 @keyframes appear
   0%
