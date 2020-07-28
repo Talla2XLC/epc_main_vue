@@ -15,16 +15,39 @@
     <div class="menu-list-div">
       <div
         class="menu-list"
-        v-show="!mobileView || (mobileView && mobileMenuOpened)"
         :class="{
           'menu-list-mobile': mobileView
         }"
         ref="menuList"
       >
-        <menu-section page_name="news">Новости</menu-section>
-        <menu-section page_name="about">О компании</menu-section>
-        <menu-section page_name="catalog">Каталог</menu-section>
-        <menu-section page_name="contacts">Контакты</menu-section>
+        <menu-section
+          class="menu-list-section"
+          page_name="news"
+          :selectPage="selectPage"
+        >
+          Новости
+        </menu-section>
+        <menu-section
+          class="menu-list-section"
+          page_name="about"
+          :selectPage="selectPage"
+        >
+          О компании
+        </menu-section>
+        <menu-section
+          class="menu-list-section"
+          page_name="catalog"
+          :selectPage="selectPage"
+        >
+          Каталог
+        </menu-section>
+        <menu-section
+          class="menu-list-section"
+          page_name="contacts"
+          :selectPage="selectPage"
+        >
+          Контакты
+        </menu-section>
       </div>
       <div
         v-if="mobileView"
@@ -63,6 +86,7 @@ export default {
   methods: {
     selectPage(page) {
       this.$store.dispatch("selectPage", page);
+      this.mobileMenuOpened = false;
     },
     switchMobileMenu() {
       this.mobileMenuOpened = !this.mobileMenuOpened;
@@ -70,38 +94,70 @@ export default {
   },
   watch: {
     mobileMenuOpened(state) {
-      if (state) {
+      let tl = gsap.timeline();
+      if (state && this.mobileView) {
         gsap.to(this.$refs.menuArrow, {
           duration: 1,
           rotation: 135,
           borderColor: "#4F4F51"
         });
-        gsap.to(this.$refs.mainNav, {
+        tl.to(this.$refs.mainNav, {
           duration: 0.7,
           height: 208
         });
         gsap.to(this.$refs.menuList, {
           duration: 0.5,
-          opacity: 1
+          height: "100%"
         });
-      } else {
+        tl.fromTo(
+          ".menu-list-section",
+          {
+            opacity: 0,
+            y: -50
+          },
+          {
+            opacity: 1,
+            y: 0,
+            ease: "back.out(1.5)",
+            duration: 0.5,
+            stagger: {
+              each: 0.25,
+              from: "end"
+            }
+          },
+          "-=0.2"
+        );
+      } else if (this.mobileView) {
         gsap.to(this.$refs.menuArrow, {
           duration: 1,
           rotation: -45,
           borderColor: "#EC001D"
         });
+        gsap.to(this.$refs.menuList, {
+          duration: 0.7,
+          height: 0
+        });
         gsap.to(this.$refs.mainNav, {
           duration: 0.7,
           height: 42
         });
-        gsap.to(this.$refs.menuList, {
-          duration: 0.5,
+        gsap.to(".menu-list-section", {
+          duration: 0.15,
           opacity: 0
         });
       }
     },
-    $mq() {
+    $mq(size) {
       this.mobileMenuOpened = false;
+      if (size !== "s") {
+        gsap.to(this.$refs.mainNav, {
+          height: 42
+        });
+      } else {
+        gsap.to(this.$refs.menuList, {
+          height: 0
+        });
+      }
     }
   },
   components: {
@@ -196,8 +252,10 @@ export default {
   margin-left: 20px
   display: flex
   flex-flow: row nowrap
+  overflow: hidden
   @include respond-to(s)
     margin-left: 0
+    height: 0
   @include respond-to(m)
     margin-left: 0
   @include respond-to(l)

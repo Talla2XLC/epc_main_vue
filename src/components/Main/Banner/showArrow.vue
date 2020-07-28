@@ -18,6 +18,12 @@ export default {
   bottom: 1rem
   left: 3rem
   cursor: pointer
+  @include respond-to(s)
+    top: 0
+    right: 1.5rem
+    left: auto
+    width: 20px
+    height: 20px
   @include respond-to(m)
     left: 1.5rem
   @include respond-to(l)
@@ -33,9 +39,10 @@ export default {
   height: 20px
   margin: 0
   transform: rotate(-270deg)
-  @include respond-to(xs)
   @include respond-to(s)
-  @include respond-to(m)
+    transform: rotate(-180deg)
+    width: 10px
+    height: 10px
   &:before
     content: ''
     position: absolute
@@ -46,6 +53,10 @@ export default {
     border-bottom: 4px solid white
     transform: translate(5px, 52px) rotate(-45deg)
     animation: arrow-8 1.5s linear infinite
+    @include respond-to(s)
+      border-left: 2px solid white
+      border-bottom: 2px solid white
+      animation: arrow-8 1s linear infinite
 
 @keyframes arrow-8
   0%
@@ -53,8 +64,6 @@ export default {
     transform: translate(-6px, -10px) rotate(-45deg)
   50%
     opacity: 1
-    border-left: 4px solid white
-    border-bottom: 4px solid white
     transform: translate(-6px, 0px) rotate(-45deg)
   100%
     opacity: 0

@@ -17,7 +17,8 @@
             :class="{
               'text-hero': $mq === 'xl',
               'text-h1': $mq === 'l',
-              'text-h2': $mq === 'm'
+              'text-h2': $mq === 'm',
+              'text-h4': $mq === 's'
             }"
           >
             Технологии и качество на&nbsp;высшем&nbsp;уровне
@@ -26,14 +27,11 @@
             :class="{
               'text-body1': $mq === 'xl',
               'text-body2': $mq === 'l',
-              'text-body4': $mq === 'm'
+              'text-body4': $mq === 'm',
+              'text-body5': $mq === 's'
             }"
-          >
-            Наша компания является официальным сервисным и&nbsp;логистическим
-            партнёром ряда европейских производителей технологического
-            оборудования, таких как Nupi Industrie Italiane S.p.A., Scully
-            Signal Company, Emco Wheaton GmbH, Rotork Plc и EVBox
-          </p>
+            v-html="contentTxt"
+          />
         </div>
       </div>
       <nupi-banner />
@@ -51,6 +49,15 @@ export default {
   name: "Main",
   metaInfo: {
     title: "EPC Main"
+  },
+  computed: {
+    contentTxt() {
+      if (this.$mq === "s") {
+        return "Наша компания является официальным сервисным и&nbsp;логистическим партнёром ряда&nbsp;европейских производителей технологического оборудования.";
+      } else {
+        return "Наша компания является официальным сервисным и&nbsp;логистическим партнёром ряда&nbsp;европейских производителей технологического оборудования, таких как Nupi Industrie Italiane S.p.A., Scully Signal Company, Emco Wheaton GmbH, Rotork Plc и EVBox.";
+      }
+    }
   },
   components: {
     partners,
@@ -99,22 +106,10 @@ export default {
   box-sizing: border-box
   position: relative
   z-index: 2
-  @include respond-to(xs)
-    display: grid
-    grid-template-columns: 1fr
-    grid-auto-rows: 50%
-    grid-row-gap: 0
-    justify-items: center
-    align-items: start
-    padding: 0
+  overflow: hidden
   @include respond-to(s)
-    display: grid
-    grid-template-columns: 1fr
-    grid-auto-rows: 50%
-    grid-row-gap: 0
-    justify-items: center
-    align-items: start
-    padding: 0
+    flex-flow: column nowrap
+    padding: 134px 10px 90px
   @include respond-to(m)
     display: grid
     grid-template-columns: 1fr
@@ -131,10 +126,8 @@ export default {
     padding: 0 100px
   &-header
     margin-bottom: 47px
-    @include respond-to(xs)
-      margin-bottom: 30px
     @include respond-to(s)
-      margin-bottom: 30px
+      margin-bottom: 14px
     @include respond-to(m)
       margin-bottom: 30px
     @include respond-to(l)
@@ -156,12 +149,11 @@ export default {
   flex-flow: row nowrap
   align-items: center
   justify-content: center
-  @include respond-to(xs)
-    width: auto
-    margin-right: 0
   @include respond-to(s)
     width: auto
     margin-right: 0
+    flex-grow: 0
+    margin-bottom: 50px
   @include respond-to(m)
     width: auto
     margin-right: 0
@@ -176,8 +168,9 @@ export default {
   transition: transform 200ms ease-in
   &:hover
     transform: scale(1.15)
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 250px
+    height: 76px
   @include respond-to(m)
     width: 450px
     height: 139px
@@ -203,6 +196,7 @@ export default {
   @include respond-to(xs)
     width: auto
     margin-left: 0
+    flex-grow: 0
   @include respond-to(s)
     width: auto
     margin-left: 0

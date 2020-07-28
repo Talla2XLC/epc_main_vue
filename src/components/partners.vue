@@ -84,8 +84,9 @@ export default {
   position: sticky
   bottom: 40px
   z-index: 8
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 0 12px
+    overflow-x: auto
   @include respond-to(m)
     padding: 0 40px
   @include respond-to(l)
@@ -108,24 +109,24 @@ export default {
     justify-content: center
     height: 80px
     width: 190px
-    @include respond-to(xs)
     @include respond-to(s)
+      height: 48px !important
     @include respond-to(m)
     @include respond-to(l)
       width: 190px
     @include respond-to(xl)
       width: 270px
+    &:not(:last-of-type)
+      @include respond-to(s)
+        margin-right: 20px
 
 .scully-logo
   filter: saturate(0)
   width: 150px
   height: 40px
-  @include respond-to(xs)
-    width: 98px
-    height: 26px
   @include respond-to(s)
     width: 98px
-    height: 26px
+    height: 24px
   @include respond-to(m)
     width: 98px
     height: 26px
@@ -140,9 +141,6 @@ export default {
   filter: saturate(0) opacity(50%)
   width: 162px
   height: 40px
-  @include respond-to(xs)
-    width: 100px
-    height: 24px
   @include respond-to(s)
     width: 100px
     height: 24px
@@ -160,13 +158,9 @@ export default {
   filter: saturate(0) opacity(60%)
   width: 50px
   height: 50px
-  @include respond-to(xs)
-    width: 34px
-    height: 34px
-  @include respond-to(m)
   @include respond-to(s)
-    width: 34px
-    height: 34px
+    width: 24px
+    height: 24px
   @include respond-to(m)
     width: 34px
     height: 34px
@@ -181,9 +175,6 @@ export default {
   filter: saturate(0) contrast(40%)
   width: 136px
   height: 40px
-  @include respond-to(xs)
-    width: 80px
-    height: 24px
   @include respond-to(s)
     width: 80px
     height: 24px
@@ -201,8 +192,9 @@ export default {
   filter: saturate(0) contrast(0) brightness(0.9)
   width: 134px
   height: 46px
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 70px
+    height: 24px
   @include respond-to(m)
     width: 88px
     height: 30px

@@ -3,11 +3,15 @@
     <h1
       :class="{
         'text-hero': $mq === 'xl' || $mq === 'l',
-        'text-h2T': $mq === 'm'
+        'text-h2T': $mq === 'm',
+        'text-h3': $mq === 's'
       }"
     >
-      ООО «Единый Процессинговый Центр»
+      {{ aboutHeader }}
     </h1>
+    <h5 class="text-h5" v-if="this.$mq === 's'">
+      (Единый Процессинговый Центр)
+    </h5>
     <History />
     <Customers />
     <Projects />
@@ -29,6 +33,13 @@ export default {
     Projects,
     Mission
   },
+  computed: {
+    aboutHeader() {
+      return this.$mq === "s"
+        ? "ООО «ЕРС»"
+        : "ООО «Единый Процессинговый Центр»";
+    }
+  },
   methods: {
     selectPage() {
       this.$store.dispatch("selectPage", "about");
@@ -48,8 +59,8 @@ export default {
   justify-content: flex-start
   align-items: center
   padding: 100px 50px
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 98px 0 50px
   @include respond-to(m)
     padding: 70px 20px
   @include respond-to(l)
@@ -58,12 +69,14 @@ export default {
     padding: 100px 245px
   >h1
     margin-bottom: 60px
-    @include respond-to(xs)
     @include respond-to(s)
+      margin-bottom: 2px
     @include respond-to(m)
       margin-bottom: 30px
     @include respond-to(l)
       margin-bottom: 60px
     @include respond-to(xl)
       margin-bottom: 60px
+  >h5
+    margin-bottom: 46px
 </style>

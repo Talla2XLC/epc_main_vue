@@ -4,7 +4,8 @@
     :class="[
       type + '-btn',
       color + '-btn',
-      inactive ? color + '-inactive-btn' : ''
+      inactive ? color + '-inactive-btn' : '',
+      this.$mq === 's' ? 'text-h5' : ''
     ]"
   >
     <slot>{{ type === "submit" ? "Отправить" : "" }}</slot>

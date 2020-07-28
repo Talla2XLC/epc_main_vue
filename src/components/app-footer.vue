@@ -2,7 +2,8 @@
   <footer
     :class="{
       'text-body3': $mq === 'xl' || $mq === 'l',
-      'text-body5': $mq === 'm' || $mq === 's' || $mq === 'xs'
+      'text-body5': $mq === 'm',
+      'text-body6': $mq === 's'
     }"
   >
     <span
@@ -44,10 +45,11 @@ footer
   box-sizing: border-box
   align-items: center
   padding: 0 100px
-  @include respond-to(xs)
-    padding: 0 40px
   @include respond-to(s)
-    padding: 0 40px
+    flex-flow: column nowrap
+    padding: 12px
+    min-height: 66px !important
+    z-index: 1
   @include respond-to(m)
     padding: 0 40px
   @include respond-to(l)

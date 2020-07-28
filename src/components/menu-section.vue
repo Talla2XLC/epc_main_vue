@@ -20,15 +20,10 @@
 <script>
 export default {
   name: "menu-section",
-  props: ["page_name"],
+  props: ["page_name", "selectPage"],
   computed: {
     selectedPage() {
       return this.$store.state.selectedPage;
-    }
-  },
-  methods: {
-    selectPage() {
-      this.$store.dispatch("selectPage", this.page_name);
     }
   }
 };
@@ -42,7 +37,6 @@ export default {
   text-decoration: none
   color: black
   box-sizing: border-box
-  transition: transform 100ms ease-in
   position: relative
   z-index: 1
   &:focus

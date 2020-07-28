@@ -8,19 +8,30 @@
       :class="{ 'popup-form-content': popupForm }"
     >
       <span
-        class="feedback-form-content-txt "
+        class="feedback-form-content-txt"
         :class="{
           'text-h3': !popupForm,
           'text-body2': popupForm && ($mq === 'l' || $mq === 'xl'),
-          'text-body3':
-            popupForm && ($mq === 'm' || $mq === 's' || $mq === 'xs')
+          'text-body3': popupForm && $mq === 'm',
+          'text-body5': popupForm && $mq === 's'
         }"
       >
         <slot></slot>
       </span>
       <div class="feedback-form-content-fields">
-        <label for="feedback-form-input-name" class="feedback-form-input-label">
-          <span class="feedback-form-input-label-txt text-caption">Имя</span>
+        <label
+          for="feedback-form-input-name"
+          class="feedback-form-input-label"
+          :class="{ 'popup-form-input-label': popupForm }"
+        >
+          <span
+            class="feedback-form-input-label-txt"
+            :class="{
+              'text-caption': $mq === 'l' || $mq === 'xl' || $mq === 'm',
+              'text-caption2': $mq === 's'
+            }"
+            >Имя</span
+          >
           <input
             id="feedback-form-input-name"
             maxlength="30"
@@ -32,8 +43,14 @@
         <label
           for="feedback-form-input-phone"
           class="feedback-form-input-label"
+          :class="{ 'popup-form-input-label': popupForm }"
         >
-          <span class="feedback-form-input-label-txt text-caption"
+          <span
+            class="feedback-form-input-label-txt"
+            :class="{
+              'text-caption': $mq === 'l' || $mq === 'xl' || $mq === 'm',
+              'text-caption2': $mq === 's'
+            }"
             >Телефон</span
           >
           <input
@@ -193,6 +210,9 @@ export default {
   &-header
     align-self: flex-end
     position: relative
+    @include respond-to(s)
+      top: -24px !important
+      right: 12px
 
   &-content
     flex-grow: 1
@@ -230,6 +250,9 @@ export default {
     width: 48px
     height: 48px
     cursor: pointer
+    @include respond-to(s)
+      width: 24px
+      height: 24px
     &:after
       content: ""
       position: absolute
@@ -240,6 +263,10 @@ export default {
       top: 20%
       right: 45%
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
+      @include respond-to(s)
+        width: 2.67px
+        height: 20px
+        top: 10%
     &:before
       content: ""
       position: absolute
@@ -250,6 +277,10 @@ export default {
       top: 20%
       right: 45%
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15)
+      @include respond-to(s)
+        width: 2.67px
+        height: 20px
+        top: 10%
     &:hover:after, &:hover:before
       background: #F0EFEF
       box-shadow: none
@@ -266,6 +297,8 @@ export default {
     border-radius: 2px
     padding: 10px 14px
     margin-bottom: 14px
+    @include respond-to(s)
+      margin-bottom: 6px
     &-label
       display: flex
       flex-flow: column nowrap
@@ -279,22 +312,28 @@ export default {
   background: none
   min-height: 0
   overflow: visible
+  @include respond-to(s)
+    width: 100%
   &-content
     width: 100%
     background: #FFFFFF
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
     padding: 72px 48px 90px
+    @include respond-to(s)
+      padding: 30px 12px 22px !important
     > span
       text-align: center
       margin-bottom: 60px
       @include respond-to(s)
-        margin-bottom: 16px
+        margin-bottom: 16px !important
       @include respond-to(m)
         margin-bottom: 60px
       @include respond-to(l)
         margin-bottom: 60px
       @include respond-to(xl)
         margin-bottom: 60px
+  &-input-label:last-of-type
+    margin-bottom: 8px
 
 @media (max-height: 850px)
   .popup-form

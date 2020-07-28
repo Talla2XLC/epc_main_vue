@@ -1,8 +1,13 @@
 <template>
   <div class="nupi-banner-content">
-    <span class="nupi-banner-content-top text-h3">
-      Официальный логистический центр
-      компании Nupi Industrie Italiane S.p.A.
+    <span
+      class="nupi-banner-content-top"
+      :class="{
+        'text-h3': $mq === 'xl' || $mq === 'l' || $mq === 'm',
+        'text-h5': $mq === 's'
+      }"
+    >
+      Официальный логистический центр компании Nupi Industrie Italiane S.p.A.
       в&nbsp;РФ&nbsp;и&nbsp;странах&nbsp;СНГ.
     </span>
     <img
@@ -11,7 +16,13 @@
       alt="Nupi logo"
     />
     <div class="nupi-banner-content-bottom">
-      <span class="nupi-banner-content-bottom-txt text-h3">
+      <span
+        class="nupi-banner-content-bottom-txt"
+        :class="{
+          'text-h3': $mq === 'xl' || $mq === 'l' || $mq === 'm',
+          'text-h5': $mq === 's'
+        }"
+      >
         Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
       </span>
       <Button type="callback" color="white" @click.native="showFeedbackForm"
@@ -39,19 +50,18 @@ export default {
 <style lang="sass" scoped>
 .nupi-banner-content
   height: 100%
+  width: 100%
   display: flex
   flex-flow: column nowrap
   align-items: center
   justify-content: space-between
   text-align: center
   color: #F0EFEF
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 0 12px
   @include respond-to(m)
-    width: 452px
   &-top
     margin-top: 55px
-    @include respond-to(xs)
     @include respond-to(s)
     @include respond-to(m)
       margin-top: 48px
@@ -64,6 +74,8 @@ export default {
     flex-flow: column nowrap
     &-txt
       margin-bottom: 40px
+      @include respond-to(s)
+        margin-bottom: 22px !important
 
 .nupi-banner-nupi-img
   width: 123px
@@ -73,8 +85,10 @@ export default {
   top: 0
   bottom: 0
   margin: auto 0
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 76px
+    height: 76px
+    top: 25px
   @include respond-to(m)
     position: relative
     top: auto

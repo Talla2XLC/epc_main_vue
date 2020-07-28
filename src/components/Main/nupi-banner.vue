@@ -18,7 +18,8 @@
         <span
           :class="{
             'text-body2': $mq === 'xl' || $mq === 'l',
-            'text-body3': $mq === 'm' || $mq === 's' || $mq === 'xs'
+            'text-body3': $mq === 'm',
+            'text-body5': $mq === 's'
           }"
         >
           Спасибо! Ваши данные получены. Мы&nbsp;скоро Вам перезвоним!
@@ -76,6 +77,13 @@ export default {
               ease: "power1.out"
             });
             break;
+          case "s":
+            gsap.to(this.$refs.nupiBanner, {
+              duration: 1.5,
+              bottom: "-86.5%",
+              ease: "power1.out"
+            });
+            break;
           default:
             gsap.to(this.$refs.nupiBanner, {
               duration: 1.5,
@@ -88,6 +96,7 @@ export default {
         gsap.to(this.$refs.nupiBanner, {
           duration: 1.5,
           right: 0,
+          bottom: 0,
           ease: "power1.out"
         });
       }
@@ -108,6 +117,12 @@ export default {
         case "m":
           gsap.set(this.$refs.nupiBanner, {
             right: "-83%"
+          });
+          break;
+        case "s":
+          gsap.set(this.$refs.nupiBanner, {
+            right: 0,
+            bottom: "-86.5%"
           });
           break;
         default:
@@ -180,8 +195,13 @@ export default {
   flex-flow: column nowrap
   align-items: flex-end
   justify-content: center
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 129px 0 36px
+    width: 100%
+    right: 0
+    bottom: -86.5%
+    height: 494px
+    clip-path: polygon(67% 0, 100% 0, 100% 100%, 0 100%, 0 25%) !important
   @include respond-to(m)
     width: 95%
     right: -83%
@@ -205,8 +225,10 @@ export default {
     margin-top: 30px
     display: flex
     justify-content: flex-end
-    @include respond-to(xs)
     @include respond-to(s)
+      width: 100%
+      height: 100% !important
+      margin-bottom: 0 !important
     @include respond-to(m)
       width: 505px
       margin-top: 0
@@ -225,6 +247,8 @@ export default {
     flex-flow: column nowrap
     justify-content: center
     align-items: center
+    @include respond-to(s)
+      padding: 12px
     >span
       display: block
       text-align: center
@@ -243,6 +267,9 @@ export default {
   align-items: center
   position: relative
   cursor: pointer
+  @include respond-to(s)
+    width: 48px
+    height: 48px
   &-mark
     display: block
     width: 20px
@@ -253,6 +280,11 @@ export default {
     border-bottom: 4px solid #4F4F51
     transform: rotate(45deg)
     bottom: 5px
+    @include respond-to(s)
+      width: 13.34px
+      height: 20px
+      border-right: 2.67px solid #4F4F51
+      border-bottom: 2.67px solid #4F4F51
   &:hover
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4)
   &:active

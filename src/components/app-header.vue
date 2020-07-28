@@ -31,7 +31,9 @@ header
   background: #fff
   position: sticky
   top: 0
+  width: 100%
   @include respond-to(s)
+    position: fixed
   @include respond-to(m)
   @include respond-to(l)
   @include respond-to(xl)
