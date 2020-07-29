@@ -156,7 +156,7 @@ export default {
   overflow: hidden
   @include respond-to(s)
     flex-flow: column nowrap
-    padding: 134px 10px 90px
+    padding: 40% 10px 90px
   @include respond-to(m)
     display: grid
     grid-template-columns: 1fr

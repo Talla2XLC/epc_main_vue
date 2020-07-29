@@ -1,13 +1,14 @@
 <template>
   <div class="about-projects-section">
-    <div class="about-projects-section-decor">
+    <div class="about-projects-section-decor" v-if="this.$mq !== 's'">
       <div class="about-projects-section-decor-dot" />
     </div>
     <span
       class="about-projects-section-year"
       :class="{
         'text-body1': $mq === 'xl' || $mq === 'l',
-        'text-body3': $mq === 'm'
+        'text-body3': $mq === 'm',
+        'text-body6': $mq === 's'
       }"
     >
       <slot name="year"></slot>
@@ -16,7 +17,8 @@
       class="about-projects-section-txt"
       :class="{
         'text-body3': $mq === 'xl' || $mq === 'l',
-        'text-body5': $mq === 'm'
+        'text-body5': $mq === 'm',
+        'text-body6': $mq === 's'
       }"
     >
       <slot name="text"></slot>
@@ -36,8 +38,9 @@ export default {
   flex-flow: row nowrap
   align-items: stretch
   position: relative
-  @include respond-to(xs)
   @include respond-to(s)
+    margin-left: 0
+    padding: 0 12px
   @include respond-to(m)
     margin-left: 26px
   @include respond-to(l)
@@ -47,11 +50,6 @@ export default {
   &-decor
     position: relative
     width: 20px
-    @include respond-to(xs)
-    @include respond-to(s)
-    @include respond-to(m)
-    @include respond-to(l)
-    @include respond-to(xl)
     &-dot
       width: 20px
       height: 20px
@@ -76,8 +74,10 @@ export default {
     width: 85px
     margin-left: 53px
     box-sizing: border-box
-    @include respond-to(xs)
     @include respond-to(s)
+      margin-left: 0
+      width: 64px
+      color: #940000
     @include respond-to(m)
       width: 97px
       margin-left: 55px
@@ -94,8 +94,10 @@ export default {
     box-sizing: border-box
     margin-left: 126px
     width: 712px
-    @include respond-to(xs)
     @include respond-to(s)
+      margin-left: 10px
+      width: 222px
+      padding-bottom: 6px
     @include respond-to(m)
       margin-left: 22px
       width: 451px

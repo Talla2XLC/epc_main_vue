@@ -88,7 +88,7 @@ export default {
   @include respond-to(s)
     width: 76px
     height: 76px
-    top: 25px
+    position: relative
   @include respond-to(m)
     position: relative
     top: auto

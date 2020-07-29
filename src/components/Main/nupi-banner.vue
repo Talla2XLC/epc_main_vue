@@ -80,7 +80,7 @@ export default {
           case "s":
             gsap.to(this.$refs.nupiBanner, {
               duration: 1.5,
-              bottom: "-86.5%",
+              bottom: "calc(-100% + 70px)",
               ease: "power1.out"
             });
             break;
@@ -199,9 +199,9 @@ export default {
     padding: 129px 0 36px
     width: 100%
     right: 0
-    bottom: -86.5%
-    height: 494px
-    clip-path: polygon(67% 0, 100% 0, 100% 100%, 0 100%, 0 25%) !important
+    bottom: calc(-100% + 70px)
+    height: calc(100% - 48px)
+    clip-path: polygon(67% 0, 100% 0, 100% 100%, 0 100%, 0 24%) !important
   @include respond-to(m)
     width: 95%
     right: -83%
