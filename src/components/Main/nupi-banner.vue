@@ -201,7 +201,7 @@ export default {
     right: 0
     bottom: calc(-100% + 70px)
     height: calc(100% - 48px)
-    clip-path: polygon(67% 0, 100% 0, 100% 100%, 0 100%, 0 24%) !important
+    clip-path: polygon(66% 0, 100% 0, 100% 100%, 0 100%, 0 24%) !important
   @include respond-to(m)
     width: 95%
     right: -83%
