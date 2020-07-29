@@ -158,6 +158,11 @@ export default {
           height: 0
         });
       }
+    },
+    bannerClosed(status) {
+      if (!status && this.$mq === "s") {
+        this.mobileMenuOpened = false;
+      }
     }
   },
   components: {

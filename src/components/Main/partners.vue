@@ -86,7 +86,6 @@ export default {
   z-index: 8
   @include respond-to(s)
     padding: 0 12px
-    overflow-x: auto
   @include respond-to(m)
     padding: 0 40px
   @include respond-to(l)
@@ -111,7 +110,9 @@ export default {
     width: 190px
     @include respond-to(s)
       height: 48px !important
+      width: auto
     @include respond-to(m)
+      width: 120px
     @include respond-to(l)
       width: 190px
     @include respond-to(xl)

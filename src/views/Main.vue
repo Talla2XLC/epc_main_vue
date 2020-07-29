@@ -36,19 +36,65 @@
       </div>
       <nupi-banner />
     </div>
-    <partners />
+    <vue-scroll :ops="ops" ref="vs">
+      <partners />
+    </vue-scroll>
   </div>
 </template>
 
 <script>
-import partners from "@/components/partners";
+import partners from "@/components/Main/partners";
 import nupiBanner from "@/components/Main/nupi-banner";
 import EPCLogoFull from "@/assets/svg/epc-logo-full.svg";
+import vueScroll from "vuescroll";
 
 export default {
   name: "Main",
   metaInfo: {
     title: "EPC Main"
+  },
+  data() {
+    return {
+      ops: {
+        vuescroll: {
+          mode: "native",
+          sizeStrategy: "percent",
+          detectResize: true
+        },
+        scrollPanel: {
+          initialScrollY: 0,
+          initialScrollX: 0,
+          scrollingX: true,
+          scrollingY: false,
+          speed: 300,
+          easing: "easeInQuad",
+          verticalNativeBarPos: "right"
+        },
+        rail: {
+          background: "#F0EFEF",
+          opacity: 0,
+          size: "6px",
+          specifyBorderRadius: false,
+          gutterOfEnds: null,
+          gutterOfSide: "2px",
+          keepShow: false
+        },
+        bar: {
+          showDelay: 800,
+          onlyShowBarOnScroll: false,
+          keepShow: false,
+          background: "#DAD7D7",
+          opacity: 1,
+          hoverStyle: {
+            background: "#FFF"
+          },
+          specifyBorderRadius: false,
+          minSize: 0,
+          size: "6px",
+          disable: false
+        }
+      }
+    };
   },
   computed: {
     contentTxt() {
@@ -62,7 +108,8 @@ export default {
   components: {
     partners,
     nupiBanner,
-    EPCLogoFull
+    EPCLogoFull,
+    vueScroll
   },
   methods: {
     selectPage(page) {

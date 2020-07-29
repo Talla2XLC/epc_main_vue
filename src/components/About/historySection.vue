@@ -1,6 +1,6 @@
 <template>
   <div class="about-history-section">
-    <div class="about-history-section-decor">
+    <div class="about-history-section-decor" v-if="this.$mq !== 's'">
       <div
         class="about-history-section-decor-dot"
         :class="{ bigDot: isLast }"
@@ -15,7 +15,8 @@
       :class="{
         red: isLast,
         'text-body1': $mq === 'xl' || $mq === 'l',
-        'text-body3': $mq === 'm'
+        'text-body3': $mq === 'm',
+        'text-body6': $mq === 's'
       }"
     >
       <slot name="year"></slot>
@@ -24,7 +25,8 @@
       class="about-history-section-txt"
       :class="{
         'text-body3': $mq === 'xl' || $mq === 'l',
-        'text-body5': $mq === 'm'
+        'text-body5': $mq === 'm',
+        'text-body6': $mq === 's'
       }"
     >
       <slot name="text"></slot>
@@ -46,8 +48,10 @@ export default {
   align-items: stretch
   position: relative
   margin-left: 40px
-  @include respond-to(xs)
+  box-sizing: border-box
   @include respond-to(s)
+    margin-left: 0
+    padding: 0 12px
   @include respond-to(m)
     margin-left: 40px
   @include respond-to(l)
@@ -57,11 +61,6 @@ export default {
   &-decor
     position: relative
     width: 20px
-    @include respond-to(xs)
-    @include respond-to(s)
-    @include respond-to(m)
-    @include respond-to(l)
-    @include respond-to(xl)
     &-dot
       width: 14px
       height: 14px
@@ -86,8 +85,10 @@ export default {
     width: 116px
     margin-left: 53px
     box-sizing: border-box
-    @include respond-to(xs)
     @include respond-to(s)
+      margin-left: 0
+      width: 64px
+      color: #940000
     @include respond-to(m)
       width: 98px
       margin-left: 56px
@@ -104,8 +105,10 @@ export default {
     box-sizing: border-box
     margin-left: 94px
     width: 715px
-    @include respond-to(xs)
     @include respond-to(s)
+      margin-left: 10px
+      width: 222px
+      padding-bottom: 6px
     @include respond-to(m)
       margin-left: 20px
       width: 452px

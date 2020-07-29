@@ -3,7 +3,8 @@
     <h2
       :class="{
         'text-h2': $mq === 'xl' || $mq === 'l',
-        'text-h2T': $mq === 'm'
+        'text-h2T': $mq === 'm',
+        'text-h4': $mq === 's'
       }"
     >
       Наши заказчики
@@ -13,11 +14,11 @@
         <span
           :class="{
             'text-body1': $mq === 'xl' || $mq === 'l',
-            'text-body3': $mq === 'm'
+            'text-body3': $mq === 'm',
+            'text-body5': $mq === 's'
           }"
         >
-          Крупные российские нефтяные<br />
-          компании
+          Крупные российские&nbsp;нефтяные компании
         </span>
         <div class="about-customers-list-block-svg">
           <LukoilLogo viewBox="0 0 40 40" class="customer-svg lukoil-logo" />
@@ -26,14 +27,18 @@
         </div>
         <div class="about-customers-list-block-decor">
           <div class="about-customers-list-block-decor-dot" />
-          <div class="about-customers-list-block-decor-line-left" />
+          <div
+            class="about-customers-list-block-decor-line-left"
+            v-if="this.$mq !== 's'"
+          />
         </div>
       </div>
       <div class="about-customers-list-block">
         <span
           :class="{
             'text-body1': $mq === 'xl' || $mq === 'l',
-            'text-body3': $mq === 'm'
+            'text-body3': $mq === 'm',
+            'text-body5': $mq === 's'
           }"
         >
           Малые и средние участники<br />
@@ -41,7 +46,10 @@
         </span>
         <div class="about-customers-list-block-decor">
           <div class="about-customers-list-block-decor-dot" />
-          <div class="about-customers-list-block-decor-line-right" />
+          <div
+            class="about-customers-list-block-decor-line-right"
+            v-if="this.$mq !== 's'"
+          />
         </div>
       </div>
     </div>
@@ -87,8 +95,10 @@ export default {
   box-sizing: border-box
   margin-bottom: 100px
   overflow: hidden
-  @include respond-to(xs)
   @include respond-to(s)
+    min-height: 423px
+    padding: 50px 12px
+    margin-bottom: 52px
   @include respond-to(m)
     min-height: 377px
     padding: 70px 20px
@@ -104,6 +114,8 @@ export default {
   >h2
     position: relative
     z-index: 10
+    @include respond-to(s)
+      margin-bottom: 20px
   &-list
     display: flex
     flex-flow: row nowrap
@@ -111,6 +123,8 @@ export default {
     width: 100%
     position: relative
     z-index: 10
+    @include respond-to(s)
+      flex-flow: column nowrap
     &-block
       background: #FFFFFF
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.2)
@@ -122,8 +136,10 @@ export default {
       padding: 44px 52px 39px
       box-sizing: border-box
       position: relative
-      @include respond-to(xs)
       @include respond-to(s)
+        padding: 18px 0 26.4px
+        width: 100%
+        min-height: 126px
       @include respond-to(m)
         padding: 32px 0
       @include respond-to(l)
@@ -132,10 +148,13 @@ export default {
         padding: 44px 27px 39px
       &:first-of-type
         margin-right: 20px
+        @include respond-to(s)
+          margin-right: 0
+          margin-bottom: 17px
       >span
         width: 505px
-        @include respond-to(xs)
         @include respond-to(s)
+          width: 100%
         @include respond-to(m)
           width: 334px
         @include respond-to(l)
@@ -144,6 +163,8 @@ export default {
           width: 505px
       &-svg
         margin-top: 24px
+        @include respond-to(s)
+          margin-top: 6px
       &-decor
         position: absolute
         top: 6px
@@ -151,11 +172,16 @@ export default {
         flex-flow: row
         justify-content: center
         align-items: center
+        @include respond-to(s)
+          top: -7px
         &-dot
           background: #940000
           border-radius: 50%
           width: 20px
           height: 20px
+          @include respond-to(s)
+            width: 14px
+            height: 14px
         &-line-left
           position: absolute
           bottom: 0
@@ -197,9 +223,10 @@ export default {
 
 .customer-svg:nth-of-type(2)
   margin: 0 38px
-  @include respond-to(xs)
   @include respond-to(s)
+    margin: 0 20px
   @include respond-to(m)
+    margin: 0 38px
   @include respond-to(l)
     margin: 0 38px
   @include respond-to(xl)
@@ -208,8 +235,9 @@ export default {
 .lukoil-logo
   width: 40px
   height: 40px
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 30px
+    height: 30px
   @include respond-to(m)
     width: 30px
     height: 30px
@@ -225,8 +253,9 @@ export default {
 .tatneft-logo
   width: 147px
   height: 40px
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 110px
+    height: 30px
   @include respond-to(m)
     width: 110px
     height: 30px
@@ -247,8 +276,9 @@ export default {
 .gpn-logo
   width: 82px
   height: 40px
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 62px
+    height: 30px
   @include respond-to(m)
     width: 62px
     height: 30px
@@ -273,8 +303,10 @@ export default {
   object-position: right top
   width: 535px
   height: 514px
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 158px
+    height: 361px
+    top: 0
   @include respond-to(m)
     width: 269px
     height: 361px
@@ -294,8 +326,9 @@ export default {
   object-position: left top
   width: 619px
   height: 393px
-  @include respond-to(xs)
   @include respond-to(s)
+    width: 171px
+    height: 239px
   @include respond-to(m)
     width: 273px
     height: 239px

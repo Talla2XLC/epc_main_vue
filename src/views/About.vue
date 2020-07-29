@@ -12,7 +12,18 @@
     <h5 class="text-h5" v-if="this.$mq === 's'">
       (Единый Процессинговый Центр)
     </h5>
+    <div
+      v-if="mobileView"
+      class="mobile-history-arrow"
+      @click="switchSectionsVisibility"
+      ref="historyArrow"
+    />
     <History />
+    <div
+      v-if="mobileView && sectionsOpened"
+      class="mobile-history-arrow-bottom"
+      @click="switchSectionsVisibility"
+    />
     <Customers />
     <Projects />
     <Mission />
@@ -24,9 +35,15 @@ import History from "../components/About/History";
 import Customers from "../components/About/Customers";
 import Projects from "../components/About/Projects";
 import Mission from "../components/About/Mission";
+import { gsap } from "gsap";
 
 export default {
   name: "About",
+  data() {
+    return {
+      sectionsOpened: false
+    };
+  },
   components: {
     History,
     Customers,
@@ -34,6 +51,9 @@ export default {
     Mission
   },
   computed: {
+    mobileView() {
+      return this.$mq === "s";
+    },
     aboutHeader() {
       return this.$mq === "s"
         ? "ООО «ЕРС»"
@@ -43,6 +63,34 @@ export default {
   methods: {
     selectPage() {
       this.$store.dispatch("selectPage", "about");
+    },
+    switchSectionsVisibility() {
+      this.sectionsOpened = !this.sectionsOpened;
+    }
+  },
+  watch: {
+    sectionsOpened(state) {
+      if (state) {
+        gsap.to(".about-history", {
+          duration: 1,
+          height: "auto"
+        });
+        gsap.to(this.$refs.historyArrow, {
+          duration: 1,
+          rotation: 135,
+          borderColor: "#4F4F51"
+        });
+      } else if (this.mobileView) {
+        gsap.to(".about-history", {
+          duration: 1,
+          height: 112
+        });
+        gsap.to(this.$refs.historyArrow, {
+          duration: 1,
+          rotation: -45,
+          borderColor: "#940000"
+        });
+      }
     }
   }
 };
@@ -78,5 +126,20 @@ export default {
     @include respond-to(xl)
       margin-bottom: 60px
   >h5
-    margin-bottom: 46px
+    margin-bottom: 36px
+
+.mobile-history-arrow, .mobile-history-arrow-bottom
+  width: 10px
+  height: 10px
+  border-left: 2px solid #940000
+  border-bottom: 2px solid #940000
+  transform: rotate(-45deg)
+  position: relative
+  top: -30px
+
+.mobile-history-arrow-bottom
+  border-left: 2px solid #4F4F51
+  border-bottom: 2px solid #4F4F51
+  transform: rotate(135deg)
+  top: -40px
 </style>
