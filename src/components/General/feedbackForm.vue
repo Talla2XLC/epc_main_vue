@@ -10,7 +10,8 @@
       <span
         class="feedback-form-content-txt"
         :class="{
-          'text-h3': !popupForm,
+          'text-h3': !popupForm && ($mq === 'l' || $mq === 'xl' || $mq === 'm'),
+          'text-h4': !popupForm && $mq === 's',
           'text-body2': popupForm && ($mq === 'l' || $mq === 'xl'),
           'text-body3': popupForm && $mq === 'm',
           'text-body5': popupForm && $mq === 's'
@@ -175,6 +176,8 @@ export default {
   min-height: 536px
   overflow: hidden
   @include respond-to(s)
+    padding: 50px 12px
+    min-height: 370px
   @include respond-to(m)
     padding: 70px 20px
     min-height: 476px
@@ -192,6 +195,8 @@ export default {
     height: 100%
     z-index: 0
     @include respond-to(s)
+      object-position: 138px -60px
+      object-fit: none
     @include respond-to(m)
       width: 672px
       object-position: -165px
@@ -206,6 +211,8 @@ export default {
       left: 0
       bottom: 0
       z-index: 1
+      @include respond-to(s)
+        background: linear-gradient(92.05deg, #F0EFEF 76%, rgba(240, 239, 239, 0) 145.06%)
 
   &-header
     align-self: flex-end
@@ -223,6 +230,7 @@ export default {
     position: relative
     z-index: 3
     @include respond-to(s)
+      width: 296px
     @include respond-to(m)
       width: 334px
     @include respond-to(l)
@@ -235,6 +243,7 @@ export default {
       margin-bottom: 37px
       @include respond-to(s)
         margin-bottom: 20px
+        text-align: center
       @include respond-to(m)
         margin-bottom: 37px
       @include respond-to(l)
@@ -304,6 +313,8 @@ export default {
       flex-flow: column nowrap
       &:last-of-type
         margin-bottom: 31px
+        @include respond-to(s)
+          margin-bottom: 18px
 
 .popup-form
   height: 100%
