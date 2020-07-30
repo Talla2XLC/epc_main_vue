@@ -4,7 +4,8 @@
       <span
         :class="{
           'text-body2': $mq === 'xl' || $mq === 'l',
-          'text-body3': $mq === 'm'
+          'text-body3': $mq === 'm',
+          'text-body6': $mq === 's'
         }"
         >{{ date }}</span
       >
@@ -12,7 +13,8 @@
         class="red"
         :class="{
           'text-h2': $mq === 'xl' || $mq === 'l',
-          'text-h3': $mq === 'm'
+          'text-h3': $mq === 'm',
+          'text-h5': $mq === 's'
         }"
       >
         {{ header }}
@@ -20,7 +22,8 @@
       <p
         :class="{
           'text-body3': $mq === 'xl' || $mq === 'l',
-          'text-body5': $mq === 'm'
+          'text-body5': $mq === 'm',
+          'text-body6': $mq === 's'
         }"
       >
         {{ desc }}
@@ -56,8 +59,10 @@ export default {
   padding: 60px 105px
   box-sizing: border-box
   margin-bottom: 40px
-  @include respond-to(xs)
   @include respond-to(s)
+    flex-flow: column nowrap
+    padding: 20px 12px
+    margin-bottom: 10px
   @include respond-to(m)
     padding: 40px 20px
   @include respond-to(l)
@@ -72,8 +77,8 @@ export default {
     align-items: flex-start
     >span
       margin-bottom: 10px
-      @include respond-to(xs)
       @include respond-to(s)
+        margin-bottom: 2px
       @include respond-to(m)
         margin-bottom: 4px
       @include respond-to(l)
@@ -82,8 +87,8 @@ export default {
         margin-bottom: 10px
     >h2
       margin-bottom: 30px
-      @include respond-to(xs)
       @include respond-to(s)
+        margin-bottom: 14px
       @include respond-to(m)
         margin-bottom: 14px
         max-width: 450px
@@ -110,8 +115,12 @@ export default {
     justify-content: center
     align-items: center
     position: relative
-    @include respond-to(xs)
     @include respond-to(s)
+      min-height: 230px
+      min-width: 260px
+      width: 260px
+      align-self: center
+      margin-top: 10px
     @include respond-to(m)
       min-width: 216px
     @include respond-to(l)

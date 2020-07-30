@@ -3,7 +3,8 @@
     <h1
       :class="{
         'text-h1': $mq === 'xl' || $mq === 'l',
-        'text-h2T': $mq === 'm'
+        'text-h2T': $mq === 'm',
+        'text-h4': $mq === 's'
       }"
     >
       Новости нашей компании
@@ -44,8 +45,8 @@ export default {
   align-items: center
   padding: 100px 50px
   box-sizing: border-box
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 98px 0 50px
   @include respond-to(m)
     padding: 70px 0
   @include respond-to(l)
@@ -54,8 +55,8 @@ export default {
     padding: 100px 100px
   >h1
     margin-bottom: 60px
-    @include respond-to(xs)
     @include respond-to(s)
+      margin-bottom: 20px
     @include respond-to(m)
       margin-bottom: 30px
     @include respond-to(l)
@@ -70,8 +71,8 @@ export default {
     padding: 60px 50px
     box-sizing: border-box
     background: linear-gradient(112.3deg, #F0EFEF 11.28%, rgba(240, 239, 239, 0) 112.64%), top / cover no-repeat url('../assets/images/News/news-list.png')
-    @include respond-to(xs)
     @include respond-to(s)
+      padding: 20px 0
     @include respond-to(m)
       padding: 30px 20px
     @include respond-to(l)
