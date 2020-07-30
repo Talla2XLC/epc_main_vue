@@ -81,12 +81,16 @@ export default {
     },
     mobileView() {
       return this.$mq === "s";
+    },
+    selectedPage() {
+      return this.$store.state.selectedPage;
     }
   },
   methods: {
     selectPage(page) {
       this.$store.dispatch("selectPage", page);
       this.mobileMenuOpened = false;
+      this.$emit("closeConfidential");
     },
     switchMobileMenu() {
       this.mobileMenuOpened = !this.mobileMenuOpened;

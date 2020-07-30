@@ -49,7 +49,6 @@ footer
     flex-flow: column nowrap
     padding: 12px
     min-height: 66px !important
-    z-index: 1
   @include respond-to(m)
     padding: 0 40px
   @include respond-to(l)

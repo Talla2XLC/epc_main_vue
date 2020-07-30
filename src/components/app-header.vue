@@ -1,6 +1,6 @@
 <template>
   <header>
-    <main-nav />
+    <main-nav @closeConfidential="$emit('closeConfidential')" />
     <div class="header_bottom" />
   </header>
 </template>

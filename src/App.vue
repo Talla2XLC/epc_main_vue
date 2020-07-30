@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="this.$route.path === '/' ? 'fixed-app' : ''">
     <vue-scroll :ops="ops" ref="vs">
-      <app-header />
+      <app-header @closeConfidential="closeConfidential" />
       <main>
         <router-view @open-modal="setToTopView" />
         <Confidential :closeModal="closeConfidential" v-if="showConfidential" />

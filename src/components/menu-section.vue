@@ -11,13 +11,14 @@
         'text-body6': $mq === 's'
       }
     ]"
-    @click.native="selectPage"
+    @click.native="selectPage(page_name)"
   >
     <slot></slot>
   </router-link>
 </template>
 
 <script>
+
 export default {
   name: "menu-section",
   props: ["page_name", "selectPage"],
@@ -61,6 +62,7 @@ export default {
     border-bottom: 1px solid black
     position: absolute
     left: 0
+    bottom: 0
     animation: lining 0.5s ease-in-out
 
 .selected_page
@@ -68,6 +70,7 @@ export default {
   &:hover:after
     content: ""
     display: none
+    bottom: 0
 
 @keyframes lining
   0%
