@@ -230,7 +230,7 @@ export default {
     position: relative
     z-index: 3
     @include respond-to(s)
-      width: 296px
+      width: 100%
     @include respond-to(m)
       width: 334px
     @include respond-to(l)
