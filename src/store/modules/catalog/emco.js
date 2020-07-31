@@ -12,8 +12,8 @@ export default {
         right: 393
       },
       s: {
-        top: 20,
-        right: 120
+        top: -125,
+        right: 520
       }
     },
     products: [
@@ -23,7 +23,7 @@ export default {
       },
       {
         name: "LoadingBottom",
-        fullName: "Устройства нижнего налива E2701 и E2852"
+        fullName: "Устройства нижнего налива E2701 и\xa0E2852"
       },
       {
         name: "LoadingTop",

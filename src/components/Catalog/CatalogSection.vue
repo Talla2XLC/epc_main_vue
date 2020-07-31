@@ -10,12 +10,15 @@
           ref="productHeader"
           :class="{
             'text-h3': $mq === 'xl' || $mq === 'l',
-            'text-h4': $mq === 'm'
+            'text-h4': $mq === 'm',
+            'text-h5': $mq === 's'
           }"
         >
           {{ fullName }}
         </h3>
-        <div class="list-arrow" :class="{ rotated: isOpened }" />
+        <div class="list-arrow-zone">
+          <div class="list-arrow" :class="{ rotated: isOpened }" />
+        </div>
       </div>
       <transition-group
         name="rise"
@@ -33,7 +36,8 @@
           <span
             :class="{
               'text-body2': $mq === 'xl' || $mq === 'l',
-              'text-body4': $mq === 'm'
+              'text-body4': $mq === 'm',
+              'text-body6': $mq === 's'
             }"
             @click="selectHandler(name, item.name)"
           >
@@ -44,7 +48,11 @@
           class="catalog-section-content-list-line"
           v-if="isOpened"
           :key="name"
-          :style="{ width: this.$refs.productHeader.clientWidth + 60 + 'px' }"
+          :style="
+            this.$mq !== 's'
+              ? { width: this.$refs.productHeader.clientWidth + 60 + 'px' }
+              : {}
+          "
         />
       </transition-group>
     </div>
@@ -56,8 +64,9 @@
       "
       class="catalog-section-img-l"
       :alt="'catalog' + ind + '_left_pic'"
+      v-if="this.$mq !== 's'"
     />
-    <div class="catalog-section-img-filter-l" />
+    <div class="catalog-section-img-filter-l" v-if="this.$mq !== 's'" />
     <img
       :src="require(`@/assets/images/Catalog/${name.toLowerCase()}_r.png`)"
       class="catalog-section-img-r"
@@ -72,6 +81,8 @@
 </template>
 
 <script>
+import { gsap } from "gsap";
+
 export default {
   name: "CatalogSection",
   props: [
@@ -168,8 +179,8 @@ export default {
   margin-bottom: 40px
   position: relative
   overflow: hidden
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 20px 12px 20px 26px
   @include respond-to(m)
     padding: 70px 0 70px 135px
   @include respond-to(l)
@@ -189,21 +200,30 @@ export default {
       flex-flow: row nowrap
       align-items: center
       cursor: pointer
+      @include respond-to(s)
+        justify-content: space-between
       >h3
         margin-right: 20px
+        @include respond-to(s)
+          margin-right: 10px
+          width: 248px
     &-list
       position: relative
+      @include respond-to(s)
+        padding-left: 20px
       &-item
         position: relative
         display: flex
         flex-flow: row nowrap
         align-items: center
         opacity: 1
-        height: 32px
+        min-height: 32px
         margin-bottom: 20px
         margin-top: 50px
-        @include respond-to(xs)
         @include respond-to(s)
+          margin-top: 14px
+          margin-bottom: 10px
+          min-height: auto
         @include respond-to(m)
           height: 26px
           margin-top: 30px
@@ -227,6 +247,10 @@ export default {
           background: #940000
           border-radius: 50%
           left: -72px
+          @include respond-to(s)
+            width: 9px
+            height: 9px
+            left: -23px
         >span
           cursor: pointer
           position: relative
@@ -247,6 +271,9 @@ export default {
         top: 0
         left: -63px
         z-index: 0
+        @include respond-to(s)
+          left: 0
+          width: 248px
   >img
     position: absolute
     top: 0
@@ -276,8 +303,8 @@ export default {
       height: 100%
       z-index: 1
       background: linear-gradient(83.36deg, #F0EFEF 49.5%, rgba(240, 239, 239, 0) 97.5%)
-      @include respond-to(xs)
       @include respond-to(s)
+        background: linear-gradient(90.79deg, #F0EFEF 74.84%, rgba(240, 239, 239, 0) 151.69%)
       @include respond-to(m)
         background: linear-gradient(85.02deg, #F0EFEF 65.15%, rgba(240, 239, 239, 0) 97.5%)
       @include respond-to(l)
@@ -293,10 +320,20 @@ export default {
   height: 8px
   border-left: 2px solid #940000
   border-bottom: 2px solid #940000
-  position: relative
-  z-index: 5
   bottom: 2px
   transform: rotate(-45deg)
+  &-zone
+    width: 24px
+    height: 24px
+    position: relative
+    z-index: 5
+    display: flex
+    flex-flow: row nowrap
+    justify-content: center
+    align-items: center
+    @include respond-to(s)
+      align-self: flex-end
+      bottom: -4px
 
 .rotated
   transform: rotate(135deg)

@@ -3,7 +3,8 @@
     <h1
       :class="{
         'text-h1': $mq === 'xl' || $mq === 'l',
-        'text-h2T': $mq === 'm'
+        'text-h2T': $mq === 'm',
+        'text-h3': $mq === 's'
       }"
     >
       Каталог продукции
@@ -84,8 +85,8 @@ export default {
   display: flex
   flex-flow: column nowrap
   align-items: center
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 98px 0 50px
   @include respond-to(m)
     padding: 70px 20px
   @include respond-to(l)
@@ -94,8 +95,8 @@ export default {
     padding: 100px 100px
   >h1
     margin-bottom: 60px
-    @include respond-to(xs)
     @include respond-to(s)
+      margin-bottom: 20px
     @include respond-to(m)
       margin-bottom: 30px
     @include respond-to(l)
