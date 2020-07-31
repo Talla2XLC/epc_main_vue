@@ -217,13 +217,13 @@ export default {
         flex-flow: row nowrap
         align-items: center
         opacity: 1
-        min-height: 32px
+        height: 32px
         margin-bottom: 20px
         margin-top: 50px
         @include respond-to(s)
           margin-top: 14px
           margin-bottom: 10px
-          min-height: auto
+          height: auto
         @include respond-to(m)
           height: 26px
           margin-top: 30px
