@@ -1,5 +1,10 @@
 <template>
-  <nav class="main_nav" ref="mainNav">
+  <nav
+    class="main_nav"
+    ref="mainNav"
+    v-touch:swipe.bottom="showMobileMenu"
+    v-touch:swipe.top="closeMobileMenu"
+  >
     <router-link :to="`/`" class="epc_logo_div" @click.native="selectPage('')">
       <EPCLogo
         viewBox="0 0 85 26"
@@ -94,6 +99,16 @@ export default {
     },
     switchMobileMenu() {
       this.mobileMenuOpened = !this.mobileMenuOpened;
+    },
+    showMobileMenu() {
+      if (this.mobileView) {
+        this.mobileMenuOpened = true;
+      }
+    },
+    closeMobileMenu() {
+      if (this.mobileView) {
+        this.mobileMenuOpened = false;
+      }
     }
   },
   watch: {

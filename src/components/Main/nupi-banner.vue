@@ -1,5 +1,11 @@
 <template>
-  <div class="nupi-banner" v-click-outside="closeBanner" ref="nupiBanner">
+  <div
+    class="nupi-banner"
+    v-click-outside="closeBanner"
+    v-touch:swipe.bottom="closeBanner"
+    v-touch:swipe.top="showBanner"
+    ref="nupiBanner"
+  >
     <div class="nupi-banner-contentArea">
       <banner-content
         :showFeedbackForm="showForm"

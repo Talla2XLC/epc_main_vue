@@ -17,12 +17,15 @@
       class="mobile-history-arrow"
       @click="switchSectionsVisibility"
       ref="historyArrow"
+      v-touch:swipe.bottom="openHistorySections"
+      v-touch:swipe.top="closeHistorySections"
     />
     <History />
     <div
       v-if="mobileView && sectionsOpened"
       class="mobile-history-arrow-bottom"
       @click="switchSectionsVisibility"
+      v-touch:swipe.top="closeHistorySections"
     />
     <Customers />
     <Projects />
@@ -66,6 +69,12 @@ export default {
     },
     switchSectionsVisibility() {
       this.sectionsOpened = !this.sectionsOpened;
+    },
+    closeHistorySections() {
+      this.sectionsOpened = false;
+    },
+    openHistorySections() {
+      this.sectionsOpened = true;
     }
   },
   watch: {

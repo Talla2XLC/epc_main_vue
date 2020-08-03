@@ -3,6 +3,8 @@
     class="catalog-section"
     :class="{ 'catalog-section-last': isLast }"
     :ref="name + '-section'"
+    v-touch:swipe.bottom="openList"
+    v-touch:swipe.top="closeList"
   >
     <div class="catalog-section-content">
       <div class="catalog-section-content-header" @click="toggleList">
@@ -158,6 +160,12 @@ export default {
   methods: {
     toggleList() {
       this.isOpened = !this.isOpened;
+    },
+    openList() {
+      this.isOpened = true;
+    },
+    closeList() {
+      this.isOpened = false;
     }
   },
   mounted() {
