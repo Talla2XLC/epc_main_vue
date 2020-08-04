@@ -22,17 +22,19 @@
           <div class="list-arrow" :class="{ rotated: isOpened }" />
         </div>
       </div>
-      <ul
-        tag="ul"
+      <transition-group
         class="catalog-section-content-list"
-        ref="itemsList"
-        v-if="isOpened"
+        name="rise"
+        tag="ul"
+        ref="catalogSectionList"
       >
         <li
           v-for="(item, index) in items"
           :key="item.name"
           :data-index="index"
           class="catalog-section-content-list-item"
+          v-show="isOpened"
+          ref="sectionItem"
         >
           <div class="catalog-section-content-list-item-dot" />
           <span
@@ -56,7 +58,7 @@
               : {}
           "
         />
-      </ul>
+      </transition-group>
     </div>
     <img
       :src="
@@ -98,8 +100,7 @@ export default {
   ],
   data() {
     return {
-      isOpened: false,
-      listRendered: false
+      isOpened: false
     };
   },
   computed: {
@@ -177,30 +178,6 @@ export default {
         behavior: "smooth"
       });
     }
-  },
-  watch: {
-    isOpened(state) {
-      if (state) {
-        this.$nextTick(() => {
-          gsap.set(".catalog-section-content-list-item", {
-            height: "auto"
-          });
-          gsap.from(".catalog-section-content-list-item", {
-            duration: 1,
-            height: 0,
-            opacity: 0,
-            margin: 0
-          });
-        });
-      } else {
-        gsap.to(".catalog-section-content-list-item", {
-          duration: 1,
-          height: 0,
-          opacity: 0,
-          margin: 0
-        });
-      }
-    }
   }
 };
 </script>
@@ -250,9 +227,10 @@ export default {
         flex-flow: row nowrap
         align-items: center
         opacity: 1
-        height: 32px
+        max-height: 36px
         margin-bottom: 20px
         margin-top: 50px
+        z-index: 1
         @include respond-to(s)
           margin-top: 14px
           margin-bottom: 10px
@@ -307,6 +285,7 @@ export default {
         @include respond-to(s)
           left: 0
           width: 248px
+          height: calc(100% - 9px)
   >img
     position: absolute
     top: 0
@@ -374,13 +353,13 @@ export default {
   border-left: 2px solid #4F4F51
   border-bottom: 2px solid #4F4F51
 
-/*.rise-enter-active, .rise-leave-active*/
-/*  transition: all 1s*/
+.rise-enter-active, .rise-leave-active
+  transition: all 1s
 
-/*.rise-enter, .rise-leave-to*/
-/*  opacity: 0*/
-/*  height: 0*/
-/*  margin: 0*/
+.rise-enter, .rise-leave-to
+  opacity: 0
+  max-height: 0
+  margin: 0
 
 @keyframes lining
   0%

@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
 export default {
   name: "menu-section",
   props: ["page_name", "selectPage"],

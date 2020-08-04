@@ -4,7 +4,7 @@ import router from "./router";
 import store from "./store/store";
 import Meta from "vue-meta";
 import VueMq from "vue-mq";
-import Vue2TouchEvents from 'vue2-touch-events';
+import Vue2TouchEvents from "vue2-touch-events";
 
 import * as VueGoogleMaps from "vue2-google-maps";
 
