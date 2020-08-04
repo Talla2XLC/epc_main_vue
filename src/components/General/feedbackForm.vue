@@ -154,6 +154,7 @@ export default {
       }
     },
     emailDelivered() {
+      ym(65858998, "reachGoal", "getFeedback");
       this.errors = [];
       this.name = null;
       this.phone = null;

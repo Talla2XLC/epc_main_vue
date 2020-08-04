@@ -22,17 +22,17 @@
           <div class="list-arrow" :class="{ rotated: isOpened }" />
         </div>
       </div>
-      <transition-group
-        name="rise"
+      <ul
         tag="ul"
         class="catalog-section-content-list"
+        ref="itemsList"
+        v-if="isOpened"
       >
         <li
           v-for="(item, index) in items"
           :key="item.name"
           :data-index="index"
           class="catalog-section-content-list-item"
-          v-if="isOpened"
         >
           <div class="catalog-section-content-list-item-dot" />
           <span
@@ -56,7 +56,7 @@
               : {}
           "
         />
-      </transition-group>
+      </ul>
     </div>
     <img
       :src="
@@ -98,7 +98,8 @@ export default {
   ],
   data() {
     return {
-      isOpened: false
+      isOpened: false,
+      listRendered: false
     };
   },
   computed: {
@@ -175,6 +176,30 @@ export default {
         alignToTop: true,
         behavior: "smooth"
       });
+    }
+  },
+  watch: {
+    isOpened(state) {
+      if (state) {
+        this.$nextTick(() => {
+          gsap.set(".catalog-section-content-list-item", {
+            height: "auto"
+          });
+          gsap.from(".catalog-section-content-list-item", {
+            duration: 1,
+            height: 0,
+            opacity: 0,
+            margin: 0
+          });
+        });
+      } else {
+        gsap.to(".catalog-section-content-list-item", {
+          duration: 1,
+          height: 0,
+          opacity: 0,
+          margin: 0
+        });
+      }
     }
   }
 };
@@ -349,13 +374,13 @@ export default {
   border-left: 2px solid #4F4F51
   border-bottom: 2px solid #4F4F51
 
-.rise-enter-active, .rise-leave-active
-  transition: all 1s
+/*.rise-enter-active, .rise-leave-active*/
+/*  transition: all 1s*/
 
-.rise-enter, .rise-leave-to
-  opacity: 0
-  height: 0
-  margin: 0
+/*.rise-enter, .rise-leave-to*/
+/*  opacity: 0*/
+/*  height: 0*/
+/*  margin: 0*/
 
 @keyframes lining
   0%
