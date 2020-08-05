@@ -8,18 +8,18 @@
             class="modal-header"
             :class="{
               'text-h2': $mq === 'xl' || $mq === 'l',
-              'text-h3': $mq === 'm'
+              'text-h3': $mq === 'm',
+              'text-h4': $mq === 's'
             }"
-          >
-            {{ product.fullName }}
-          </div>
-
+            v-html="product.fullName"
+          />
           <div class="modal-body">
             <div class="modal-body-content">
               <span
                 :class="{
                   'text-h3': $mq === 'xl' || $mq === 'l',
-                  'text-h4': $mq === 'm'
+                  'text-h4': $mq === 'm',
+                  'text-h5': $mq === 's'
                 }"
               >
                 Описание:
@@ -28,25 +28,30 @@
                 class="modal-body-content-desc"
                 :class="{
                   'text-body3': $mq === 'xl' || $mq === 'l',
-                  'text-body5': $mq === 'm'
+                  'text-body5': $mq === 'm',
+                  'text-body6': $mq === 's'
                 }"
                 v-html="product.desc"
               />
               <span
                 :class="{
                   'text-h3': $mq === 'xl' || $mq === 'l',
-                  'text-h4': $mq === 'm'
+                  'text-h4': $mq === 'm',
+                  'text-h5': $mq === 's'
                 }"
               >
                 Технические характеристики:
               </span>
-              <table class="modal-body-content-paramsTable">
+              <table
+                class="modal-body-content-paramsTable"
+                v-if="this.$mq !== 's'"
+              >
                 <tr v-for="(param, index) in product.params" :key="index">
                   <td
                     class="modal-body-content-paramsTable-left"
                     :class="{
                       'text-caption': $mq === 'xl' || $mq === 'l',
-                      'text-caption2': $mq === 'm'
+                      'text-caption2': $mq === 'm' || $mq === 's'
                     }"
                   >
                     {{ index }}
@@ -55,12 +60,40 @@
                     class="modal-body-content-paramsTable-right"
                     :class="{
                       'text-body3': $mq === 'xl' || $mq === 'l',
-                      'text-body5': $mq === 'm'
+                      'text-body5': $mq === 'm',
+                      'text-body6': $mq === 's'
                     }"
                     v-html="param"
                   />
                 </tr>
               </table>
+
+              <div class="modal-body-content-paramsTable-mobile" v-else>
+                <div
+                  v-for="(param, index) in product.params"
+                  :key="index"
+                  class="modal-body-content-paramsTable-mobile-item"
+                >
+                  <span
+                    class="modal-body-content-paramsTable-left"
+                    :class="{
+                      'text-caption': $mq === 'xl' || $mq === 'l',
+                      'text-caption2': $mq === 'm' || $mq === 's'
+                    }"
+                  >
+                    {{ index }}
+                  </span>
+                  <span
+                    class="modal-body-content-paramsTable-right"
+                    :class="{
+                      'text-body3': $mq === 'xl' || $mq === 'l',
+                      'text-body5': $mq === 'm',
+                      'text-body6': $mq === 's'
+                    }"
+                    v-html="param"
+                  />
+                </div>
+              </div>
             </div>
             <div class="modal-body-imgDiv">
               <img
@@ -122,8 +155,9 @@ export default {
   flex-flow: column nowrap
   justify-content: center
   align-items: center
-  @include respond-to(xs)
   @include respond-to(s)
+    padding: 50px 12px
+    margin-top: 48px
   @include respond-to(m)
     padding: 70px 40px
   @include respond-to(l)
@@ -203,8 +237,9 @@ export default {
 
 .modal-header
   margin-bottom: 60px
-  @include respond-to(xs)
   @include respond-to(s)
+    text-align: center
+    margin-bottom: 20px
   @include respond-to(m)
     margin-bottom: 30px
   @include respond-to(l)
@@ -217,8 +252,8 @@ export default {
   flex-flow: row nowrap
   justify-content: space-between
   width: 100%
-  @include respond-to(xs)
   @include respond-to(s)
+    flex-flow: column nowrap
   @include respond-to(m)
     flex-flow: column nowrap
   @include respond-to(l)
@@ -229,8 +264,8 @@ export default {
     display: flex
     flex-flow: column nowrap
     max-width: 50%
-    @include respond-to(xs)
     @include respond-to(s)
+      max-width: 100%
     @include respond-to(m)
       max-width: 100%
     @include respond-to(l)
@@ -239,8 +274,8 @@ export default {
       max-width: 50%
     >span
       margin-bottom: 30px
-      @include respond-to(xs)
       @include respond-to(s)
+        margin-bottom: 8px
       @include respond-to(m)
         margin-bottom: 14px
       @include respond-to(l)
@@ -251,8 +286,8 @@ export default {
       margin-bottom: 40px
       width: 610px
       max-width: 100%
-      @include respond-to(xs)
       @include respond-to(s)
+        margin-bottom: 10px
       @include respond-to(m)
         margin-bottom: 20px
         width: 688px
@@ -293,6 +328,12 @@ export default {
           width: 295px
         @include respond-to(xl)
           width: 415px
+      &-mobile
+        &-item
+          display: flex
+          flex-flow: column nowrap
+          &:not(:last-of-type)
+            margin-bottom: 2px
   &-imgDiv
     display: flex
     flex-flow: column nowrap
@@ -314,8 +355,8 @@ export default {
       max-width: 50%
       align-items: flex-end
   &-img
-    @include respond-to(xs)
     @include respond-to(s)
+      width: 100%
     @include respond-to(m)
       width: 452px
     @include respond-to(l)

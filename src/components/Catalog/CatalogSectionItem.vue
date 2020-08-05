@@ -8,9 +8,8 @@
         'text-body6': $mq === 's'
       }"
       @click="selectHandler(sectionName, item.name)"
-    >
-      {{ item.fullName }}
-    </span>
+      v-html="item.fullName"
+    />
   </li>
 </template>
 

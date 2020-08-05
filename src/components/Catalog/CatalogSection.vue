@@ -45,7 +45,7 @@
               v-show="isOpened"
               :style="
                 this.$mq !== 's'
-                  ? { width: this.$refs.productHeader.clientWidth + 60 + 'px' }
+                  ? { width: this.$refs.productHeader ? this.$refs.productHeader.clientWidth + 60 + 'px' : 'auto' }
                   : { height: 'calc(100% - ' + this.lineHeight / 2 + 'px)' }
               "
             />
@@ -167,8 +167,10 @@ export default {
 
     // js-hooks animations
     setLineHeight() {
-      this.lineHeight = this.$refs.listItem[this.$refs.listItem.length - 1]._vnode.elm
+      if (this.$refs.listItem) {
+        this.lineHeight = this.$refs.listItem[this.$refs.listItem.length - 1]._vnode.elm
           .clientHeight;
+      }
     }
   },
   mounted() {
