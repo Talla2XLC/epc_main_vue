@@ -167,10 +167,15 @@ export default {
       }
     },
     $mq(size) {
-      this.mobileMenuOpened = false;
       if (size !== "s") {
+        this.mobileMenuOpened = false;
         gsap.to(this.$refs.mainNav, {
+          duration: 0.5,
           height: 42
+        });
+        gsap.to(this.$refs.menuList, {
+          duration: 0.5,
+          height: "100%"
         });
       } else {
         gsap.to(this.$refs.menuList, {

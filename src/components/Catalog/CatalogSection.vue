@@ -22,43 +22,36 @@
           <div class="list-arrow" :class="{ rotated: isOpened }" />
         </div>
       </div>
-      <transition-group
-        class="catalog-section-content-list"
-        name="rise"
-        tag="ul"
-        ref="catalogSectionList"
-      >
-        <li
-          v-for="(item, index) in items"
-          :key="item.name"
-          :data-index="index"
-          class="catalog-section-content-list-item"
+      <transition name="grow" @after-enter="setLineHeight">
+        <ul
+          class="catalog-section-content-list"
+          ref="catalogSectionList"
           v-show="isOpened"
-          ref="sectionItem"
         >
-          <div class="catalog-section-content-list-item-dot" />
-          <span
-            :class="{
-              'text-body2': $mq === 'xl' || $mq === 'l',
-              'text-body4': $mq === 'm',
-              'text-body6': $mq === 's'
-            }"
-            @click="selectHandler(name, item.name)"
-          >
-            {{ item.fullName }}
-          </span>
-        </li>
-        <div
-          class="catalog-section-content-list-line"
-          v-if="isOpened"
-          :key="name"
-          :style="
-            this.$mq !== 's'
-              ? { width: this.$refs.productHeader.clientWidth + 60 + 'px' }
-              : {}
-          "
-        />
-      </transition-group>
+          <transition-group name="rise">
+            <CatalogSectionItem
+              v-for="item in items"
+              :key="item.name"
+              :item="item"
+              :sectionName="name"
+              :selectHandler="selectHandler"
+              v-show="isOpened"
+              ref="listItem"
+            />
+          </transition-group>
+          <transition name="lineMoving" @enter="adjustLineHeight">
+            <div
+              class="catalog-section-content-list-line"
+              v-show="isOpened"
+              :style="
+                this.$mq !== 's'
+                  ? { width: this.$refs.productHeader.clientWidth + 60 + 'px' }
+                  : { height: 'calc(100% - ' + this.lineHeight / 2 + 'px)' }
+              "
+            />
+          </transition>
+        </ul>
+      </transition>
     </div>
     <img
       :src="
@@ -85,10 +78,11 @@
 </template>
 
 <script>
-import { gsap } from "gsap";
+import CatalogSectionItem from "./CatalogSectionItem";
 
 export default {
   name: "CatalogSection",
+  components: { CatalogSectionItem },
   props: [
     "name",
     "fullName",
@@ -100,7 +94,8 @@ export default {
   ],
   data() {
     return {
-      isOpened: false
+      isOpened: false,
+      lineHeight: 0
     };
   },
   computed: {
@@ -168,6 +163,12 @@ export default {
     },
     closeList() {
       this.isOpened = false;
+    },
+
+    // js-hooks animations
+    setLineHeight() {
+      this.lineHeight = this.$refs.listItem[this.$refs.listItem.length - 1]._vnode.elm
+          .clientHeight;
     }
   },
   mounted() {
@@ -219,61 +220,17 @@ export default {
           width: 248px
     &-list
       position: relative
+      padding-top: 50px
+      height: 100%
       @include respond-to(s)
         padding-left: 20px
-      &-item
-        position: relative
-        display: flex
-        flex-flow: row nowrap
-        align-items: center
-        opacity: 1
-        max-height: 36px
-        margin-bottom: 20px
-        margin-top: 50px
-        z-index: 1
-        @include respond-to(s)
-          margin-top: 14px
-          margin-bottom: 10px
-          height: auto
-        @include respond-to(m)
-          height: 26px
-          margin-top: 30px
-          margin-bottom: 14px
-        @include respond-to(l)
-          height: 32px
-          margin-top: 50px
-          margin-bottom: 20px
-        @include respond-to(xl)
-          height: 32px
-          margin-top: 50px
-          margin-bottom: 20px
-        &:last-of-type
-          margin-bottom: 0
-        &:not(:first-of-type)
-          margin-top: 0
-        &-dot
-          position: absolute
-          width: 20px
-          height: 20px
-          background: #940000
-          border-radius: 50%
-          left: -72px
-          @include respond-to(s)
-            width: 9px
-            height: 9px
-            left: -23px
-        >span
-          cursor: pointer
-          position: relative
-          z-index: 1
-          &:hover:after
-            content: ""
-            width: 100%
-            display: block
-            border-bottom: 1px solid black
-            position: absolute
-            left: 0
-            animation: lining 0.5s ease-in-out
+        padding-top: 14px
+      @include respond-to(m)
+        padding-top: 30px
+      @include respond-to(l)
+        padding-top: 50px
+      @include respond-to(xl)
+        padding-top: 50px
       &-line
         position: absolute
         border-left: 2px solid #940000
@@ -285,7 +242,7 @@ export default {
         @include respond-to(s)
           left: 0
           width: 248px
-          height: calc(100% - 9px)
+          height: 100%
   >img
     position: absolute
     top: 0
@@ -353,17 +310,24 @@ export default {
   border-left: 2px solid #4F4F51
   border-bottom: 2px solid #4F4F51
 
+/* Animations */
+.grow-enter-active, .grow-leave-active
+  transition: all 1s
+.grow-enter, .grow-leave-to
+  height: 0
+  padding-top: 0
+
 .rise-enter-active, .rise-leave-active
   transition: all 1s
-
 .rise-enter, .rise-leave-to
   opacity: 0
   max-height: 0
   margin: 0
 
-@keyframes lining
-  0%
-    width: 0
-  100%
-    width: 100%
+.lineMoving-enter-active, .lineMoving-leave-active
+  transition: all 1s
+  @include respond-to(s)
+    transition: all 1.8s
+.lineMoving-enter, .lineMoving-leave-to
+  height: 0 !important
 </style>

@@ -11,14 +11,14 @@
     </h1>
     <div class="catalog-list">
       <CatalogSection
-        v-for="(producer, index) in catalog"
-        :key="index"
+        v-for="(producer, key, index) in catalog"
+        :key="key"
         :ind="index"
         :name="producer.name"
         :fullName="producer.fullName"
         :items="producer.products"
         :imagePosition="producer.imagePosition"
-        :isLast="index === catalog.length - 1"
+        :isLast="index === Object.keys(catalog).length - 1"
         :selectHandler="productSelectionHandler"
       />
     </div>

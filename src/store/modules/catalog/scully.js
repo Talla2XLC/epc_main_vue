@@ -12,8 +12,8 @@ export default {
         right: 0
       },
       s: {
-        top: 20,
-        right: 120
+        top: 65,
+        right: 290
       }
     },
     products: [
