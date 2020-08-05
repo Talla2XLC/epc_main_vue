@@ -39,7 +39,7 @@
               ref="listItem"
             />
           </transition-group>
-          <transition name="lineMoving" @enter="adjustLineHeight">
+          <transition name="lineMoving">
             <div
               class="catalog-section-content-list-line"
               v-show="isOpened"
