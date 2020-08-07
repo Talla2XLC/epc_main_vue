@@ -1,6 +1,9 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" @click.self="closeModal">
+    <div
+      class="modal-mask"
+      @click.self="closeModal"
+    >
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-close-cross" @click="closeModal" />

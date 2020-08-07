@@ -1,5 +1,5 @@
 <template>
-  <div class="catalog">
+  <div class="catalog" v-click-outside="closeModal">
     <h1
       :class="{
         'text-h1': $mq === 'xl' || $mq === 'l',
@@ -69,6 +69,21 @@ export default {
     showModal() {
       if (this.showModal) {
         this.$emit("open-modal");
+      }
+    }
+  },
+  directives: {
+    clickOutside: {
+      bind: function(el, binding, vnode) {
+        el.clickOutsideEvent = function(event) {
+          if (!(el === event.target || event.path.includes(el))) {
+            vnode.context[binding.expression](event);
+          }
+        };
+        document.body.addEventListener("click", el.clickOutsideEvent);
+      },
+      unbind: function(el) {
+        document.body.removeEventListener("click", el.clickOutsideEvent);
       }
     }
   },
