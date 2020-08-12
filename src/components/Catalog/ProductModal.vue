@@ -192,7 +192,7 @@ export default {
     position: absolute
     width: 4px
     height: 30px
-    background: #F0EFEF
+    background: #000000
     transform: rotate(-45deg)
     top: 20%
     right: 45%
@@ -213,7 +213,7 @@ export default {
     position: absolute
     width: 4px
     height: 30px
-    background: #F0EFEF
+    background: #000000
     transform: rotate(-135deg)
     top: 20%
     right: 45%
