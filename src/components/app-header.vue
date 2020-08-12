@@ -5,16 +5,19 @@
   </header>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
+import Component from "vue-class-component";
 import mainNav from "@/components/main-nav";
 
-export default {
-  name: "app-header",
+@Component({
   components: {
     mainNav
-  },
-  methods: {}
-};
+  }
+})
+export default class appHeader extends Vue {
+  name: string = "app-header";
+}
 </script>
 
 <style lang="sass" scoped>

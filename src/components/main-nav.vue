@@ -67,7 +67,7 @@
   </nav>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import menuSection from "@/components/menu-section";
 import EPCLogo from "@/assets/svg/epc-logo.svg";
 import EPCelectroLogo from "@/assets/svg/epcelectro_logo.svg";

@@ -11,10 +11,10 @@
   </div>
 </template>
 
-<script>
-import appHeader from "@/components/app-header";
-import appFooter from "@/components/app-footer";
-import Confidential from "./components/General/Confidential";
+<script lang="ts">
+import appHeader from "@/components/app-header.vue";
+import appFooter from "@/components/app-footer.vue";
+import Confidential from "./components/General/Confidential.vue";
 import vueScroll from "vuescroll";
 
 import "normalize.css";
