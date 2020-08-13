@@ -68,19 +68,27 @@
 </template>
 
 <script lang="ts">
-import menuSection from "@/components/menu-section";
+import Vue from "vue";
+import Component from "vue-class-component";
+import menuSection from "@/components/menu-section.vue";
 import EPCLogo from "@/assets/svg/epc-logo.svg";
 import EPCelectroLogo from "@/assets/svg/epcelectro_logo.svg";
 import { gsap } from "gsap";
 
-export default {
-  name: "main-nav",
-  data() {
-    return {
-      mobileMenuOpened: false
-    };
-  },
-  computed: {
+@Component
+export default class mainNav extends Vue {
+  public mobileMenuOpened: boolean = false;
+  @Prop() $mq: string;
+
+  get bannerClosed(): boolean {
+    return this.$store.state.bannerClosed;
+  }
+
+  get mobileView(): boolean {
+    return this.$mq === "s";
+  }
+}
+/*  computed: {
     bannerClosed() {
       return this.$store.state.bannerClosed;
     },
@@ -198,7 +206,7 @@ export default {
     this.mobileMenuOpened = false;
     next();
   }
-};
+};*/
 </script>
 
 <style lang="sass" scoped>

@@ -8,16 +8,14 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import mainNav from "@/components/main-nav";
+import mainNav from "@/components/main-nav.vue";
 
 @Component({
   components: {
     mainNav
   }
 })
-export default class appHeader extends Vue {
-  name: string = "app-header";
-}
+export default class appHeader extends Vue {}
 </script>
 
 <style lang="sass" scoped>
