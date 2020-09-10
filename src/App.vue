@@ -35,7 +35,7 @@ export default {
         scrollPanel: {
           initialScrollY: 0,
           initialScrollX: 0,
-          scrollingX: false,
+          scrollingX: this.$mq === "s",
           scrollingY: true,
           speed: 300,
           easing: "easeInQuad",
@@ -55,7 +55,7 @@ export default {
           onlyShowBarOnScroll: false,
           keepShow: false,
           background: "#DAD7D7",
-          opacity: 1,
+          opacity: 0,
           hoverStyle: {
             background: "#FFF"
           },
@@ -69,7 +69,6 @@ export default {
   },
   mounted() {
     this.selectPage(this.$route.name);
-    this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
   },
   computed: {},
   components: {
@@ -82,9 +81,6 @@ export default {
     $route() {
       this.scrollToTop();
       this.showConfidential = false;
-    },
-    $mq() {
-      this.ops.bar.opacity = this.$mq === "xl" || this.$mq === "l" ? 1 : 0;
     },
     showConfidential() {
       if (this.showConfidential) {
@@ -139,7 +135,7 @@ export default {
   display: -o-flex
   display: flex
   flex-flow: column nowrap
-  height: 100vh
+  min-height: 100vh
 
 .fixed-app
   height: 100vh

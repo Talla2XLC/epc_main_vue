@@ -68,140 +68,140 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import Component from "vue-class-component";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import menuSection from "@/components/menu-section.vue";
 import EPCLogo from "@/assets/svg/epc-logo.svg";
 import EPCelectroLogo from "@/assets/svg/epcelectro_logo.svg";
 import { gsap } from "gsap";
 
-@Component
-export default class mainNav extends Vue {
-  public mobileMenuOpened: boolean = false;
-  @Prop() $mq: string;
-
-  get bannerClosed(): boolean {
-    return this.$store.state.bannerClosed;
-  }
-
-  get mobileView(): boolean {
-    return this.$mq === "s";
-  }
-}
-/*  computed: {
-    bannerClosed() {
-      return this.$store.state.bannerClosed;
-    },
-    mobileView() {
-      return this.$mq === "s";
-    },
-    selectedPage() {
-      return this.$store.state.selectedPage;
-    }
-  },
-  methods: {
-    selectPage(page) {
-      this.$store.dispatch("selectPage", page);
-      this.mobileMenuOpened = false;
-      this.$emit("closeConfidential");
-    },
-    switchMobileMenu() {
-      this.mobileMenuOpened = !this.mobileMenuOpened;
-    },
-    showMobileMenu() {
-      if (this.mobileView) {
-        this.mobileMenuOpened = true;
-      }
-    },
-    closeMobileMenu() {
-      if (this.mobileView) {
-        this.mobileMenuOpened = false;
-      }
-    }
-  },
-  watch: {
-    mobileMenuOpened(state) {
-      let tl = gsap.timeline();
-      if (state && this.mobileView) {
-        gsap.to(this.$refs.menuArrow, {
-          duration: 1,
-          rotation: 135,
-          borderColor: "#4F4F51"
-        });
-        tl.to(this.$refs.mainNav, {
-          duration: 0.7,
-          height: 208
-        });
-        gsap.to(this.$refs.menuList, {
-          duration: 0.5,
-          height: "100%"
-        });
-        tl.fromTo(
-          ".menu-list-section",
-          {
-            opacity: 0,
-            y: -50
-          },
-          {
-            opacity: 1,
-            y: 0,
-            ease: "back.out(1.5)",
-            duration: 0.5,
-            stagger: {
-              each: 0.25,
-              from: "end"
-            }
-          },
-          "-=0.2"
-        );
-      } else if (this.mobileView) {
-        gsap.to(this.$refs.menuArrow, {
-          duration: 1,
-          rotation: -45,
-          borderColor: "#EC001D"
-        });
-        gsap.to(this.$refs.menuList, {
-          duration: 0.7,
-          height: 0
-        });
-        gsap.to(this.$refs.mainNav, {
-          duration: 0.7,
-          height: 42
-        });
-        gsap.to(".menu-list-section", {
-          duration: 0.15,
-          opacity: 0
-        });
-      }
-    },
-    $mq(size) {
-      if (size !== "s") {
-        this.mobileMenuOpened = false;
-        gsap.to(this.$refs.mainNav, {
-          duration: 0.5,
-          height: 42
-        });
-        gsap.to(this.$refs.menuList, {
-          duration: 0.5,
-          height: "100%"
-        });
-      } else {
-        gsap.to(this.$refs.menuList, {
-          height: 0
-        });
-      }
-    },
-    bannerClosed(status) {
-      if (!status && this.$mq === "s") {
-        this.mobileMenuOpened = false;
-      }
-    }
-  },
+@Component({
   components: {
     menuSection,
     EPCLogo,
     EPCelectroLogo
-  },
+  }
+})
+export default class mainNav extends Vue {
+  public mobileMenuOpened: boolean = false;
+
+  get bannerClosed(): boolean {
+    return this.$store.state.bannerClosed;
+  }
+  get mobileView(): boolean {
+    return this.$mq === "s";
+  }
+  get selectedPage(): string {
+    return this.$store.state.selectedPage;
+  }
+
+  showMobileMenu() {
+    if (this.mobileView) {
+      this.mobileMenuOpened = true;
+    }
+  }
+
+  selectPage(page: string) {
+    this.$store.dispatch("selectPage", page);
+    this.mobileMenuOpened = false;
+    this.$emit("closeConfidential");
+  }
+
+  switchMobileMenu() {
+    this.mobileMenuOpened = !this.mobileMenuOpened;
+  }
+
+  closeMobileMenu() {
+    if (this.mobileView) {
+      this.mobileMenuOpened = false;
+    }
+  }
+
+  @Watch("mobileMenuOpened")
+  onMobileMenuChanged(state: boolean) {
+    let tl = gsap.timeline();
+    if (state && this.mobileView) {
+      gsap.to(this.$refs.menuArrow, {
+        duration: 1,
+        rotation: 135,
+        borderColor: "#4F4F51"
+      });
+      tl.to(this.$refs.mainNav, {
+        duration: 0.7,
+        height: 208
+      });
+      gsap.to(this.$refs.menuList, {
+        duration: 0.5,
+        height: "100%"
+      });
+      tl.fromTo(
+        ".menu-list-section",
+        {
+          opacity: 0,
+          y: -50
+        },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "back.out(1.5)",
+          duration: 0.5,
+          stagger: {
+            each: 0.25,
+            from: "end"
+          }
+        },
+        "-=0.2"
+      );
+    } else if (this.mobileView) {
+      gsap.to(this.$refs.menuArrow, {
+        duration: 1,
+        rotation: -45,
+        borderColor: "#EC001D"
+      });
+      gsap.to(this.$refs.menuList, {
+        duration: 0.7,
+        height: 0
+      });
+      gsap.to(this.$refs.mainNav, {
+        duration: 0.7,
+        height: 42
+      });
+      gsap.to(".menu-list-section", {
+        duration: 0.15,
+        opacity: 0
+      });
+    }
+  }
+
+  @Watch("$mq")
+  onMqChanged(size: string) {
+    if (size !== "s") {
+      this.mobileMenuOpened = false;
+      gsap.to(this.$refs.mainNav, {
+        duration: 0.5,
+        height: 42
+      });
+      gsap.to(this.$refs.menuList, {
+        duration: 0.5,
+        height: "100%"
+      });
+      gsap.to(".menu-list-section", {
+        opacity: 1
+      });
+    } else {
+      gsap.to(this.$refs.menuList, {
+        height: 0
+      });
+    }
+  }
+
+  @Watch("bannerClosed")
+  onBannerClosedChanged(status: boolean) {
+    if (!status && this.$mq === "s") {
+      this.mobileMenuOpened = false;
+    }
+  }
+}
+/*
   beforeRouteLeave(to, from, next) {
     this.mobileMenuOpened = false;
     next();
