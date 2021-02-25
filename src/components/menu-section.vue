@@ -11,6 +11,7 @@
         'text-body6': $mq === 's'
       }
     ]"
+    :style="{ color: currentColor }"
     @click.native="selectPage(page_name)"
   >
     <slot></slot>
@@ -20,8 +21,11 @@
 <script>
 export default {
   name: "menu-section",
-  props: ["page_name", "selectPage"],
+  props: ["page_name", "selectPage", "color"],
   computed: {
+    currentColor() {
+      return this.selectedPage === this.page_name ? "#910102" : this.color;
+    },
     selectedPage() {
       return this.$store.state.selectedPage;
     }

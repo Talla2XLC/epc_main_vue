@@ -4,7 +4,7 @@ import Main from "./views/Main.vue";
 import About from "./views/About.vue";
 import News from "./views/News.vue";
 import Contacts from "./views/Contacts.vue";
-import Catalog from "./views/Catalog.vue";
+import Partners from "./views/Partners.vue";
 
 Vue.use(Router);
 
@@ -32,14 +32,14 @@ export default new Router({
       component: Contacts
     },
     {
-      path: "/catalog",
-      name: "catalog",
-      component: Catalog
+      path: "/partners",
+      name: "partners",
+      component: Partners
     },
     {
-      path: "/catalog/:product",
+      path: "/partners/:product",
       name: "catalogDetailed",
-      component: Catalog,
+      component: Partners,
       props: true
     }
   ]

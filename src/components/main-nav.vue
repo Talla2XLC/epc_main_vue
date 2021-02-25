@@ -26,33 +26,43 @@
         ref="menuList"
       >
         <menu-section
+          v-for="section in sections"
           class="menu-list-section"
-          page_name="news"
+          :key="section.id"
+          :page_name="section.name"
           :selectPage="selectPage"
+          :color="section.color ? section.color : '#000000'"
         >
-          Новости
+          {{ section.label }}
         </menu-section>
-        <menu-section
-          class="menu-list-section"
-          page_name="about"
-          :selectPage="selectPage"
-        >
-          О компании
-        </menu-section>
-        <menu-section
-          class="menu-list-section"
-          page_name="catalog"
-          :selectPage="selectPage"
-        >
-          Каталог
-        </menu-section>
-        <menu-section
-          class="menu-list-section"
-          page_name="contacts"
-          :selectPage="selectPage"
-        >
-          Контакты
-        </menu-section>
+<!--        <menu-section-->
+<!--          class="menu-list-section"-->
+<!--          page_name="news"-->
+<!--          :selectPage="selectPage"-->
+<!--        >-->
+<!--          Новости-->
+<!--        </menu-section>-->
+<!--        <menu-section-->
+<!--          class="menu-list-section"-->
+<!--          page_name="about"-->
+<!--          :selectPage="selectPage"-->
+<!--        >-->
+<!--          О компании-->
+<!--        </menu-section>-->
+<!--        <menu-section-->
+<!--          class="menu-list-section"-->
+<!--          page_name="partners"-->
+<!--          :selectPage="selectPage"-->
+<!--        >-->
+<!--          Партнеры-->
+<!--        </menu-section>-->
+<!--        <menu-section-->
+<!--          class="menu-list-section"-->
+<!--          page_name="contacts"-->
+<!--          :selectPage="selectPage"-->
+<!--        >-->
+<!--          Контакты-->
+<!--        </menu-section>-->
       </div>
       <div
         v-if="mobileView"
@@ -81,6 +91,9 @@ export default {
     };
   },
   computed: {
+    sections() {
+      return this.$store.state.mainNav.sections;
+    },
     bannerClosed() {
       return this.$store.state.bannerClosed;
     },

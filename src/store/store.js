@@ -1,12 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import catalog from "./modules/catalog";
+import partners from "@/store/modules/partners";
+import mainNav from "@/store/modules/mainNav";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    catalog: catalog
+    partners: partners,
+    mainNav: mainNav
   },
   state: {
     selectedPage: "",

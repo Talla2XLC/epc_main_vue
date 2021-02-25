@@ -1,5 +1,5 @@
 <template>
-  <div class="catalog" v-click-outside="closeModal">
+  <div class="partners-view" v-click-outside="closeModal">
     <h1
       :class="{
         'text-h1': $mq === 'xl' || $mq === 'l',
@@ -7,18 +7,15 @@
         'text-h3': $mq === 's'
       }"
     >
-      Каталог продукции
+      Партнеры
     </h1>
-    <div class="catalog-list">
-      <CatalogSection
-        v-for="(producer, key, index) in catalog"
+    <div class="partners-view-list">
+      <PartnersSection
+        v-for="(producer, key, index) in partners"
         :key="key"
         :ind="index"
-        :name="producer.name"
-        :fullName="producer.fullName"
-        :items="producer.products"
-        :imagePosition="producer.imagePosition"
-        :isLast="index === Object.keys(catalog).length - 1"
+        :producer="producer"
+        :isLast="index === Object.keys(partners).length - 1"
         :selectHandler="productSelectionHandler"
       />
     </div>
@@ -32,11 +29,11 @@
 </template>
 
 <script>
-import CatalogSection from "../components/Catalog/CatalogSection";
-import ProductModal from "../components/Catalog/ProductModal";
+import PartnersSection from "../components/Partners/PartnersSection";
+import ProductModal from "../components/Partners/ProductModal";
 
 export default {
-  name: "Catalog",
+  name: "PartnersView",
   data() {
     return {
       selectedProduct: null,
@@ -45,13 +42,13 @@ export default {
     };
   },
   computed: {
-    catalog() {
-      return this.$store.state.catalog;
+    partners() {
+      return this.$store.state.partners;
     }
   },
   methods: {
     productSelectionHandler(producer, product) {
-      this.selectedProduct = this.$store.state.catalog[
+      this.selectedProduct = this.$store.state.partners[
         producer.toLowerCase()
       ].products.find(item => item.name === product);
       this.selectedProducer = producer.toLowerCase();
@@ -89,25 +86,25 @@ export default {
   },
   components: {
     ProductModal,
-    CatalogSection
+    PartnersSection
   }
 };
 </script>
 
 <style scoped lang="sass">
-.catalog
+.partners-view
   padding: 100px 50px
   display: flex
   flex-flow: column nowrap
   align-items: center
   @include respond-to(s)
-    padding: 98px 0 50px
+    padding: 100px 0 50px
   @include respond-to(m)
-    padding: 70px 20px
+    padding: 70px 0
   @include respond-to(l)
     padding: 100px 50px
   @include respond-to(xl)
-    padding: 100px 100px
+    padding: 100px
   >h1
     margin-bottom: 60px
     @include respond-to(s)

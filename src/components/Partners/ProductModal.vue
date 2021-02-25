@@ -101,7 +101,7 @@
             <div class="modal-body-imgDiv">
               <img
                 :src="
-                  require(`@/assets/images/Catalog/${producer}/${product.name.toLowerCase()}.jpg`)
+                  require(`@/assets/images/Partners/${producer}/${product.name.toLowerCase()}.jpg`)
                 "
                 class="modal-body-img"
                 :alt="product.name + '_image'"
