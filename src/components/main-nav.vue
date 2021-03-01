@@ -35,34 +35,6 @@
         >
           {{ section.label }}
         </menu-section>
-<!--        <menu-section-->
-<!--          class="menu-list-section"-->
-<!--          page_name="news"-->
-<!--          :selectPage="selectPage"-->
-<!--        >-->
-<!--          Новости-->
-<!--        </menu-section>-->
-<!--        <menu-section-->
-<!--          class="menu-list-section"-->
-<!--          page_name="about"-->
-<!--          :selectPage="selectPage"-->
-<!--        >-->
-<!--          О компании-->
-<!--        </menu-section>-->
-<!--        <menu-section-->
-<!--          class="menu-list-section"-->
-<!--          page_name="partners"-->
-<!--          :selectPage="selectPage"-->
-<!--        >-->
-<!--          Партнеры-->
-<!--        </menu-section>-->
-<!--        <menu-section-->
-<!--          class="menu-list-section"-->
-<!--          page_name="contacts"-->
-<!--          :selectPage="selectPage"-->
-<!--        >-->
-<!--          Контакты-->
-<!--        </menu-section>-->
       </div>
       <div
         v-if="mobileView"
@@ -98,7 +70,10 @@ export default {
       return this.$store.state.bannerClosed;
     },
     mobileView() {
-      return this.$mq === "s";
+      return this.$mq === "s" || this.$mq === "m";
+    },
+    tabletView() {
+      return this.$mq === "m";
     },
     selectedPage() {
       return this.$store.state.selectedPage;
@@ -180,7 +155,7 @@ export default {
       }
     },
     $mq(size) {
-      if (size !== "s") {
+      if (size !== "s" && size !== "m") {
         this.mobileMenuOpened = false;
         gsap.to(this.$refs.mainNav, {
           duration: 0.5,
@@ -300,6 +275,7 @@ export default {
     height: 0
   @include respond-to(m)
     margin-left: 0
+    height: 0
   @include respond-to(l)
     margin-left: 20px
   @include respond-to(xl)

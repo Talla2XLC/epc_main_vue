@@ -10,18 +10,31 @@ export default {
       "осуществляя траншевые поставки электрозарядных станций для развития сети на территории Российской Федерации. <br>" +
       "С 2020 года совместно с ООО «ЕРС», EVBox B.V. является официальным поставщиком АО «МОСЭНЕРГОСБЫТ». <br>" +
       "В 2021 году анонсировано первое публично размещение акций EVBox B.V. на Нью-Йоркской Фондовой Бирже.",
-    imagePosition: {
+    styles: {
+      xl: {
+        imagePosition: {
+          top: 0,
+          right: 0
+        }
+      },
       l: {
-        top: 0,
-        right: 0
+        imagePosition: {
+          top: 0,
+          right: 0
+        }
       },
       m: {
-        top: 0,
-        right: 150
+        imagePosition: {
+          top: 0,
+          right: 0
+        }
       },
       s: {
-        top: 70,
-        right: 593
+        imagePosition: {
+          top: 0,
+          right: 0
+        },
+        imageSrc: require(`@/assets/images/Partners/evbox/evbox_r2.png`)
       }
     },
     products: [

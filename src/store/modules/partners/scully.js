@@ -3,6 +3,10 @@ export default {
     name: "Scully",
     fullName: "Устройства контроля налива Scully",
     imagePosition: {
+      xl: {
+        top: 0,
+        right: 0
+      },
       l: {
         top: 0,
         right: 0

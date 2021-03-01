@@ -8,18 +8,31 @@ export default {
       "обеспечивающий монетизацию зарядки и сбор статистики. " +
       "Его миссия заключается в том, чтобы показать автолюбителю преимущество использования " +
       "электрокара в повседневной жизни и расширить границы его перемещения внутри города и за его пределами.",
-    imagePosition: {
+    styles: {
+      xl: {
+        imagePosition: {
+          top: 0,
+          right: 0
+        }
+      },
       l: {
-        top: 0,
-        right: 0
+        imagePosition: {
+          top: 0,
+          right: 0
+        }
       },
       m: {
-        top: 0,
-        right: 0
+        imagePosition: {
+          top: -20,
+          right: 0
+        }
       },
       s: {
-        top: 0,
-        right: 0
+        imagePosition: {
+          top: 0,
+          right: 0
+        },
+        imageSrc: require(`@/assets/images/Partners/plugme/plugme_r2.png`)
       }
     }
   })

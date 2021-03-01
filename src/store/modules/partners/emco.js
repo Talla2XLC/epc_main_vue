@@ -3,6 +3,10 @@ export default {
     name: "Emco",
     fullName: "Оборудование слива-налива Emco Wheaton",
     imagePosition: {
+      xl: {
+        top: 0,
+        right: 0
+      },
       l: {
         top: 0,
         right: 0

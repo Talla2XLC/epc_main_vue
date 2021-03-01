@@ -47,9 +47,13 @@
             :selectHandler="selectHandler"
             v-show="isOpened"
             ref="listItem"
+            @hook:mounted="calculateLineHeight"
           />
         </ul>
-        <div class="partners-view-section-content-list-line" />
+        <div
+          ref="partnersViewSectionListLine"
+          class="partners-view-section-content-list-line"
+        />
       </div>
       <div class="partners-view-section-markets-wrapper" v-else>
         <AppStoreSVG
@@ -70,17 +74,17 @@
         />
       </div>
     </div>
-    <img
-      :src="
-        require(`@/assets/images/Partners/${producer.name.toLowerCase()}_r.png`)
-      "
-      class="partners-view-section-img-r"
-      :style="imgPosition"
-      :alt="'partners' + ind + 'right_pic'"
-    />
     <div
-      class="partners-view-section-img-filter-r"
-      :class="{ 'partners-view-section-img-filter-r-long': this.longFilter }"
+      :class="[
+        'partners-view-section-img-filter-r',
+        `partners-view-section-img-filter-r-${this.producer.name}`
+      ]"
+    />
+    <img
+      :src="imgSrc || defaultImgSrc"
+      class="partners-view-section-img-r"
+      :style="imgStyle"
+      :alt="'partners_' + ind + '_right_pic'"
     />
   </div>
 </template>
@@ -97,7 +101,8 @@ export default {
   data() {
     return {
       isOpened: true,
-      lineHeight: 0
+      lineHeight: 0,
+      defaultImgSrc: require(`@/assets/images/Partners/${this.producer.name.toLowerCase()}_r.png`)
     };
   },
   computed: {
@@ -108,45 +113,98 @@ export default {
         return null;
       }
     },
-    imgPosition() {
+    imgStyle() {
+      let imgStyle = {};
       switch (this.$mq) {
-        case "l":
-          return {
-            objectPosition:
-              this.producer.imagePosition.l.right +
+        case "xl":
+          if (this.producer.styles.xl.imagePosition) {
+            imgStyle.objectPosition =
+              this.producer.styles.xl.imagePosition.right +
               "px " +
-              this.producer.imagePosition.l.top +
-              "px"
-          };
+              this.producer.styles.xl.imagePosition.top +
+              "px";
+          }
+          if (this.producer.styles.xl.scale) {
+            imgStyle.maxWidth = this.producer.styles.xl.scale.width + "px";
+            imgStyle.maxHeight = this.producer.styles.xl.scale.width + "px";
+          }
+          break;
+
+        case "l":
+          if (this.producer.styles.l.imagePosition) {
+            imgStyle.objectPosition =
+              this.producer.styles.l.imagePosition.right +
+              "px " +
+              this.producer.styles.l.imagePosition.top +
+              "px";
+          }
+          if (this.producer.styles.l.scale) {
+            imgStyle.maxWidth = this.producer.styles.l.scale.width + "px";
+            imgStyle.maxHeight = this.producer.styles.l.scale.width + "px";
+          }
+          break;
 
         case "m":
-          return {
-            objectPosition:
-              this.producer.imagePosition.m.right +
+          if (this.producer.styles.m.imagePosition) {
+            imgStyle.objectPosition =
+              this.producer.styles.m.imagePosition.right +
               "px " +
-              this.producer.imagePosition.m.top +
-              "px"
-          };
+              this.producer.styles.m.imagePosition.top +
+              "px";
+          }
+          if (this.producer.styles.m.scale) {
+            imgStyle.maxWidth = this.producer.styles.m.scale.width + "px";
+            imgStyle.maxHeight = this.producer.styles.m.scale.width + "px";
+          }
+          break;
 
         case "s":
-        case "xs":
-          return {
-            objectPosition:
-              this.producer.imagePosition.s.right +
+          if (this.producer.styles.s.imagePosition) {
+            imgStyle.objectPosition =
+              this.producer.styles.s.imagePosition.right +
               "px " +
-              this.producer.imagePosition.s.top +
-              "px"
-          };
+              this.producer.styles.s.imagePosition.top +
+              "px";
+          }
+          if (this.producer.styles.s.scale) {
+            imgStyle.maxWidth = this.producer.styles.s.scale.width;
+            imgStyle.maxHeight = this.producer.styles.s.scale.height;
+          }
+          break;
 
         default:
-          return {
-            top: 0,
-            right: 0
-          };
+          break;
       }
+
+      return imgStyle;
     },
-    longFilter() {
-      return this.producer.name === "EVBox" || this.producer.name === "PlugMe";
+    imgSrc() {
+      switch (this.$mq) {
+        case "xl":
+          if (this.producer.styles.xl.imageSrc) {
+            return this.producer.styles.xl.imageSrc;
+          }
+          break;
+        case "l":
+          if (this.producer.styles.l.imageSrc) {
+            return this.producer.styles.l.imageSrc;
+          }
+          break;
+        case "m":
+          if (this.producer.styles.m.imageSrc) {
+            return this.producer.styles.m.imageSrc;
+          }
+          break;
+        case "s":
+          if (this.producer.styles.s.imageSrc) {
+            return this.producer.styles.s.imageSrc;
+          }
+          break;
+        default:
+          break;
+      }
+
+      return require(`@/assets/images/Partners/${this.producer.name.toLowerCase()}_r.png`);
     }
   },
   methods: {
@@ -160,16 +218,26 @@ export default {
       this.isOpened = false;
     },
 
-    // js-hooks animations
-    setLineHeight() {
-      if (this.$refs.listItem) {
-        this.lineHeight = this.$refs.listItem[
-          this.$refs.listItem.length - 1
-        ]._vnode.elm.clientHeight;
-      }
+    setLineHeight(height) {
+      this.$refs.partnersViewSectionListLine.style.height = height + "px";
     },
     redirectTo(url) {
       window.location = url;
+    },
+    calculateLineHeight() {
+      if (!this.$refs.partnersViewSectionList) {
+        return false;
+      }
+      const listItems = this.$refs.partnersViewSectionList.querySelectorAll(
+        ".partners-view-section-content-list-item-dot"
+      );
+
+      const firstElPoint = listItems[0].getBoundingClientRect().y;
+      const lastElPoint = listItems[
+        listItems.length - 1
+      ].getBoundingClientRect().y;
+
+      this.setLineHeight(lastElPoint - firstElPoint);
     }
   },
   mounted() {
@@ -191,10 +259,10 @@ export default {
   position: relative
   overflow: hidden
   display: flex
-  flex-flow: row nowrap
-  align-items: center
+  flex-flow: column nowrap
+  align-items: flex-start
   @include respond-to(s)
-    padding: 20px 12px
+    padding: 20px 12px 125px 12px
   @include respond-to(m)
     padding: 30px 0 30px 40px
   @include respond-to(l)
@@ -261,6 +329,8 @@ export default {
         position: absolute
         width: 2px
         background: #940000
+        max-height: 90%
+        min-height: 65%
         height: 90%
         top: 7px
         left: 9px
@@ -268,52 +338,59 @@ export default {
         @include respond-to(s)
           height: 70%
           left: 4px
-  >img
+  > img
     position: absolute
-    object-fit: cover
     max-height: 100%
     max-width: 100%
-  &-img
-    &-l
-      max-width: 50%
-      height: initial
-      left: 0
-      z-index: 2
-    &-r
-      right: 0
-      z-index: 0
-    &-filter-l
-      background: linear-gradient(270.57deg, #F0EFEF 77.08%, rgba(196, 196, 196, 0) 209.13%)
-      position: absolute
-      top: 0
-      left: 0
-      width: 50%
-      height: 100%
-      z-index: 3
-    &-filter-r
-      position: absolute
-      top: 0
-      right: 0
+    object-fit: cover
+    right: 0
+    top: 0
+    z-index: 0
+    align-self: center
+    @include respond-to(s)
+      top: auto
+      bottom: 0
       width: 100%
-      height: 100%
-      z-index: 1
-      background: radial-gradient(134.93% 855.13% at 0% 52.93%, #F0EFEF 44.11%, rgba(240, 239, 239, 0) 98.46%)
+    @include respond-to(m)
+      max-height: 110%
+      max-width: 150%
+  &-img-filter-r
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    right: 0
+    z-index: 1
+    background: radial-gradient(134.93% 855.13% at 0% 52.93%, #F0EFEF 44.11%, rgba(240, 239, 239, 0) 98.46%)
+    @include respond-to(s)
+      background: radial-gradient(610.43% 129.1% at 20.69% 0%, #F0EFEF 60.5%, rgba(240, 239, 239, 0) 98.46%)
+    @include respond-to(m)
+    @include respond-to(l)
+    @include respond-to(xl)
+    &-EVBox
       @include respond-to(s)
-        background: radial-gradient(610.43% 129.1% at 20.69% 0%, #F0EFEF 60.5%, rgba(240, 239, 239, 0) 98.46%)
-      @include respond-to(m)
-      @include respond-to(l)
-      @include respond-to(xl)
-      &-long
-        @include respond-to(xxl)
-          background: radial-gradient(160.4% 1016.39% at 0% 52.93%, #F0EFEF 47.46%, rgba(240, 239, 239, 0) 98.46%)
+        background: radial-gradient(597.27% 126.33% at 20.69% 0%, #F0EFEF 60.5%, rgba(240, 239, 239, 0) 98.46%)
+      @include respond-to(xxl)
+        background: radial-gradient(150.4% 1016.39% at 0% 52.93%, #F0EFEF 47.46%, rgba(240, 239, 239, 0) 98.46%)
+    &-PlugMe
+      @include respond-to(s)
+        background: radial-gradient(472.93% 100% at 20.69% 0%, #F0EFEF 60.5%, rgba(240, 239, 239, 0) 98.46%)
+      @include respond-to(xxl)
+        background: radial-gradient(140.4% 1016.39% at 0% 52.93%, #F0EFEF 47.46%, rgba(240, 239, 239, 0) 98.46%)
   &-markets-wrapper
     display: flex
     flex-flow: row nowrap
+    @include respond-to(s)
+      flex-flow: column nowrap
 
 .market-svg
   cursor: pointer
   @include respond-to(s)
     flex-flow: column nowrap
+    width: 100px
+    height: 29px
+    &:first-of-type
+      margin-bottom: 6px
   @include respond-to(m)
     margin-right: 18px
   @include respond-to(l)

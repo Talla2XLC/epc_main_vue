@@ -3,6 +3,10 @@ export default {
     name: "Rotork",
     fullName: "Интеллектуальные приводы Rotork",
     imagePosition: {
+      xl: {
+        top: 0,
+        right: 0
+      },
       l: {
         top: 0,
         right: 0
