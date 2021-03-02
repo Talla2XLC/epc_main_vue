@@ -5,6 +5,7 @@ import About from "./views/About.vue";
 import News from "./views/News.vue";
 import Contacts from "./views/Contacts.vue";
 import Partners from "./views/Partners.vue";
+import specialOffer from "@/views/specialOffer";
 
 Vue.use(Router);
 
@@ -38,9 +39,14 @@ export default new Router({
     },
     {
       path: "/partners/:product",
-      name: "catalogDetailed",
+      name: "partnersDetailed",
       component: Partners,
       props: true
+    },
+    {
+      path: "/specialOffer",
+      name: "specialOffer",
+      component: specialOffer
     }
   ]
 });

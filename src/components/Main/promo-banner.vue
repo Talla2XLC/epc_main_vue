@@ -1,15 +1,17 @@
 <template>
   <div
-    class="nupi-banner"
+    v-if="isBannerOpened"
+    class="promo-banner"
     v-click-outside="closeBanner"
     v-touch:swipe.bottom="closeBanner"
     v-touch:swipe.top="showBanner"
-    ref="nupiBanner"
+    :ref="`${producer}Banner`"
   >
-    <div class="nupi-banner-contentArea">
-      <banner-content
+    <div class="promo-banner-contentArea">
+      <gilbarcoBannerContent v-if="this.producer === 'gilbarco'" />
+      <nupi-banner-content
         :showFeedbackForm="showForm"
-        v-if="!formCreating && !emailDelivered"
+        v-if="this.producer === 'nupi' && !formCreating && !emailDelivered"
       />
       <feedbackForm
         :popupForm="true"
@@ -20,7 +22,7 @@
         Пожалуйста, отправьте нам Ваши&nbsp;данные и мы с Вами
         обязательно&nbsp;свяжемся!
       </feedbackForm>
-      <div class="nupi-banner-emailDelivered" v-if="emailDelivered">
+      <div class="promo-banner-emailDelivered" v-if="emailDelivered">
         <span
           :class="{
             'text-body2': $mq === 'xl' || $mq === 'l',
@@ -34,19 +36,21 @@
           <span class="email-closeBtn-mark" />
         </button>
       </div>
-      <showArrow @click.native="showBanner" v-if="bannerClosed" />
+      <showArrow @click.native="showBanner" v-if="!isBannerOpened" />
     </div>
   </div>
 </template>
 
 <script>
 import feedbackForm from "../General/feedbackForm";
-import bannerContent from "./Banner/bannerContent";
+import nupiBannerContent from "./Banner/nupiBannerContent";
+import gilbarcoBannerContent from "@/components/Main/Banner/gilbarcoBannerContent";
 import showArrow from "./Banner/showArrow";
 import { gsap } from "gsap";
 
 export default {
-  name: "nupi-banner",
+  name: "promo-banner",
+  props: ["producer", "currentBanner"],
   data() {
     return {
       formCreating: false,
@@ -56,42 +60,46 @@ export default {
   computed: {
     bannerClosed() {
       return this.$store.state.bannerClosed;
+    },
+    isBannerOpened() {
+      return this.producer === this.currentBanner;
     }
   },
   watch: {
-    bannerClosed(state) {
-      if (state) {
+    isBannerOpened(state) {
+      console.log(this.$refs)
+      if (!state) {
         switch (this.$mq) {
           case "xl":
-            gsap.to(this.$refs.nupiBanner, {
+            gsap.to(this.$refs[`${this.producer}Banner`], {
               duration: 1.5,
               right: "-59.7%",
               ease: "power1.out"
             });
             break;
           case "l":
-            gsap.to(this.$refs.nupiBanner, {
+            gsap.to(this.$refs[`${this.producer}Banner`], {
               duration: 1.5,
               right: "-58%",
               ease: "power1.out"
             });
             break;
           case "m":
-            gsap.to(this.$refs.nupiBanner, {
+            gsap.to(this.$refs[`${this.producer}Banner`], {
               duration: 1.5,
               right: "-83%",
               ease: "power1.out"
             });
             break;
           case "s":
-            gsap.to(this.$refs.nupiBanner, {
+            gsap.to(this.$refs[`${this.producer}Banner`], {
               duration: 1.5,
               bottom: "calc(-100% + 70px)",
               ease: "power1.out"
             });
             break;
           default:
-            gsap.to(this.$refs.nupiBanner, {
+            gsap.to(this.$refs[`${this.producer}Banner`], {
               duration: 1.5,
               right: "-58%",
               ease: "power1.out"
@@ -99,7 +107,7 @@ export default {
             break;
         }
       } else {
-        gsap.to(this.$refs.nupiBanner, {
+        gsap.to(this.$refs[`${this.producer}Banner`], {
           duration: 1.5,
           right: 0,
           bottom: 0,
@@ -108,34 +116,39 @@ export default {
       }
     },
     $mq(size) {
-      if (!this.bannerClosed) return;
+      if (this.isBannerOpened) return;
       switch (size) {
         case "xl":
-          gsap.set(this.$refs.nupiBanner, {
+          gsap.set(this.$refs[`${this.producer}Banner`], {
             right: "-59.7%"
           });
           break;
         case "l":
-          gsap.set(this.$refs.nupiBanner, {
+          gsap.set(this.$refs[`${this.producer}Banner`], {
             right: "-58%"
           });
           break;
         case "m":
-          gsap.set(this.$refs.nupiBanner, {
+          gsap.set(this.$refs[`${this.producer}Banner`], {
             right: "-83%"
           });
           break;
         case "s":
-          gsap.set(this.$refs.nupiBanner, {
+          gsap.set(this.$refs[`${this.producer}Banner`], {
             right: 0,
             bottom: "-86.5%"
           });
           break;
         default:
-          gsap.set(this.$refs.nupiBanner, {
+          gsap.set(this.$refs[`${this.producer}Banner`], {
             right: "-58%"
           });
           break;
+      }
+    },
+    currentBanner(producer) {
+      if (producer !== this.producer) {
+        this.closeBanner();
       }
     }
   },
@@ -172,6 +185,7 @@ export default {
     },
 
     closeBanner() {
+      this.$emit("closingBanner", this.producer.name);
       this.$store.dispatch("closeBanner");
     },
     setEmailDelivered() {
@@ -181,14 +195,15 @@ export default {
   },
   components: {
     feedbackForm,
-    bannerContent,
+    nupiBannerContent,
+    gilbarcoBannerContent,
     showArrow
   }
 };
 </script>
 
 <style lang="sass">
-.nupi-banner
+.promo-banner
   width: 64%
   height: 100%
   background: linear-gradient(180.27deg, #EC001D -24.42%, #940000 62.59%), #940000
@@ -299,24 +314,24 @@ export default {
     outline: none
 
 @media (max-height: 1399px)
-  .nupi-banner
+  .promo-banner
     clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%)
 
 @media (max-height: 950px)
-  .nupi-banner-contentArea
+  .promo-banner-contentArea
     margin-top: 70px
 
 @media (max-height: 850px)
-  .nupi-banner-contentArea
+  .promo-banner-contentArea
     margin-top: 60px
 
 @media (max-height: 750px)
-  .nupi-banner
+  .promo-banner
     &-contentArea
       margin-top: 40px
 
 @media (max-height: 700px)
-  .nupi-banner
+  .promo-banner
     justify-content: flex-end
     clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%)
     &-contentArea

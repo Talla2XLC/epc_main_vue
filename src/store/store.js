@@ -12,6 +12,7 @@ export default new Vuex.Store({
   },
   state: {
     selectedPage: "",
+    banners: ["nupi", "gilbarco"],
     bannerClosed: true,
     news: [
       {

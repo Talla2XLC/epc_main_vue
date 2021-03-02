@@ -2,6 +2,7 @@ export default {
   state: () => ({
     name: "Scully",
     fullName: "Устройства контроля налива Scully",
+    logoType: "png",
     imagePosition: {
       xl: {
         top: 0,

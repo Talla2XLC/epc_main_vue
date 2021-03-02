@@ -1,71 +1,98 @@
 <template>
   <div class="partners">
     <router-link
-      :to="{ name: `catalog`, params: { product: 'Scully' } }"
+      v-for="partner in partners"
+      :key="partner.name.toLowerCase()"
+      :to="{ name: `partners`, params: { product: partner.name } }"
       class="partner_logo-link"
     >
       <img
-        class="partner_logo-img scully-logo"
-        src="@/assets/partners_logo/scully_logo.png"
-        alt="partner_logo"
+        v-if="partner.logoType !== 'SVG'"
+        :class="['partner_logo-img', `${partner.name.toLowerCase()}-logo`]"
+        :src="getImgSrc(partner)"
+        :alt="`${partner.name.toLowerCase()}_partner_logo`"
         height="40"
         width="150"
       />
+      <component v-else :is="getImgSrc(partner)" />
     </router-link>
-    <router-link
-      :to="{ name: `catalog`, params: { product: 'Emco' } }"
-      class="partner_logo-link"
-    >
-      <img
-        class="partner_logo-img emco-logo"
-        src="@/assets/partners_logo/emco_logo.png"
-        alt="partner_logo"
-        height="40"
-        width="162"
-      />
-    </router-link>
-    <router-link
-      :to="{ name: `catalog`, params: { product: 'Nupi' } }"
-      class="partner_logo-link"
-    >
-      <img
-        class="partner_logo-img nupi-logo"
-        src="@/assets/partners_logo/nupi_logo.png"
-        alt="partner_logo"
-        height="50"
-        width="50"
-      />
-    </router-link>
-    <router-link
-      :to="{ name: `catalog`, params: { product: 'Rotork' } }"
-      class="partner_logo-link"
-    >
-      <img
-        class="partner_logo-img rotork-logo"
-        src="@/assets/partners_logo/rotork_logo.png"
-        alt="partner_logo"
-        height="40"
-        width="136"
-      />
-    </router-link>
-    <router-link
-      :to="{ name: `catalog`, params: { product: 'EVBox' } }"
-      class="partner_logo-link"
-    >
-      <img
-        class="partner_logo-img evbox-logo"
-        src="@/assets/partners_logo/evbox_logo.png"
-        alt="partner_logo"
-        height="46"
-        width="134"
-      />
-    </router-link>
+
+<!--    <router-link-->
+<!--      :to="{ name: `partners`, params: { product: 'Scully' } }"-->
+<!--      class="partner_logo-link"-->
+<!--    >-->
+<!--      <img-->
+<!--        class="partner_logo-img scully-logo"-->
+<!--        src="@/assets/partners_logo/scully_logo.png"-->
+<!--        alt="partner_logo"-->
+<!--        height="40"-->
+<!--        width="150"-->
+<!--      />-->
+<!--    </router-link>-->
+<!--    <router-link-->
+<!--      :to="{ name: `partners`, params: { product: 'Emco' } }"-->
+<!--      class="partner_logo-link"-->
+<!--    >-->
+<!--      <img-->
+<!--        class="partner_logo-img emco-logo"-->
+<!--        src="@/assets/partners_logo/emco_logo.png"-->
+<!--        alt="partner_logo"-->
+<!--        height="40"-->
+<!--        width="162"-->
+<!--      />-->
+<!--    </router-link>-->
+<!--    <router-link-->
+<!--      :to="{ name: `partners`, params: { product: 'Nupi' } }"-->
+<!--      class="partner_logo-link"-->
+<!--    >-->
+<!--      <img-->
+<!--        class="partner_logo-img nupi-logo"-->
+<!--        src="@/assets/partners_logo/nupi_logo.png"-->
+<!--        alt="partner_logo"-->
+<!--        height="50"-->
+<!--        width="50"-->
+<!--      />-->
+<!--    </router-link>-->
+<!--    <router-link-->
+<!--      :to="{ name: `partners`, params: { product: 'Rotork' } }"-->
+<!--      class="partner_logo-link"-->
+<!--    >-->
+<!--      <img-->
+<!--        class="partner_logo-img rotork-logo"-->
+<!--        src="@/assets/partners_logo/rotork_logo.png"-->
+<!--        alt="partner_logo"-->
+<!--        height="40"-->
+<!--        width="136"-->
+<!--      />-->
+<!--    </router-link>-->
+<!--    <router-link-->
+<!--      :to="{ name: `partners`, params: { product: 'EVBox' } }"-->
+<!--      class="partner_logo-link"-->
+<!--    >-->
+<!--      <img-->
+<!--        class="partner_logo-img evbox-logo"-->
+<!--        src="@/assets/partners_logo/evbox_logo.png"-->
+<!--        alt="partner_logo"-->
+<!--        height="46"-->
+<!--        width="134"-->
+<!--      />-->
+<!--    </router-link>-->
   </div>
 </template>
 
 <script>
 export default {
-  name: "partners"
+  name: "partners",
+  computed: {
+    partners() {
+      return this.$store.state.partners;
+    }
+  },
+  methods: {
+    getImgSrc(partner) {
+      return require(`@/assets/partners_logo/${partner.name.toLowerCase()}_logo.${partner.logoType.toLowerCase()}`);
+    }
+  }
 };
 </script>
 
@@ -101,6 +128,8 @@ export default {
     &:hover
       filter: none
       transform: scale(1.1)
+      >g
+        fill: #323439
   &-link
     display: flex
     flex-flow: row nowrap
