@@ -16,67 +16,6 @@
       />
       <component v-else :is="getImgSrc(partner)" />
     </router-link>
-
-<!--    <router-link-->
-<!--      :to="{ name: `partners`, params: { product: 'Scully' } }"-->
-<!--      class="partner_logo-link"-->
-<!--    >-->
-<!--      <img-->
-<!--        class="partner_logo-img scully-logo"-->
-<!--        src="@/assets/partners_logo/scully_logo.png"-->
-<!--        alt="partner_logo"-->
-<!--        height="40"-->
-<!--        width="150"-->
-<!--      />-->
-<!--    </router-link>-->
-<!--    <router-link-->
-<!--      :to="{ name: `partners`, params: { product: 'Emco' } }"-->
-<!--      class="partner_logo-link"-->
-<!--    >-->
-<!--      <img-->
-<!--        class="partner_logo-img emco-logo"-->
-<!--        src="@/assets/partners_logo/emco_logo.png"-->
-<!--        alt="partner_logo"-->
-<!--        height="40"-->
-<!--        width="162"-->
-<!--      />-->
-<!--    </router-link>-->
-<!--    <router-link-->
-<!--      :to="{ name: `partners`, params: { product: 'Nupi' } }"-->
-<!--      class="partner_logo-link"-->
-<!--    >-->
-<!--      <img-->
-<!--        class="partner_logo-img nupi-logo"-->
-<!--        src="@/assets/partners_logo/nupi_logo.png"-->
-<!--        alt="partner_logo"-->
-<!--        height="50"-->
-<!--        width="50"-->
-<!--      />-->
-<!--    </router-link>-->
-<!--    <router-link-->
-<!--      :to="{ name: `partners`, params: { product: 'Rotork' } }"-->
-<!--      class="partner_logo-link"-->
-<!--    >-->
-<!--      <img-->
-<!--        class="partner_logo-img rotork-logo"-->
-<!--        src="@/assets/partners_logo/rotork_logo.png"-->
-<!--        alt="partner_logo"-->
-<!--        height="40"-->
-<!--        width="136"-->
-<!--      />-->
-<!--    </router-link>-->
-<!--    <router-link-->
-<!--      :to="{ name: `partners`, params: { product: 'EVBox' } }"-->
-<!--      class="partner_logo-link"-->
-<!--    >-->
-<!--      <img-->
-<!--        class="partner_logo-img evbox-logo"-->
-<!--        src="@/assets/partners_logo/evbox_logo.png"-->
-<!--        alt="partner_logo"-->
-<!--        height="46"-->
-<!--        width="134"-->
-<!--      />-->
-<!--    </router-link>-->
   </div>
 </template>
 
@@ -85,7 +24,11 @@ export default {
   name: "partners",
   computed: {
     partners() {
-      return this.$store.state.partners;
+      let newArr = Object.values(this.$store.state.partners);
+      newArr.sort((a, b) => {
+        return a.positionInLogoArr - b.positionInLogoArr;
+      });
+      return newArr;
     }
   },
   methods: {
@@ -234,6 +177,13 @@ export default {
   @include respond-to(xl)
     width: 134px
     height: 46px
+
+.plugme-logo
+  width: 135px
+  height: 33px
+  @include respond-to(s)
+    width: 66px
+    height: 16px
 
 @media (max-height: 950px)
   .partners

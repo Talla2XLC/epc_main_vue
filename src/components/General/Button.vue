@@ -29,8 +29,11 @@ export default {
   &:focus
     outline: none
 
-.callback-btn
+.banner-btn
   box-shadow: 0 0 20px #EE001E
+  margin-bottom: 30px
+  @include respond-to(s)
+    margin-bottom: 0px
   &:hover
     box-shadow: 0 0 20px #EC001D
   &:active
@@ -63,6 +66,10 @@ export default {
 .white-btn
   background: #F0EFEF
   color: #000000
+  @include respond-to(s)
+    background: #FFFFFF
+  @include respond-to(m)
+    background: #FFFFFF
   &:hover
     background: #FFFFFF
   &:active

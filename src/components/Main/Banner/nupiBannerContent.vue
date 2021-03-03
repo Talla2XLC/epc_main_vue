@@ -4,7 +4,7 @@
       class="nupi-banner-content-top"
       :class="{
         'text-h3': $mq === 'xl' || $mq === 'l' || $mq === 'm',
-        'text-h5': $mq === 's'
+        'text-h6': $mq === 's'
       }"
     >
       Официальный логистический центр компании Nupi Industrie Italiane S.p.A.
@@ -20,12 +20,12 @@
         class="nupi-banner-content-bottom-txt"
         :class="{
           'text-h3': $mq === 'xl' || $mq === 'l' || $mq === 'm',
-          'text-h5': $mq === 's'
+          'text-h6': $mq === 's'
         }"
       >
-        Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
+        Мы всегда готовы предложить выгодные цены и скидки для&nbsp;Вашей&nbsp;компаний!
       </span>
-      <Button type="callback" color="white" @click.native="showFeedbackForm"
+      <Button type="banner" color="white" @click.native="showFeedbackForm"
         >Перезвоните мне!</Button
       >
     </div>
@@ -138,11 +138,7 @@ export default {
     &-bottom
       margin-bottom: 0
       &-txt
-        margin-bottom: 15px
-
-@media (max-height: 750px)
-  .nupi-banner-content
-    &-bottom
-      &-txt
         margin-bottom: 5px
+    >img
+      bottom: 35px
 </style>

@@ -20,15 +20,15 @@
         class="gilbarco-banner-content-bottom-txt"
         :class="{
           'text-h3': $mq === 'xl' || $mq === 'l' || $mq === 'm',
-          'text-h5': $mq === 's'
+          'text-h6': $mq === 's'
         }"
       >
         Эксклюзивные цены на запасные части со склада в Москве
-        от&nbsp;поставщика ПАО&nbsp;"ЛУКОЙЛ". Особые&nbsp;скидки для оптовых
-        клиентов!
+        от&nbsp;поставщика ПАО&nbsp;"ЛУКОЙЛ". Особые&nbsp;скидки
+        для&nbsp;оптовых&nbsp;клиентов!
       </span>
       <Button
-        type="callback"
+        type="banner"
         color="white"
         @click.native="$router.push({ name: 'specialOffer' })"
         >Посмотреть прайс-лист</Button
@@ -68,6 +68,7 @@ export default {
   &-top
     @include respond-to(s)
     @include respond-to(m)
+      margin-top: 50px
     @include respond-to(l)
     @include respond-to(xl)
   &-bottom
@@ -77,6 +78,8 @@ export default {
       margin-bottom: 60px
       @include respond-to(s)
         margin-bottom: 22px !important
+      @include respond-to(m)
+        margin-bottom: 75px
 
 .gilbarco-banner-gilbarco-img
   width: auto
@@ -86,8 +89,9 @@ export default {
   bottom: 0
   margin-top: 50px
   @include respond-to(s)
-    width: auto
-    height: auto
+    margin-top: 0
+    width: 200px
+    height: 45px
     position: relative
   @include respond-to(m)
     position: relative
@@ -95,12 +99,8 @@ export default {
     bottom: auto
     margin: 0
   @include respond-to(l)
-    width: auto
-    height: auto
     margin-top: 50px
   @include respond-to(xl)
-    width: auto
-    height: auto
 
 .gilbarco-banner-callback-btn
   background: #F0EFEF
@@ -138,12 +138,6 @@ export default {
       margin-top: 0
     &-bottom
       margin-bottom: 0
-      &-txt
-        margin-bottom: 15px
-
-@media (max-height: 750px)
-  .gilbarco-banner-content
-    &-bottom
       &-txt
         margin-bottom: 5px
 </style>

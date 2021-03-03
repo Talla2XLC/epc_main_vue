@@ -35,17 +35,25 @@
           />
         </div>
       </div>
-      <promo-banner
-        v-for="banner in banners"
-        :key="banner"
-        :producer="banner"
-        :currentBanner="currentBanner"
-      />
-<!--      <promo-banner-->
-<!--        producer="gilbarco"-->
-<!--        :currentBanner="currentBanner"-->
-<!--        v-if="currentBanner === 'gilbarco'"-->
-<!--      />-->
+      <template v-if="currentBanner !== undefined">
+        <promo-banner
+          v-for="(banner, index) in banners"
+          :key="index"
+          :index="index"
+          :producer="banner"
+          :currentBanner="currentBanner"
+          :currentBannerID="currentBannerID"
+          :bannersQty="banners.length"
+          @clickedOutsideBanners="closeAllBanners"
+          @openingBanner="showBanner"
+          @switchCommercial="switchCommercial"
+        />
+      </template>
+      <!--      <promo-banner-->
+      <!--        producer="gilbarco"-->
+      <!--        :currentBanner="currentBanner"-->
+      <!--        v-if="currentBanner === 'gilbarco'"-->
+      <!--      />-->
     </div>
     <vue-scroll :ops="ops" ref="vs">
       <partners />
@@ -66,7 +74,8 @@ export default {
   },
   data() {
     return {
-      currentBanner: null,
+      currentBanner: undefined,
+      currentBannerID: undefined,
       ops: {
         vuescroll: {
           mode: "native",
@@ -132,19 +141,62 @@ export default {
     selectPage(page) {
       this.$store.dispatch("selectPage", page);
     },
-    showBanner(producer) {
-      this.currentBanner = producer;
+
+    showBanner(bannerID) {
+      if (this.currentBannerID !== bannerID) {
+        this.currentBannerID = bannerID;
+
+        if (bannerID === null) {
+          this.currentBanner = null;
+        } else {
+          this.currentBanner = this.banners[bannerID];
+        }
+      }
     },
+
+    closeAllBanners() {
+      if (this.currentBanner) {
+        console.log("Close all banners from Main");
+        this.showBanner(null);
+        this.setIsBannerOpened(false);
+      }
+    },
+
     setIsBannerOpened(state) {
       if (state) {
         this.$store.dispatch("showBanner");
       } else {
         this.$store.dispatch("closeBanner");
       }
+    },
+
+    /**
+     * Переключает текущий рекламный баннер
+     * Если массив рекламных баннеров закончен, возвращаемся в начало
+     */
+    switchCommercial() {
+      if (this.currentBannerID + 1 > this.banners.length - 1) {
+        this.showBanner(0);
+      } else {
+        this.showBanner(this.currentBannerID + 1);
+      }
+    },
+
+    printInConsole(msg) {
+      console.log(msg);
     }
   },
   mounted() {
-    this.showBanner("nupi");
+    this.showBanner(0);
+  },
+  watch: {
+    currentBanner(banner) {
+      if (banner === null) {
+        this.setIsBannerOpened(false);
+      } else {
+        this.setIsBannerOpened(true);
+      }
+    }
   },
   beforeRouteLeave(to, from, next) {
     this.$store.dispatch("closeBanner");

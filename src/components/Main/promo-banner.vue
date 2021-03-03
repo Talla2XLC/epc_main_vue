@@ -1,10 +1,9 @@
 <template>
   <div
-    v-if="isBannerOpened"
     class="promo-banner"
-    v-click-outside="closeBanner"
-    v-touch:swipe.bottom="closeBanner"
-    v-touch:swipe.top="showBanner"
+    v-click-outside-banners="emitClickOutsideBanners"
+    v-touch:swipe.bottom="emitClickOutsideBanners"
+    v-touch:swipe.top="swipeUpHandler"
     :ref="`${producer}Banner`"
   >
     <div class="promo-banner-contentArea">
@@ -36,7 +35,12 @@
           <span class="email-closeBtn-mark" />
         </button>
       </div>
-      <showArrow @click.native="showBanner" v-if="!isBannerOpened" />
+      <showArrow @click.native="emitOpeningBanner(index)" v-if="!isBannerOpened" />
+      <crumbs
+        :crumbsQty="bannersQty"
+        :currentCrumbId="index"
+        @crumbPressed="handleCrumbPressed"
+      />
     </div>
   </div>
 </template>
@@ -46,15 +50,23 @@ import feedbackForm from "../General/feedbackForm";
 import nupiBannerContent from "./Banner/nupiBannerContent";
 import gilbarcoBannerContent from "@/components/Main/Banner/gilbarcoBannerContent";
 import showArrow from "./Banner/showArrow";
+import crumbs from "@/components/Main/Banner/crumbs";
 import { gsap } from "gsap";
 
 export default {
   name: "promo-banner",
-  props: ["producer", "currentBanner"],
+  props: [
+    "producer",
+    "currentBanner",
+    "currentBannerID",
+    "index",
+    "bannersQty"
+  ],
   data() {
     return {
       formCreating: false,
-      emailDelivered: false
+      emailDelivered: false,
+      switchInterval: null
     };
   },
   computed: {
@@ -62,57 +74,17 @@ export default {
       return this.$store.state.bannerClosed;
     },
     isBannerOpened() {
-      return this.producer === this.currentBanner;
+      return this.index === this.currentBannerID;
     }
   },
   watch: {
     isBannerOpened(state) {
-      console.log(this.$refs)
       if (!state) {
-        switch (this.$mq) {
-          case "xl":
-            gsap.to(this.$refs[`${this.producer}Banner`], {
-              duration: 1.5,
-              right: "-59.7%",
-              ease: "power1.out"
-            });
-            break;
-          case "l":
-            gsap.to(this.$refs[`${this.producer}Banner`], {
-              duration: 1.5,
-              right: "-58%",
-              ease: "power1.out"
-            });
-            break;
-          case "m":
-            gsap.to(this.$refs[`${this.producer}Banner`], {
-              duration: 1.5,
-              right: "-83%",
-              ease: "power1.out"
-            });
-            break;
-          case "s":
-            gsap.to(this.$refs[`${this.producer}Banner`], {
-              duration: 1.5,
-              bottom: "calc(-100% + 70px)",
-              ease: "power1.out"
-            });
-            break;
-          default:
-            gsap.to(this.$refs[`${this.producer}Banner`], {
-              duration: 1.5,
-              right: "-58%",
-              ease: "power1.out"
-            });
-            break;
-        }
+        console.log("Banner switch to CLOSED", this.producer);
+        this.closeCurrentBanner();
       } else {
-        gsap.to(this.$refs[`${this.producer}Banner`], {
-          duration: 1.5,
-          right: 0,
-          bottom: 0,
-          ease: "power1.out"
-        });
+        console.log("Banner switch to OPENED", this.producer)
+        this.showBanner();
       }
     },
     $mq(size) {
@@ -146,9 +118,15 @@ export default {
           break;
       }
     },
-    currentBanner(producer) {
-      if (producer !== this.producer) {
-        this.closeBanner();
+
+    currentBannerID(id) {
+      if (id !== this.index) {
+        this.closeCurrentBanner();
+
+        // Если выбран другой баннер, текщий помещаем на задний план
+        if (typeof id === "number") {
+          this.getOnTop(false);
+        }
       }
     }
   },
@@ -156,6 +134,7 @@ export default {
     clickOutside: {
       bind: function(el, binding, vnode) {
         el.clickOutsideEvent = function(event) {
+          console.log(!(el === event.target || event.path.includes(el)))
           if (!(el === event.target || event.path.includes(el))) {
             vnode.context[binding.expression](event);
           }
@@ -165,10 +144,43 @@ export default {
       unbind: function(el) {
         document.body.removeEventListener("click", el.clickOutsideEvent);
       }
+    },
+    clickOutsideBanners: {
+      bind: function(el, binding, vnode) {
+        el.clickOutsideBannersEvent = function(event) {
+          const classNameToCheck = "promo-banner";
+          const isTargetClasslistMatch = event.target.classList.contains(
+            classNameToCheck
+          );
+          const isTargetPathClasslistMatch = event.path.find(elem => {
+            if (elem.classList) {
+              return elem.classList.contains(classNameToCheck);
+            }
+          });
+
+          if (!(isTargetClasslistMatch || isTargetPathClasslistMatch)) {
+            console.log("Clicked outside banners!")
+            vnode.context[binding.expression](event);
+          }
+        };
+        document.body.addEventListener("click", el.clickOutsideBannersEvent);
+      },
+      unbind: function(el) {
+        document.body.removeEventListener("click", el.clickOutsideBannersEvent);
+      }
     }
   },
   mounted() {
-    setTimeout(this.showBanner, 1000);
+    // Определям при первичной отрисовке баннера, является ли он первым для показа
+    if (this.isBannerOpened) {
+      console.log("Opening banner on mounted:", this.producer);
+      setTimeout(this.showBanner, 1000);
+    }
+
+    // Устанавливаем Z-Index`ы ,баннерам согласно их положению в массиве
+    gsap.set(this.$refs[`${this.producer}Banner`], {
+      zIndex: this.index
+    });
   },
   methods: {
     showForm() {
@@ -181,23 +193,123 @@ export default {
     },
 
     showBanner() {
-      this.$store.dispatch("showBanner");
+      console.log("Showing banner:", this.producer);
+
+      gsap.to(this.$refs[`${this.producer}Banner`], {
+        duration: 1.5,
+        right: 0,
+        bottom: 0,
+        ease: "power1.out"
+      });
+      this.getOnTop(true);
+      this.startSwitchInterval();
     },
 
-    closeBanner() {
-      this.$emit("closingBanner", this.producer.name);
-      this.$store.dispatch("closeBanner");
+    closeCurrentBanner() {
+      switch (this.$mq) {
+        case "xl":
+          gsap.to(this.$refs[`${this.producer}Banner`], {
+            duration: 1.5,
+            right: "-59.7%",
+            ease: "power1.out"
+          });
+          break;
+        case "l":
+          gsap.to(this.$refs[`${this.producer}Banner`], {
+            duration: 1.5,
+            right: "-58%",
+            ease: "power1.out"
+          });
+          break;
+        case "m":
+          gsap.to(this.$refs[`${this.producer}Banner`], {
+            duration: 1.5,
+            right: "-83%",
+            ease: "power1.out"
+          });
+          break;
+        case "s":
+          gsap.to(this.$refs[`${this.producer}Banner`], {
+            duration: 1.5,
+            bottom: "calc(-100% + 70px)",
+            ease: "power1.out"
+          });
+          break;
+        default:
+          gsap.to(this.$refs[`${this.producer}Banner`], {
+            duration: 1.5,
+            right: "-58%",
+            ease: "power1.out"
+          });
+          break;
+      }
+      this.stopSwitchInterval();
+      this.$emit("closingBanner", this.producer);
     },
+
+    emitClickOutsideBanners() {
+      this.$emit("clickedOutsideBanners", this.producer);
+    },
+
+    emitOpeningBanner(id = this.index) {
+      console.log('Emiting opening', id)
+      this.$emit("openingBanner", id);
+    },
+
     setEmailDelivered() {
       this.formCreating = false;
       this.emailDelivered = true;
+    },
+
+    getOnTop(state = true) {
+      if (state) {
+        this.$refs[`${this.producer}Banner`].style.zIndex = 5;
+      } else {
+        this.$refs[`${this.producer}Banner`].style.zIndex = 1;
+      }
+    },
+
+    handleCrumbPressed(crumbID) {
+      if (crumbID !== this.index) {
+        this.emitOpeningBanner(crumbID);
+      }
+    },
+
+    /**
+     * Запускает интервал проверки необходимости смены баннера
+     */
+    startSwitchInterval() {
+      this.switchInterval = setInterval(() => this.emitSwitchCommercial(), 10000);
+    },
+
+    /**
+     * Останавливает интервал проверки необходимости смены баннера
+     */
+    stopSwitchInterval() {
+      clearInterval(this.switchInterval);
+      this.switchInterval = null;
+    },
+
+    /**
+     * Генерирует событие необходимости смены баннера, если
+     * текущий баннер открыт и не в состоянии заполениния формы обратной связи
+     */
+    emitSwitchCommercial() {
+      if (this.isBannerOpened && !this.formCreating) {
+        this.$emit("switchCommercial");
+      }
+    },
+
+    swipeUpHandler() {
+      this.emitOpeningBanner(this.index);
     }
   },
   components: {
     feedbackForm,
     nupiBannerContent,
     gilbarcoBannerContent,
-    showArrow
+    showArrow,
+    crumbs
   }
 };
 </script>
@@ -245,7 +357,7 @@ export default {
     height: 80%
     margin-top: 30px
     display: flex
-    justify-content: flex-end
+    justify-content: center
     @include respond-to(s)
       width: 100%
       height: 100% !important
