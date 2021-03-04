@@ -49,11 +49,6 @@
           @switchCommercial="switchCommercial"
         />
       </template>
-      <!--      <promo-banner-->
-      <!--        producer="gilbarco"-->
-      <!--        :currentBanner="currentBanner"-->
-      <!--        v-if="currentBanner === 'gilbarco'"-->
-      <!--      />-->
     </div>
     <vue-scroll :ops="ops" ref="vs">
       <partners />
@@ -72,6 +67,7 @@ export default {
   metaInfo: {
     title: "EPC Main"
   },
+  props: ["preferredProduct"],
   data() {
     return {
       currentBanner: undefined,
@@ -175,7 +171,6 @@ export default {
      * Если массив рекламных баннеров закончен, возвращаемся в начало
      */
     switchCommercial() {
-      console.log('Catch emit switch commercial')
       if (this.currentBannerID + 1 > this.banners.length - 1) {
         this.showBanner(0);
       } else {
@@ -188,8 +183,15 @@ export default {
     }
   },
   mounted() {
-    console.log('Mounted main view');
-    this.showBanner(0);
+    if (this.preferredProduct) {
+      this.banners.find((banner, bannerID) => {
+        if (banner === this.preferredProduct) {
+          this.showBanner(bannerID);
+        }
+      });
+    } else {
+      this.showBanner(0);
+    }
   },
   watch: {
     currentBanner(banner) {

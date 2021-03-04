@@ -47,6 +47,13 @@ export default new Router({
       path: "/specialOffer",
       name: "specialOffer",
       component: specialOffer
-    }
+    },
+    {
+      path: "/:preferredProduct",
+      name: "main",
+      component: Main,
+      props: true
+    },
+    { path: "/*", redirect: "/" }
   ]
 });
