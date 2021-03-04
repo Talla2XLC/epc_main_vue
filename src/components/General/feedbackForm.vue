@@ -129,11 +129,14 @@ export default {
       this.validateForm();
     },
     sendEmail() {
+      console.log('Click detected')
       if (this.name && this.phone) {
         let templateParams = {
           name: this.name,
           phone: this.phone
         };
+
+        this.validated = false;
 
         emailjs
           .send(

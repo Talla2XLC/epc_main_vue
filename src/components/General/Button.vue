@@ -7,6 +7,7 @@
       inactive ? color + '-inactive-btn' : '',
       this.$mq === 's' ? 'text-h5' : ''
     ]"
+    ref="feedback-btn"
   >
     <slot>{{ type === "submit" ? "Отправить" : "" }}</slot>
   </button>
@@ -15,7 +16,17 @@
 <script>
 export default {
   name: "Button",
-  props: ["type", "color", "inactive"]
+  props: ["type", "color", "inactive"],
+  watch: {
+    inactive(state) {
+      this.$refs["feedback-btn"].disabled = !!state;
+    }
+  },
+  mounted() {
+    if (this.inactive) {
+      this.$refs["feedback-btn"].disabled = true;
+    }
+  }
 };
 </script>
 

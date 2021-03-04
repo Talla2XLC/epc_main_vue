@@ -35,7 +35,10 @@
           <span class="email-closeBtn-mark" />
         </button>
       </div>
-      <showArrow @click.native="emitOpeningBanner(index)" v-if="!isBannerOpened" />
+      <showArrow
+        @click.native="emitOpeningBanner(index)"
+        v-if="!isBannerOpened"
+      />
       <crumbs
         :crumbsQty="bannersQty"
         :currentCrumbId="index"
@@ -66,7 +69,8 @@ export default {
     return {
       formCreating: false,
       emailDelivered: false,
-      switchInterval: null
+      switchInterval: null,
+      initialShowTimeout: null
     };
   },
   computed: {
@@ -134,7 +138,6 @@ export default {
     clickOutside: {
       bind: function(el, binding, vnode) {
         el.clickOutsideEvent = function(event) {
-          console.log(!(el === event.target || event.path.includes(el)))
           if (!(el === event.target || event.path.includes(el))) {
             vnode.context[binding.expression](event);
           }
@@ -174,7 +177,10 @@ export default {
     // Определям при первичной отрисовке баннера, является ли он первым для показа
     if (this.isBannerOpened) {
       console.log("Opening banner on mounted:", this.producer);
-      setTimeout(this.showBanner, 1000);
+      this.initialShowTimeout = setTimeout(
+        () => this.showBanner("mounted"),
+        1000
+      );
     }
 
     // Устанавливаем Z-Index`ы ,баннерам согласно их положению в массиве
@@ -192,8 +198,8 @@ export default {
       this.emailDelivered = false;
     },
 
-    showBanner() {
-      console.log("Showing banner:", this.producer);
+    showBanner(from = null) {
+      console.log("Showing banner:", this.producer, from);
 
       gsap.to(this.$refs[`${this.producer}Banner`], {
         duration: 1.5,
@@ -244,6 +250,7 @@ export default {
           break;
       }
       this.stopSwitchInterval();
+      this.stopInitialShowTimeout();
       this.$emit("closingBanner", this.producer);
     },
 
@@ -252,7 +259,6 @@ export default {
     },
 
     emitOpeningBanner(id = this.index) {
-      console.log('Emiting opening', id)
       this.$emit("openingBanner", id);
     },
 
@@ -279,7 +285,10 @@ export default {
      * Запускает интервал проверки необходимости смены баннера
      */
     startSwitchInterval() {
-      this.switchInterval = setInterval(() => this.emitSwitchCommercial(), 10000);
+      this.switchInterval = setInterval(
+        () => this.emitSwitchCommercial(),
+        10000
+      );
     },
 
     /**
@@ -288,6 +297,14 @@ export default {
     stopSwitchInterval() {
       clearInterval(this.switchInterval);
       this.switchInterval = null;
+    },
+
+    /**
+     * Останавливает таймаут изначального показа баннера
+     */
+    stopInitialShowTimeout() {
+      clearTimeout(this.initialShowTimeout);
+      this.initialShowTimeout = null;
     },
 
     /**

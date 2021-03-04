@@ -175,6 +175,7 @@ export default {
      * Если массив рекламных баннеров закончен, возвращаемся в начало
      */
     switchCommercial() {
+      console.log('Catch emit switch commercial')
       if (this.currentBannerID + 1 > this.banners.length - 1) {
         this.showBanner(0);
       } else {
@@ -187,6 +188,7 @@ export default {
     }
   },
   mounted() {
+    console.log('Mounted main view');
     this.showBanner(0);
   },
   watch: {

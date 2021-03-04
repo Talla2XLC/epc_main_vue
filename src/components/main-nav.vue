@@ -102,56 +102,94 @@ export default {
   watch: {
     mobileMenuOpened(state) {
       let tl = gsap.timeline();
+
+      // Анимация открытия мобильного меню
       if (state && this.mobileView) {
         gsap.to(this.$refs.menuArrow, {
           duration: 1,
-          rotation: 135,
-          borderColor: "#4F4F51"
-        });
-        tl.to(this.$refs.mainNav, {
-          duration: 0.7,
-          height: 208
+          rotation: 90,
+          width: 18
+          // borderColor: "#4F4F51"
         });
         gsap.to(this.$refs.menuList, {
-          duration: 0.5,
+          duration: 1,
           height: "100%"
         });
-        tl.fromTo(
-          ".menu-list-section",
-          {
-            opacity: 0,
-            y: -50
-          },
-          {
+
+        // Анимация открытия для телефонов
+        if (this.$mq === "s") {
+          tl.to(this.$refs.mainNav, {
+            duration: 0.7,
+            height: 208
+          });
+          tl.fromTo(
+            ".menu-list-section",
+            {
+              opacity: 0,
+              y: -50
+            },
+            {
+              opacity: 1,
+              y: 0,
+              ease: "back.out(1.5)",
+              duration: 0.5,
+              stagger: {
+                each: 0.25,
+                from: "end"
+              }
+            },
+            "-=0.2"
+          );
+
+          // Анимация открытия для планшетов
+        } else if (this.$mq === "m") {
+          tl.to(this.$refs.mainNav, {
+            duration: 1,
+            height: 105
+          });
+          gsap.to(this.$refs.menuList, {
+            duration: 1,
             opacity: 1,
-            y: 0,
-            ease: "back.out(1.5)",
-            duration: 0.5,
-            stagger: {
-              each: 0.25,
-              from: "end"
-            }
-          },
-          "-=0.2"
-        );
+            delay: 0.1
+          });
+        }
+
+        // Анимация закрытия мобильного меню
       } else if (this.mobileView) {
         gsap.to(this.$refs.menuArrow, {
-          duration: 1,
-          rotation: -45,
-          borderColor: "#EC001D"
+          duration: 0.7,
+          width: 42,
+          rotation: 0
+          // borderColor: "#EC001D"
         });
         gsap.to(this.$refs.menuList, {
           duration: 0.7,
-          height: 0
+          height: "0%"
         });
-        gsap.to(this.$refs.mainNav, {
-          duration: 0.7,
-          height: 42
-        });
-        gsap.to(".menu-list-section", {
-          duration: 0.15,
-          opacity: 0
-        });
+
+        // Анимация закрытия для телефонов
+        if (this.$mq === "s") {
+          gsap.to(this.$refs.mainNav, {
+            duration: 0.7,
+            height: 42
+          });
+          gsap.to(".menu-list-section", {
+            duration: 0.2,
+            opacity: 0
+          });
+        }
+
+        // Анимация закрытия для планшетов
+        if (this.$mq === "m") {
+          gsap.to(this.$refs.mainNav, {
+            duration: 0.7,
+            height: 60
+          });
+          gsap.to(this.$refs.menuList, {
+            duration: 0.5,
+            opacity: 0
+          });
+        }
       }
     },
     $mq(size) {
@@ -209,15 +247,27 @@ export default {
     padding: 12px
     min-height: 42px
     height: 42px
+    justify-content: center
   @include respond-to(m)
-    padding: 0 40px
+    padding: 17px 40px 12px
     min-height: 60px
+    align-items: stretch
+    justify-content: center
   @include respond-to(l)
     padding: 0 100px
     min-height: 60px
   @include respond-to(xl)
     padding: 0 100px
     min-height: 60px
+
+.epc_logo_div
+  @include respond-to(s)
+    position: absolute
+    left: 12px
+  @include respond-to(m)
+    position: absolute
+    left: 40px
+
 
 .epc-logo
   width: 85px
@@ -245,6 +295,14 @@ export default {
   &:nth-of-type(2), &:nth-of-type(4)
     fill: #EC001D
 
+.epcelectro-logo-link
+  @include respond-to(s)
+    position: absolute
+    right: 12px
+  @include respond-to(m)
+    position: absolute
+    right: 40px
+
 .epcelectro-logo
   width: 140px
   height: 26px
@@ -262,8 +320,8 @@ export default {
     height: 26px
   &:hover >path
     &:nth-of-type(1)
-      fill: #E6E6E6
-    &:nth-of-type(2), &:nth-of-type(3), &:nth-of-type(5)
+      fill: #18BFF6
+    &:nth-of-type(2), &:nth-of-type(5)
       fill: #18BFF6
 .menu-list
   margin-left: 20px
@@ -285,14 +343,29 @@ export default {
     flex-flow: column nowrap
     align-items: center
     justify-content: space-between
+    @include respond-to(s)
+      justify-content: center
+    @include respond-to(m)
+      justify-content: flex-end
   &-mobile
     flex-flow: column nowrap
     align-items: center
+    justify-content: flex-end
+    @include respond-to(m)
+      opacity: 0
+      flex-flow: row nowrap
+      align-items: flex-end
 
 .mobile-menu-arrow
-  width: 10px
-  height: 10px
-  border-left: 2px solid #EC001D
-  border-bottom: 2px solid #EC001D
-  transform: rotate(-45deg)
+  width: 42px
+  height: 2px
+  background: #EC001D
+  position: absolute
+  @include respond-to(s)
+    top: 23px
+  @include respond-to(m)
+    top: 29px
+  //border-left: 2px solid #EC001D
+  //border-bottom: 2px solid #EC001D
+  //transform: rotate(-45deg)
 </style>

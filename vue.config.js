@@ -30,6 +30,10 @@ module.exports = {
               plugins: [{ removeViewBox: false }]
             }
           }
+        },
+        {
+          test: /\.xls.?$/,
+          loader: "excel-loader"
         }
       ]
     }

@@ -82,7 +82,7 @@ export default {
     flex-flow: column nowrap
     justify-content: flex-end
     overflow: hidden
-    height: 112px
+    max-height: 112px
   @include respond-to(s)
     margin-bottom: 50px
   @include respond-to(m)

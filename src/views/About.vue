@@ -82,7 +82,7 @@ export default {
       if (state) {
         gsap.to(".about-history", {
           duration: 1,
-          height: "auto"
+          maxHeight: 1000
         });
         gsap.to(this.$refs.historyArrow, {
           duration: 1,
@@ -92,7 +92,7 @@ export default {
       } else if (this.mobileView) {
         gsap.to(".about-history", {
           duration: 1,
-          height: 112
+          maxHeight: 112
         });
         gsap.to(this.$refs.historyArrow, {
           duration: 1,
