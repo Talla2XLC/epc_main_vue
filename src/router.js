@@ -50,7 +50,7 @@ export default new Router({
     },
     {
       path: "/:preferredProduct",
-      name: "main",
+      name: "mainFromCommercial",
       component: Main,
       props: true
     },

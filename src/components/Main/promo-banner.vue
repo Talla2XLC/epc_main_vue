@@ -4,6 +4,8 @@
     v-click-outside-banners="emitClickOutsideBanners"
     v-touch:swipe.bottom="emitClickOutsideBanners"
     v-touch:swipe.top="swipeUpHandler"
+    v-touch:swipe.left="emitSwitchCommercial"
+    v-touch:swipe.right="emitSwitchCommercial"
     :ref="`${producer}Banner`"
   >
     <div class="promo-banner-contentArea">
