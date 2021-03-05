@@ -24,9 +24,18 @@ module.exports = {
       rules: [
         {
           test: /\.svg$/,
-          loader: 'vue-svg-loader',
+          loader: "vue-svg-loader",
+          options: {
+            svgo: {
+              plugins: [{ removeViewBox: false }]
+            }
+          }
         },
-      ],
+        {
+          test: /\.xls.?$/,
+          loader: "excel-loader"
+        }
+      ]
     }
   }
 };

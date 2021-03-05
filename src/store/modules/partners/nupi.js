@@ -1,19 +1,37 @@
 export default {
   state: () => ({
     name: "Nupi",
-    fullName: "Пластиковый трубопровод Nupi",
-    imagePosition: {
+    fullName: "Nupi Industrie Italiane S. p. A.",
+    logoType: "png",
+    partnerDescription:
+      "Nupi Industrie Italiane S.p.A. – итальянский технологический конгломерат, объединивший в себе несколько концернов, имеющих своей целью создания мощного игрока на рынке пластикового трубопроката.<br>" +
+      "С середины 90-х годов Nupi Industrie Italiane S.p.A. представляет на российском рынке высококлассный трубопрокат, активно применяемый как в нефти-газовом секторе, так и в области водоснабжения. <br>" +
+      "С 2019 года ООО «ЕРС» является логистическим партнером Nupi Industrie Italiane S.p.A., осуществляя поставки 100% номенклатуры, производимой Nupi, для применения в нефти-газовом секторе Российской экономики.",
+    positionInLogoArr: 2,
+    styles: {
+      xl: {
+        imagePosition: {
+          top: 30,
+          right: 0
+        }
+      },
       l: {
-        top: 0,
-        right: 0
+        imagePosition: {
+          top: 0,
+          right: 0
+        }
       },
       m: {
-        top: -48,
-        right: 210
+        imagePosition: {
+          top: 50,
+          right: 0
+        }
       },
       s: {
-        top: -58,
-        right: 245
+        imagePosition: {
+          top: 35,
+          right: 0
+        }
       }
     },
     products: [

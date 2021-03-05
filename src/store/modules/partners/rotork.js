@@ -2,7 +2,12 @@ export default {
   state: () => ({
     name: "Rotork",
     fullName: "Интеллектуальные приводы Rotork",
+    logoType: "png",
     imagePosition: {
+      xl: {
+        top: 0,
+        right: 0
+      },
       l: {
         top: 0,
         right: 0

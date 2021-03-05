@@ -1,15 +1,20 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import catalog from "./modules/catalog";
+import partners from "@/store/modules/partners";
+import mainNav from "@/store/modules/mainNav";
+import gilbarco from "@/store/gilbarco";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    catalog: catalog
+    partners: partners,
+    mainNav: mainNav,
+    gilbarco: gilbarco
   },
   state: {
     selectedPage: "",
+    banners: ["nupi", "gilbarco"],
     bannerClosed: true,
     news: [
       {

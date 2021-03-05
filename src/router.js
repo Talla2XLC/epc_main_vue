@@ -4,7 +4,8 @@ import Main from "./views/Main.vue";
 import About from "./views/About.vue";
 import News from "./views/News.vue";
 import Contacts from "./views/Contacts.vue";
-import Catalog from "./views/Catalog.vue";
+import Partners from "./views/Partners.vue";
+import specialOffer from "@/views/specialOffer";
 
 Vue.use(Router);
 
@@ -32,15 +33,27 @@ export default new Router({
       component: Contacts
     },
     {
-      path: "/catalog",
-      name: "catalog",
-      component: Catalog
+      path: "/partners",
+      name: "partners",
+      component: Partners
     },
     {
-      path: "/catalog/:product",
-      name: "catalogDetailed",
-      component: Catalog,
+      path: "/partners/:product",
+      name: "partnersDetailed",
+      component: Partners,
       props: true
-    }
+    },
+    {
+      path: "/specialOffer",
+      name: "specialOffer",
+      component: specialOffer
+    },
+    {
+      path: "/:preferredProduct",
+      name: "mainFromCommercial",
+      component: Main,
+      props: true
+    },
+    { path: "/*", redirect: "/" }
   ]
 });

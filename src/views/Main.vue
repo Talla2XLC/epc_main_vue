@@ -21,20 +21,34 @@
               'text-h4': $mq === 's'
             }"
           >
-            Технологии и качество на&nbsp;высшем&nbsp;уровне
+            Движение вперед и&nbsp;достижение целей
           </h1>
           <p
+            class="main_content-text"
             :class="{
               'text-body1': $mq === 'xl',
               'text-body2': $mq === 'l',
               'text-body4': $mq === 'm',
-              'text-body5': $mq === 's'
+              'text-body6': $mq === 's'
             }"
             v-html="contentTxt"
           />
         </div>
       </div>
-      <nupi-banner />
+      <template v-if="currentBanner !== undefined">
+        <promo-banner
+          v-for="(banner, index) in banners"
+          :key="index"
+          :index="index"
+          :producer="banner"
+          :currentBanner="currentBanner"
+          :currentBannerID="currentBannerID"
+          :bannersQty="banners.length"
+          @clickedOutsideBanners="closeAllBanners"
+          @openingBanner="showBanner"
+          @switchCommercial="switchCommercial"
+        />
+      </template>
     </div>
     <vue-scroll :ops="ops" ref="vs">
       <partners />
@@ -43,8 +57,8 @@
 </template>
 
 <script>
-import partners from "@/components/Main/partners";
-import nupiBanner from "@/components/Main/nupi-banner";
+import partners from "@/components/Main/partnersLogos";
+import promoBanner from "@/components/Main/promo-banner";
 import EPCLogoFull from "@/assets/svg/epc-logo-full.svg";
 import vueScroll from "vuescroll";
 
@@ -53,8 +67,11 @@ export default {
   metaInfo: {
     title: "EPC Main"
   },
+  props: ["preferredProduct"],
   data() {
     return {
+      currentBanner: undefined,
+      currentBannerID: undefined,
       ops: {
         vuescroll: {
           mode: "native",
@@ -98,22 +115,91 @@ export default {
   },
   computed: {
     contentTxt() {
-      if (this.$mq === "s") {
-        return "Наша компания является официальным сервисным и&nbsp;логистическим партнёром ряда&nbsp;европейских производителей технологического оборудования.";
-      } else {
-        return "Наша компания является официальным сервисным и&nbsp;логистическим партнёром ряда&nbsp;европейских производителей технологического оборудования, таких как Nupi Industrie Italiane S.p.A., Scully Signal Company, Emco Wheaton GmbH, Rotork Plc и EVBox.";
-      }
+      return (
+        "Мы целеустремленны и всегда идем в&nbsp;ногу \n" +
+        "со&nbsp;временем. Чтобы добиться успеха, \n" +
+        "нужно&nbsp;верить в себя и&nbsp;своих&nbsp;партнеров.\n" +
+        "Мы&nbsp;уверены в&nbsp;наших&nbsp;партнерах, поскольку \n" +
+        "мы&nbsp;сотрудничаем только с лучшими!"
+      );
+    },
+    banners() {
+      return this.$store.state.banners;
     }
   },
   components: {
     partners,
-    nupiBanner,
+    promoBanner,
     EPCLogoFull,
     vueScroll
   },
   methods: {
     selectPage(page) {
       this.$store.dispatch("selectPage", page);
+    },
+
+    showBanner(bannerID) {
+      if (this.currentBannerID !== bannerID) {
+        this.currentBannerID = bannerID;
+
+        if (bannerID === null) {
+          this.currentBanner = null;
+        } else {
+          this.currentBanner = this.banners[bannerID];
+        }
+      }
+    },
+
+    closeAllBanners() {
+      if (this.currentBanner) {
+        console.log("Close all banners from Main");
+        this.showBanner(null);
+        this.setIsBannerOpened(false);
+      }
+    },
+
+    setIsBannerOpened(state) {
+      if (state) {
+        this.$store.dispatch("showBanner");
+      } else {
+        this.$store.dispatch("closeBanner");
+      }
+    },
+
+    /**
+     * Переключает текущий рекламный баннер
+     * Если массив рекламных баннеров закончен, возвращаемся в начало
+     */
+    switchCommercial() {
+      if (this.currentBannerID + 1 > this.banners.length - 1) {
+        this.showBanner(0);
+      } else {
+        this.showBanner(this.currentBannerID + 1);
+      }
+    },
+
+    printInConsole(msg) {
+      console.log(msg);
+    }
+  },
+  mounted() {
+    if (this.preferredProduct) {
+      this.banners.find((banner, bannerID) => {
+        if (banner === this.preferredProduct) {
+          this.showBanner(bannerID);
+        }
+      });
+    } else {
+      this.showBanner(0);
+    }
+  },
+  watch: {
+    currentBanner(banner) {
+      if (banner === null) {
+        this.setIsBannerOpened(false);
+      } else {
+        this.setIsBannerOpened(true);
+      }
     }
   },
   beforeRouteLeave(to, from, next) {
@@ -174,13 +260,16 @@ export default {
   &-header
     margin-bottom: 47px
     @include respond-to(s)
-      margin-bottom: 14px
+      line-height: 28px
+      margin-bottom: 12px
     @include respond-to(m)
       margin-bottom: 30px
     @include respond-to(l)
       margin-bottom: 47px
     @include respond-to(xl)
       margin-bottom: 50px
+  &-text
+    max-width: 610px
 
 .main_left
   width: 50%
@@ -240,10 +329,6 @@ export default {
   display: flex
   flex-flow: column nowrap
   justify-content: center
-  @include respond-to(xs)
-    width: auto
-    margin-left: 0
-    flex-grow: 0
   @include respond-to(s)
     width: auto
     margin-left: 0
@@ -267,9 +352,10 @@ export default {
   flex-flow: column nowrap
   justify-content: space-around
   text-align: center
+  align-items: center
   max-width: 610px
-  @include respond-to(xs)
   @include respond-to(s)
+    max-width: 296px
   @include respond-to(m)
     max-width: 447px
   @include respond-to(l)

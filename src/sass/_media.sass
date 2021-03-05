@@ -1,6 +1,7 @@
 $m: 425px
 $l: 1200px
 $xl: 1800px
+$xxl: 1950px
 
 @mixin respond-to($media)
   @if $media == s
@@ -18,3 +19,7 @@ $xl: 1800px
   @else if $media == xl
     @media only screen and (min-width: $xl)
         @content
+
+  @else if $media == xxl
+    @media only screen and (min-width: $xxl)
+      @content

@@ -1,32 +1,37 @@
 <template>
-  <div class="nupi-banner-content">
+  <div class="gilbarco-banner-content">
     <span
-      class="nupi-banner-content-top"
+      class="gilbarco-banner-content-top"
       :class="{
-        'text-h3': $mq === 'xl' || $mq === 'l' || $mq === 'm',
-        'text-h5': $mq === 's'
+        'text-h2': $mq === 'xl' || $mq === 'l',
+        'text-h2T': $mq === 'm',
+        'text-h4': $mq === 's'
       }"
     >
-      Официальный логистический центр компании Nupi Industrie Italiane S.p.A.
-      в&nbsp;РФ&nbsp;и&nbsp;странах&nbsp;СНГ.
+      СПЕЦИАЛЬНАЯ АКЦИЯ!
     </span>
     <img
-      class="nupi-banner-nupi-img"
-      src="~@/assets/partners_logo/nupi_logo.png"
-      alt="Nupi logo"
+      class="gilbarco-banner-gilbarco-img"
+      src="~@/assets/partners_logo/gilbarco_logo.png"
+      alt="Gilbarco logo"
     />
-    <div class="nupi-banner-content-bottom">
+    <div class="gilbarco-banner-content-bottom">
       <span
-        class="nupi-banner-content-bottom-txt"
+        class="gilbarco-banner-content-bottom-txt"
         :class="{
           'text-h3': $mq === 'xl' || $mq === 'l' || $mq === 'm',
-          'text-h5': $mq === 's'
+          'text-h6': $mq === 's'
         }"
       >
-        Мы всегда готовы предложить выгодные цены и скидки для Вашей компаний!
+        Эксклюзивные цены на запасные части со склада в Москве
+        от&nbsp;поставщика ПАО&nbsp;"ЛУКОЙЛ". Особые&nbsp;скидки
+        для&nbsp;оптовых&nbsp;клиентов!
       </span>
-      <Button type="callback" color="white" @click.native="showFeedbackForm"
-        >Перезвоните мне!</Button
+      <Button
+        type="banner"
+        color="white"
+        @click.native="$router.push({ name: 'specialOffer' })"
+        >Посмотреть прайс-лист</Button
       >
     </div>
   </div>
@@ -36,7 +41,7 @@
 import Button from "../../General/Button";
 
 export default {
-  name: "banner-content",
+  name: "gilbarco-banner-content",
   props: ["showFeedbackForm"],
   data() {
     return {};
@@ -48,7 +53,7 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.nupi-banner-content
+.gilbarco-banner-content
   height: 100%
   width: 100%
   display: flex
@@ -61,33 +66,34 @@ export default {
     padding: 0 12px
   @include respond-to(m)
   &-top
-    margin-top: 55px
     @include respond-to(s)
     @include respond-to(m)
-      margin-top: 48px
+      margin-top: 50px
     @include respond-to(l)
-      margin-top: 55px
     @include respond-to(xl)
-      margin-top: 30px
   &-bottom
     display: flex
     flex-flow: column nowrap
     &-txt
-      margin-bottom: 40px
+      margin-bottom: 60px
       @include respond-to(s)
         margin-bottom: 22px !important
+        @media (min-height: 700px)
+          margin-bottom: 70px !important
+      @include respond-to(m)
+        margin-bottom: 75px
 
-.nupi-banner-nupi-img
-  width: 123px
-  height: 123px
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.15)
-  position: absolute
+.gilbarco-banner-gilbarco-img
+  width: auto
+  height: auto
+  position: relative
   top: 0
   bottom: 0
-  margin: auto 0
+  margin-top: 50px
   @include respond-to(s)
-    width: 76px
-    height: 76px
+    margin-top: 0
+    width: 200px
+    height: 45px
     position: relative
   @include respond-to(m)
     position: relative
@@ -95,13 +101,10 @@ export default {
     bottom: auto
     margin: 0
   @include respond-to(l)
-    width: 123px
-    height: 123px
+    margin-top: 50px
   @include respond-to(xl)
-    width: 150px
-    height: 150px
 
-.nupi-banner-callback-btn
+.gilbarco-banner-callback-btn
   background: #F0EFEF
   box-shadow: 0 0 20px #EE001E
   border-radius: 4px
@@ -114,7 +117,7 @@ export default {
     outline: none
 
 @media (max-height: 950px)
-  .nupi-banner-content
+  .gilbarco-banner-content
     &-top
       margin-top: 40px
     &-bottom
@@ -123,7 +126,7 @@ export default {
         margin-bottom: 30px
 
 @media (max-height: 850px)
-  .nupi-banner-content
+  .gilbarco-banner-content
     &-top
       margin-top: 0
     &-bottom
@@ -132,17 +135,11 @@ export default {
         margin-bottom: 20px
 
 @media (max-height: 750px)
-  .nupi-banner-content
+  .gilbarco-banner-content
     &-top
       margin-top: 0
     &-bottom
       margin-bottom: 0
-      &-txt
-        margin-bottom: 15px
-
-@media (max-height: 750px)
-  .nupi-banner-content
-    &-bottom
       &-txt
         margin-bottom: 5px
 </style>
