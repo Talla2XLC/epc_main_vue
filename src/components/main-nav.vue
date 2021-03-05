@@ -38,10 +38,11 @@
       </div>
       <div
         v-if="mobileView"
-        class="mobile-menu-arrow"
+        class="mobile-menu-arrow-wrapper"
         @click="switchMobileMenu"
-        ref="menuArrow"
-      />
+      >
+        <div class="mobile-menu-arrow" ref="menuArrow" />
+      </div>
     </div>
     <a class="epcelectro-logo-link" href="http://epcelectro.ru/">
       <EPCelectroLogo viewBox="0 0 140 26" class="epcelectro-logo" />
@@ -360,11 +361,14 @@ export default {
   width: 42px
   height: 2px
   background: #EC001D
-  position: absolute
-  @include respond-to(s)
-    top: 23px
-  @include respond-to(m)
-    top: 29px
+  &-wrapper
+    position: absolute
+    @include respond-to(s)
+      top: 8px
+      padding: 15px 0
+    @include respond-to(m)
+      padding: 20px 0
+      top: 9px
   //border-left: 2px solid #EC001D
   //border-bottom: 2px solid #EC001D
   //transform: rotate(-45deg)
