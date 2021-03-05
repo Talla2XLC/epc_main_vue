@@ -13,7 +13,7 @@
           'epc-logo-colored':
             this.$route.path !== '/' ||
             ((this.$mq === 'm' || this.$mq === 's') && !this.bannerClosed) ||
-            (this.mobileView && this.mobileMenuOpened)
+            (this.mobileView && this.mobileMenuOpened && this.$mq === 's')
         }"
       />
     </router-link>
