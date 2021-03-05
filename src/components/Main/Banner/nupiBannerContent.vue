@@ -76,6 +76,8 @@ export default {
       margin-bottom: 40px
       @include respond-to(s)
         margin-bottom: 22px !important
+        @media (min-height: 700px)
+          margin-bottom: 70px !important
 
 .nupi-banner-nupi-img
   width: 123px
