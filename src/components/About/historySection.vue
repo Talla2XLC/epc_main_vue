@@ -52,6 +52,8 @@ export default {
   @include respond-to(s)
     margin-left: 0
     padding: 0 12px
+    -webkit-flex: 0
+    flex-shrink: 0
   @include respond-to(m)
     margin-left: 40px
   @include respond-to(l)
